@@ -202,7 +202,7 @@
         ]
       }
     ],
-    "updated": "2026-11-21"
+    "updated": "2026-11-24"
   },
   "entries": [
     {
@@ -6480,7 +6480,7 @@
       "seededFrom": "pre-llm",
       "opposites": [],
       "origin": null,
-      "group": null
+      "group": "agent-setup-upkeep"
     },
     {
       "id": "architecture-decision-records",
@@ -6528,7 +6528,7 @@
         "en": "Proposed by Michael Nygard in 2011 (per Edy Silva, Codeminer42).",
         "ru": "Предложены Майклом Найгардом в 2011 году (по Эди Силве, Codeminer42)."
       },
-      "group": null
+      "group": "context-memory"
     },
     {
       "id": "n-version-programming",
@@ -6576,7 +6576,7 @@
         "en": "Proposed by Liming Chen and Algirdas Avizienis in 1978 (per Ron, Baudry and Monperrus).",
         "ru": "Предложено Лимином Чэнем и Альгирдасом Авиженисом в 1978 году (по Рону, Бодри и Монперрюсу)."
       },
-      "group": null
+      "group": "sessions"
     },
     {
       "id": "tracer-bullets",
@@ -6782,7 +6782,7 @@
         "en": "The checker lint was described by S. C. Johnson at Bell Laboratories",
         "ru": "Программу проверки lint описал С. Джонсон в Bell Laboratories"
       },
-      "group": null
+      "group": "agent-instructions"
     },
     {
       "id": "feature-flags",
