@@ -1,0 +1,2877 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A year of agentic coding</title>
+<meta name="description" content="Tests, code review and CI carry more weight with coding agents. Practices from people who build software with agents, each with a quote, and the older practices they grew from.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="A year of agentic coding">
+<meta property="og:description" content="Practices for coding agents and the older practices they grew from: definitions, dates and sources.">
+<meta property="og:url" content="https://inmve.github.io/agentic-coding-practices/">
+
+<link rel="canonical" href="https://inmve.github.io/agentic-coding-practices/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;600;800&family=PT+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>:root{--ink:#2e2a33;--muted:#8a8490;--faint:#e9e6ec;--paper:#ffffff;--accent:#2f5f8f;--accent-soft:rgba(47, 95, 143, .22);--accent-wash:rgba(47, 95, 143, .07);--link:#2f6a3f;--link-line:rgba(47, 106, 63, .25);--new:255,205,60;--yes:#3f9a5a;--no:#d2544a;--sans:'Golos Text','Helvetica Neue',Arial,sans-serif;--serif:'PT Serif',Georgia,serif;--bottom-bar:0px;--toc-top:0px;--sidebar:228px;--period:#e8c23a}*{box-sizing:border-box}html{background:var(--paper)}body{margin:0;font:14px/18px var(--sans);color:var(--ink);background:var(--paper);padding-bottom:calc(var(--bottom-bar) + 20px);-webkit-font-smoothing:antialiased}a{color:inherit}.toc{font-size:13px;line-height:1.35}#toc{scrollbar-width:none}#toc::-webkit-scrollbar{display:none}.toc .site{display:block;font-weight:600;text-decoration:none;margin-bottom:14px}.toc .site-bottom{margin:18px 0 0;font-weight:600}.toc .suggest-practice{margin:18px 0 0;font-weight:400;color:var(--link)}.toc .suggest-practice+.site-bottom{margin-top:6px}.toc .site-bottom .stars{color:var(--muted);font-weight:400;margin-left:4px}.toc .part{display:block;font-weight:600;text-decoration:none;margin:12px 0 4px;color:var(--ink)}.toc .item:hover,.toc .part:hover{color:var(--accent)}.toc .item{display:block;text-decoration:none;color:var(--muted);padding:2px 0 2px 10px;border-left:1px solid var(--faint)}.toc a.active{color:var(--ink);font-weight:600;border-left-color:var(--accent)}.toc .item .arrow{opacity:.5;margin-left:3px}.toc .keys{margin-top:18px;padding-top:12px;border-top:1px solid var(--faint);color:var(--muted);font-size:12px}#question kbd.key,.toc kbd{font:11px var(--sans);border:1px solid var(--faint);border-bottom-width:2px;border-radius:3px;padding:0 4px;color:var(--ink);background:#fff}@media (min-width:1000px){#toc{position:sticky;top:var(--toc-top);float:left;box-sizing:border-box;width:var(--sidebar);margin-left:calc(-1 * var(--sidebar) - 28px);max-height:calc(100vh - var(--toc-top) - var(--bottom-bar));overflow:auto;padding:4px 18px 18px 24px;background:#fff;z-index:15}.page{margin-left:var(--sidebar)}#tocInline{display:none}}@media (max-width:999px){#toc{display:none}#tocInline{margin:0 0 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0 24px}#tocInline .keys,#tocInline .site{display:none}#tocInline .part{margin-top:6px}}.page{padding:0 28px}header.title{padding:36px 0 20px}:root{--band:#f6f4f8}header.title{background:var(--band);box-shadow:0 0 0 100vmax var(--band);clip-path:inset(0 -100vmax);padding-bottom:40px;margin-bottom:44px}header.title .kicker{margin:0 0 8px;font:600 13px/1.3 var(--sans);color:var(--muted);letter-spacing:.02em}header.title h1{margin:0 0 14px;font:800 clamp(34px, 4.6vw, 60px)/1 var(--sans);color:var(--accent);letter-spacing:-.02em;max-width:20ch}header.title .lead{margin:0 0 18px;font:clamp(20px, 2.4vw, 28px)/1.25 var(--serif);max-width:32ch}header.title .intro{max-width:62ch;margin:0 0 18px;font:16px/1.55 var(--serif)}header.title .intro p{margin:0 0 10px}header.title .intro ul{margin:0 0 10px;padding-left:20px}header.title .intro li{margin:0 0 8px}header.title .intro q{font-style:italic}header.title .intro .year{color:var(--muted)}header.title .intro .repo{margin-top:14px}.block-description{max-width:62ch;margin:0 0 14px;font:15px/1.5 var(--serif);color:var(--muted)}.grew-from{margin:-6px 0 14px;font-size:13px;color:var(--muted)}.grew-from .ref{color:var(--link);text-decoration:underline;text-decoration-color:var(--link-line);text-underline-offset:2px}header.title .edition{font-size:13px;color:var(--muted)}.langs{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0 0 18px;font:13px/1.4 var(--sans)}.langs a{color:var(--muted);text-decoration:none}.langs a:hover{color:var(--link)}.langs b{color:var(--ink);font-weight:600}header.title .edition .feedback-card{display:block;box-sizing:border-box;max-width:62ch;margin:26px 0 0;text-align:center;background:#fff;border:1px solid var(--faint);border-radius:8px;padding:14px 18px;font:16px/1.5 var(--serif);color:var(--ink)}header.title .edition .feedback-card .feedback-text{display:block;font:14px/1.5 var(--sans)}header.title .edition .feedback-card .feedback-text a{display:block}header.title .edition .feedback-card .repo-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 12px;margin-top:10px}header.title .edition .feedback-card .star{font:600 13px var(--sans);color:var(--ink);text-decoration:none;border:1px solid var(--ink);border-radius:6px;padding:4px 12px}header.title .edition .feedback-card .star:hover{background:var(--ink);color:#fff}header.title .edition .feedback-card .updated{font:13px/1.4 var(--sans);color:var(--muted)}.facts{margin:0 0 16px;font-size:15px;color:var(--ink);max-width:60ch}.facts button{font:inherit;color:var(--accent);background:var(--accent-wash);border:0;border-radius:4px;padding:1px 7px;cursor:pointer}.facts button::after{content:' ⌁';opacity:.55}.facts button:hover{background:var(--accent-soft)}.facts .tip{display:block;font-size:12px;color:var(--muted);margin-top:3px}header.title .edition label{margin-left:14px;cursor:pointer}header.title .edition input{vertical-align:-2px}section.part>h2.part-title{font:800 13px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:34px 0 4px}section.block{border-top:1px solid var(--faint);padding:14px 0 24px}.entry,section.block{scroll-margin-top:24px}section.block h3{font:400 clamp(28px, 3.6vw, 44px)/1 var(--sans);color:var(--accent);margin:0 0 14px -2px;letter-spacing:-.01em}section.block .empty{color:var(--muted)}dl.cols{margin:0;columns:4 220px;column-gap:34px}section.block.shelf{padding:16px 0 18px}.shelf-head{display:flex;align-items:center;gap:10px;margin:0 0 10px;position:relative}.shelf-head h3{margin:0}.shelf-head .n{color:var(--muted);font:13px var(--sans)}.shelf-head .sec-menu{border:1px solid var(--faint);background:#fff;border-radius:6px;width:26px;height:26px;cursor:pointer;color:var(--muted)}.shelf-head .arrows{margin-left:auto;display:flex;gap:6px}.shelf-head .arrows button{width:32px;height:32px;border-radius:50%;border:1px solid var(--faint);background:#fff;cursor:pointer;font-size:15px}.sec-list{position:absolute;top:34px;left:0;z-index:30;background:#fff;border:1px solid var(--faint);border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.12);padding:8px 0;min-width:260px;max-height:60vh;overflow:auto;font:14px var(--sans)}.sec-list b{display:block;padding:6px 14px 2px;font:600 11px var(--sans);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}.sec-list a{display:block;padding:4px 14px;color:var(--ink);text-decoration:none}.sec-list a:hover{background:#f3efe3}.shelf-grid{display:grid;grid-auto-flow:column;grid-template-rows:auto auto;grid-auto-columns:250px;gap:18px 16px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;align-items:start}.shelf-grid.all{grid-auto-flow:row;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));grid-auto-columns:auto;overflow:visible}.entry.card{margin:0;padding:4px;break-inside:auto;display:flex;flex-direction:column;min-width:0}.entry.card dt{display:block;font:700 15.5px/1.25 var(--sans);min-height:2.5em;margin:0 0 6px;cursor:pointer}.entry.card .cover{aspect-ratio:16/9;border:1px solid var(--faint);border-radius:8px;background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer}.entry.card .cover img{width:92%;height:86%;object-fit:contain}.entry.card .cover .mfig{width:100%;margin:0;border:0;padding:4px}.entry.card .cover .soft{width:100%;height:100%;background:var(--bg);display:flex;flex-direction:column;justify-content:space-between;padding:6px 12px 10px}.entry.card .cover .soft .mark{font:700 48px/1 var(--serif);color:rgba(0,0,0,.18)}.entry.card .cover .soft .nm{font:600 14px/1.3 var(--serif);color:rgba(0,0,0,.55)}.entry.card .qt{margin:8px 0 0;min-height:9.6em;font:14.5px/1.42 var(--serif);cursor:pointer}.entry.card .qt blockquote,.entry.card p.qt{margin:0;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}.entry.card .qt cite{display:block;font:normal 12px var(--sans);color:var(--muted);margin-top:3px}.entry.card .foot{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:4px}.entry.card .src{position:relative;font:600 12.5px var(--sans);color:var(--muted);border-bottom:1px dotted var(--muted);cursor:default}.entry.card .src .pop{display:none;position:absolute;left:0;bottom:calc(100% + 6px);z-index:30;width:270px;background:#fff;border:1px solid var(--faint);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.12);padding:8px 10px;font:12.5px/1.4 var(--sans);color:var(--ink)}.entry.card .src .pop span{display:block;padding:2px 0}.entry.card .src:focus .pop,.entry.card .src:hover .pop{display:block}.entry.card .tier-pick{display:flex;margin:0;opacity:0;transition:opacity .15s}.entry.card .tier-pick:has(.on),.entry.card.active .tier-pick,.entry.card:hover .tier-pick{opacity:1}.entry.card .tier-pick:has(.on) button:not(.on){display:none}.entry.card.active .tier-pick button,.entry.card:hover .tier-pick button{display:inline-block!important;opacity:1!important}.see-all{align-self:stretch;min-height:200px;border:1.5px dashed #cfc9b6;border-radius:10px;background:0 0;font:600 15px var(--sans);color:var(--muted);cursor:pointer}section.block.shelf.flow{position:relative;padding-left:26px}section.block.shelf.flow::before{content:"";position:absolute;left:7px;top:0;bottom:0;width:3px;background:var(--link);opacity:.45}section.block.shelf.flow .shelf-head::before{content:"";position:absolute;left:-26px;top:50%;transform:translateY(-50%);width:13px;height:13px;border-radius:50%;background:var(--bg,#fff);border:3px solid var(--link)}.entry-modal{position:fixed;inset:0;z-index:1000;display:flex;justify-content:center;align-items:flex-start;overflow:auto;background:rgba(20,18,24,.35);padding:40px 16px}.entry-modal .sheet{position:relative;width:min(680px,100%);background:#fff;border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,.14);padding:22px 24px}.entry-modal .close{position:absolute;top:8px;right:12px;border:0;background:0 0;font:24px var(--sans);color:var(--muted);cursor:pointer}.entry-modal dl{margin:0}.entry-modal .entry{outline:0}#barSheet{position:fixed;left:0;right:0;bottom:56px;z-index:19;max-height:62vh;overflow:auto;background:#fff;border-top:1px solid var(--survey-line);box-shadow:0 -8px 24px rgba(0,0,0,.08);padding:10px 24px 14px}#barSheet[hidden]{display:none}#surveyBar.ready{background:#fffbea}#surveyBar .lead{font:14px var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}#surveyBar .togo{color:var(--muted);font:12.5px var(--sans);white-space:nowrap}#surveyBar .act,#surveyBar .toggle{flex:none;white-space:nowrap}#surveyBar .act{font:700 13px var(--sans);border:1.5px solid var(--ink);border-radius:6px;padding:5px 12px;background:#fff}#surveyBar .act.main{background:var(--ink);color:#fff}#surveyBar .toggle{font:600 13px var(--sans);border:1px solid var(--faint);border-radius:6px;padding:5px 10px;background:#fff}@media (max-width:700px){.shelf-grid{grid-template-rows:auto;grid-auto-columns:76vw}.shelf-head .arrows{display:none}section.block.shelf.flow{padding-left:16px}section.block.shelf.flow::before{left:3px}section.block.shelf.flow .shelf-head::before{left:-18px;width:10px;height:10px}#surveyBar .togo{display:none}#surveyBar .tier-counts{display:none!important}#surveyBar.ready .act:not(.main){display:none}#surveyBar .lead{font-size:12.5px;white-space:normal}#barSheet{padding:10px 12px 12px}}.entry{position:relative;margin:0 0 9px;padding:3px 5px;border-radius:3px;break-inside:avoid;hyphens:manual;-webkit-hyphens:manual;outline:1.5px solid transparent;outline-offset:1px;transition:outline-color .12s}.entry.askable{padding-left:11px;cursor:pointer}.entry.active,.entry:hover{outline-color:var(--faint)}.entry .suggest-edit{color:var(--muted);text-decoration:none;font-size:13px;margin-left:4px}.entry .suggest-edit:hover{color:var(--link)}.entry.askable.active,.entry.askable:hover{outline-color:var(--ink)}.entry dt{display:inline;font-weight:600;font-size:15px}.entry dd{display:inline;margin:0}.entry .aliases{color:var(--muted)}.entry .permalink{color:var(--faint);text-decoration:none;font-size:12px;margin-left:1px}.entry:hover .permalink{color:var(--muted)}.entry .meta,.entry .origin{color:var(--muted)}.entry .origin{display:block;font:italic 13px/17px var(--serif);margin-top:2px}.entry .meta{font-size:12px;white-space:nowrap;margin-left:3px}.entry .relations{display:block;margin-top:2px;font-size:13px}.entry .relations .label{color:var(--muted)}.entry .ref{color:var(--link);text-decoration:underline;text-decoration-color:var(--link-line);text-underline-offset:2px}.entry .ref:hover{text-decoration-color:currentColor}.entry .rail{position:absolute;left:2px;top:4px;bottom:4px;width:4px;border-radius:2px;background:var(--faint);display:flex;flex-direction:column;overflow:hidden}.entry .rail .yes{background:var(--yes)}.entry .rail .no{background:var(--no)}.entry .mine{font-size:12px;margin-left:3px;white-space:nowrap;font-style:normal}.entry .mine.yes{color:var(--yes)}.entry .mine.no{color:var(--no)}.fallback{color:inherit}sup button{font:11px var(--sans);border:0;background:0 0;color:#36c;cursor:pointer;padding:0 1px;font-style:normal}sup button.why{font-size:12px;text-decoration:underline dotted;text-underline-offset:2px}#question,.popover{position:absolute;z-index:25;font:13px/1.4 var(--sans);border-radius:4px;box-shadow:0 6px 24px rgba(0,0,0,.14)}.popover{max-width:360px;background:#fff;border:1px solid var(--faint);padding:12px 14px}.figure-popover{width:min(480px,calc(100vw - 16px));max-width:none}.figure-popover img{display:block;width:100%;height:auto;margin-bottom:6px}.popover .root-definition{display:block;margin:4px 0 8px}.popover q{font:italic 15px/1.45 var(--serif);display:block;margin-bottom:8px;quotes:'«' '»'}.popover .who{color:var(--muted)}.popover .who a{color:var(--link)}.popover .go{display:inline-block;margin-top:6px;color:var(--link)}.popover.suggest b{display:block;margin-bottom:8px}.popover.suggest a{display:block;color:var(--link);text-decoration:none;padding:5px 0;border-top:1px solid var(--faint)}.popover.suggest a:hover{text-decoration:underline}.popover.suggest a small{display:block;color:var(--muted);font-size:12px}.popover .no-quote{color:var(--muted);font-style:italic;display:block;margin-bottom:6px}#question{display:none;background:var(--ink);color:#fff;padding:9px 12px;width:230px}#question::after{content:'';position:absolute;top:12px;border:7px solid transparent}#question.left::after{right:-14px;border-left-color:var(--ink)}#question.right::after{left:-14px;border-right-color:var(--ink)}#question.below::after{left:16px;top:-14px;border-bottom-color:var(--ink)}#question .ask{font-weight:600;font-size:14px;display:block}#question .hint{display:block;color:rgba(255,255,255,.6);font-size:12px;margin-top:1px}#question .buttons{margin-top:8px;display:flex;gap:6px}#question button{font:600 13px var(--sans);padding:4px 12px;border:0;border-radius:3px;cursor:pointer;color:#fff;opacity:.85}#question .chosen,#question button:hover{opacity:1}#question .chosen{box-shadow:0 0 0 2px #fff}#question .yes{background:var(--yes)}#question .no{background:var(--no)}#question .never{background:0 0;color:rgba(255,255,255,.6);padding:4px 6px;font-weight:400}#question .never.chosen{color:#fff;box-shadow:none;text-decoration:underline}#question kbd{font:10px var(--sans);opacity:.7;margin-left:4px}#question .result{display:flex;align-items:center;gap:8px;margin-top:9px;padding-top:8px;border-top:1px solid rgba(255,255,255,.15);font-size:12px;color:rgba(255,255,255,.75)}#question .mini-rail{width:4px;height:26px;border-radius:2px;overflow:hidden;display:flex;flex-direction:column;background:rgba(255,255,255,.2);flex:none}#question .mini-rail .yes{background:var(--yes)}#question .mini-rail .no{background:var(--no)}#question textarea{display:block;width:100%;margin-top:8px;font:13px var(--sans);border-radius:3px;border:0;padding:6px 8px}.sections{display:flow-root}footer.site{border-top:1px solid var(--faint);margin-top:28px;padding:18px 0 30px;font-size:15px}footer.site a{color:var(--link)}details.notes{margin:0 0 20px;font-size:12px;color:#9b3b2f;border:1px dashed #e3b3ab;border-radius:4px;padding:6px 12px;max-width:900px}details.notes summary{cursor:pointer}@media (max-width:700px){.page{padding:0 16px}header.title{padding-top:22px}#question{width:auto;max-width:calc(100vw - 32px)}}.mfig{position:relative;display:block;margin:6px 0 2px;border:1px solid #ddd;border-radius:6px;padding:8px 8px 4px;background:#fff;user-select:none;-webkit-user-select:none;cursor:pointer}.mfig svg{display:block;width:100%;height:auto;font:13px ui-monospace,Menlo,monospace}.mfig .part{opacity:0;transform:translateY(5px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);transform-box:fill-box;transform-origin:center}.mfig .part.on{opacity:1;transform:none}.mfig .mark{transform:scale(.4)}.mfig .mark.on{transform:scale(1);transition:opacity .35s ease,transform .45s cubic-bezier(.3,1.6,.5,1)}.mfig .part.box{transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1),stroke .4s ease,stroke-width .4s ease}.mfig .fillbar{transition:fill .4s ease}.mfig .on.d1{transition-delay:.15s}.mfig .on.d2{transition-delay:.45s}.mfig .on.d3{transition-delay:.75s}.mfig .on.d4{transition-delay:1.05s}.mfig .draw{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);opacity:0;transition:opacity .3s ease,stroke-dashoffset 0s .3s}.mfig .draw.on{stroke-dashoffset:0;opacity:1;transition:stroke-dashoffset .9s cubic-bezier(.4,0,.2,1),opacity .3s ease}.mfig .draw.on.d1{transition-delay:.15s}.mfig .draw.on.d2{transition-delay:.45s}.mfig .draw.on.d3{transition-delay:.75s}.mfig .draw.on.d4{transition-delay:1.05s}.mfig .move{transition:transform .9s cubic-bezier(.4,0,.2,1),fill .4s ease;transform-box:fill-box;transform-origin:left center}.mfig .box{transition:stroke .4s ease,stroke-width .4s ease,fill .4s ease}.mfig .box.hot{stroke:#c0392b;stroke-width:1.6}.mfig .box.good{stroke:#2a7d3f;stroke-width:1.6}.mfig .fillbar.hot{fill:#c0392b}.mfig .progress{display:flex;gap:4px;margin-top:4px;opacity:0;transition:opacity .25s ease}.mfig.playing .progress{opacity:1}.mfig .progress span{flex:1;padding:5px 0;cursor:pointer}.mfig .progress b{display:block;height:2px;background:#efefef;overflow:hidden;border-radius:1px}.mfig .progress i{display:block;height:100%;width:100%;background:#a8a8a8;transform-origin:left;transform:scaleX(0)}.mfig .badge{position:absolute;bottom:6px;left:6px;display:flex;align-items:center;gap:5px;font:11px var(--sans);color:#444;background:#fff;border:1px solid #999;border-radius:4px;padding:1px 6px 1px 5px;transition:opacity .25s ease}.mfig .badge::before{content:'';border-left:7px solid #444;border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}.mfig{transition:border-color .25s ease}.mfig.playing{border-color:transparent}#surveyBar{position:fixed;left:0;right:0;bottom:0;z-index:20;height:56px;display:flex;align-items:center;justify-content:center;gap:18px;background:var(--survey-bg);border-top:1px solid var(--survey-line);color:var(--ink);font:15px var(--sans);box-shadow:0 -4px 16px rgba(0,0,0,.05)}#surveyBar[hidden]{display:none}#surveyBar{padding:0 24px}#surveyBar button{font:600 14px var(--sans);border:2px solid var(--ink);border-radius:8px;padding:7px 16px;background:#ece2fb;color:var(--ink);cursor:pointer;white-space:nowrap}@media (max-width:600px){#surveyBar{padding:0 12px}}#surveyBar .tier-counts{display:flex;gap:6px;flex-wrap:nowrap;overflow:hidden}#surveyBar .tier-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:6px;background:color-mix(in srgb,var(--c) 45%,#fff);font:13px var(--mono);white-space:nowrap}#surveyBar .tier-chip b{font-weight:800}#surveyBar .tier-chip{flex:none}@media (max-width:420px){#surveyBar button .label{display:none}}@media (max-width:600px){#surveyBar{gap:8px;justify-content:flex-end;padding-left:68px}#surveyBar .tier-counts{gap:4px}#surveyBar .tier-chip{padding:3px 5px;font-size:11.5px;gap:3px}#surveyBar button{padding:6px 10px;font-size:13px}}.tier-board{position:relative}.board-empty{position:absolute;left:calc(var(--label-w,130px) + 4px);right:4px;top:4px;bottom:4px;z-index:1;margin:0;padding:0 24px;display:flex;align-items:center;justify-content:center;text-align:center;color:#c9c4b8;font:15px/1.45 var(--sans);pointer-events:none}.tier-board{margin:12px 0 6px;background:#1b1b1b;padding:4px;border-radius:6px}.tier-row{display:flex;min-height:52px;margin-bottom:3px}.tier-row:last-child{margin-bottom:0}.tier-label{width:var(--label-w,130px);flex:none;background:var(--c);color:#111;padding:6px 8px;display:flex;flex-direction:column;justify-content:center;font:600 12px/1.25 var(--sans)}.tier-label b{font:800 20px var(--mono)}.tier-label [contenteditable]{outline:0;border-bottom:1px dashed transparent;cursor:text}.tier-label [contenteditable]:focus,.tier-label [contenteditable]:hover{border-bottom-color:rgba(0,0,0,.45)}.tier-tiles{flex:1;display:flex;flex-wrap:wrap;gap:4px;padding:4px;background:#2a2a2a;align-content:flex-start}.tier-tiles .tile{width:104px;min-height:44px;box-sizing:border-box;padding:4px 6px;background:#f4f1ea;color:#111;border-radius:3px;font:600 11.5px/1.2 var(--sans)}.tile-dragging,.tile-flying{background:#f4f1ea;color:#111;border-radius:3px;padding:4px 6px;box-sizing:border-box;font:600 11.5px/1.2 var(--sans);overflow:hidden}.tier-board .tile[data-category]{cursor:grab;touch-action:none;user-select:none}.tile-dragging{position:fixed;left:0;top:0;z-index:1300;margin:0;pointer-events:none;cursor:grabbing;box-shadow:0 10px 24px rgba(0,0,0,.35)}.tile-source{opacity:.3}.tier-row.drop-target .tier-tiles{outline:2px dashed #f4f1ea;outline-offset:-4px;background:#353535}html.dragging-tile,html.dragging-tile *{cursor:grabbing!important}.tile-flying{position:fixed;z-index:1200;margin:0;pointer-events:none;box-shadow:0 8px 20px rgba(0,0,0,.28)}.board-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:10px 0 0}.board-actions button{font:700 14px var(--mono);color:var(--ink);background:#fff;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:6px 14px;cursor:pointer}@media (max-width:600px){.tier-board{--label-w:86px}.tier-tiles .tile{width:92px;font-size:11px}}.entry .tier-pick{display:none;flex-wrap:wrap;gap:4px;margin-top:8px}.entry .tier-pick:has(.on),.entry.active .tier-pick,.entry:hover .tier-pick{display:flex}.entry .tier-pick button{min-width:28px;height:26px;padding:0 7px;border:1.5px solid color-mix(in srgb,var(--c) 75%,#888);border-radius:4px;background:#fff;font:700 12px var(--mono);color:var(--ink);cursor:pointer}.entry .tier-pick button.on{background:var(--c);border-color:var(--c)}.entry .tier-pick:has(.on) button:not(.on){opacity:.45}.entry.active .tier-pick:has(.on) button:not(.on),.entry:hover .tier-pick:has(.on) button:not(.on){opacity:1}.answers-panel{position:relative}.answers-panel{padding:18px 22px;border:1px solid var(--survey-line);border-radius:12px;background:var(--survey-bg)}#your-answers{margin-top:10px}.answers-lead{margin:40px 0 0;font:20px/1.35 var(--sans);color:var(--ink)}.answers-panel .foot-line{display:flex;justify-content:flex-end;gap:12px;margin:22px 0 0;padding-top:12px;border-top:1px solid var(--faint);font-size:13px;color:var(--muted)}.answers-panel .foot-line .link{border:0;background:0 0;padding:0;font:inherit;color:var(--link);cursor:pointer}.answers-panel .foot-line>.link{color:var(--muted);margin-left:auto}.answers-panel .foot-line .close-bottom{font:600 13px var(--sans);color:#fff;background:var(--ink);border:1px solid var(--ink);border-radius:4px;padding:3px 14px;cursor:pointer}.answers-modal .answers-panel{background:#fff;border:1px solid var(--faint);border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,.14);padding-top:22px}.answers-panel .how{font:14px/1.5 var(--sans)}.answers-panel .answered-section{margin:16px 0 2px;font:12px var(--sans);color:var(--muted)}.answers-panel .answered-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 12px;padding:7px 0;border-top:1px solid var(--faint)}.answers-panel .answered-row .name{font:15px/1.3 var(--serif)}.answers-panel .answered-row .words{display:flex;gap:2px;margin-left:auto}.answers-panel .answered-row button{font:13px var(--sans);color:var(--muted);background:0 0;border:0;border-radius:999px;padding:3px 9px;cursor:pointer;white-space:nowrap}.answers-panel .answered-row button:hover{color:var(--ink)}.answers-panel .answered-row button.on{color:#fff;background:color-mix(in srgb,var(--c) 88%,#000)}@media (max-width:600px){.answers-panel .answered-row .words{margin-left:-9px;width:100%}}.answers-panel .how>p{margin:0 0 3px}.answers-panel .how .send-lead{margin:0 0 14px}.answers-panel .done-line{margin:0;padding:5px 0;font:14px var(--sans);color:var(--ink);cursor:pointer}.answers-panel .confirm-step[hidden],.answers-panel .done-line[hidden]{display:none}.answers-panel .done-line .hint{color:var(--muted)}.answers-panel .done-line:hover .hint{color:var(--link);text-decoration:underline}.answers-panel .how .roads{display:flex;flex-wrap:wrap;gap:10px;margin:0}.answers-panel .how .roads[hidden]{display:none}.answers-panel .how .roads button{font:700 14px var(--mono);color:var(--ink);background:#fff;border:2px solid var(--ink);border-radius:0;box-shadow:3px 3px 0 var(--ink);padding:8px 14px;cursor:pointer}.answers-panel .how .roads button[aria-expanded=true]{background:var(--survey-bg);transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}.answers-panel .road-body{margin-top:14px;padding-top:12px;border-top:1px dashed var(--survey-rule)}.answers-panel .road-body .after[hidden],.answers-panel .road-body[hidden]{display:none}.answers-panel .road-body ol{margin:8px 0 0;padding-left:20px}.answers-panel .road-body li{margin-bottom:5px}.answers-panel .copied-mark{margin:0 0 2px;font-weight:700}.answers-panel .road-body pre.prompt{margin-top:8px}.answers-panel .switch-road{margin:14px 0 0}.answers-panel .switch-road .link{border:0;background:0 0;padding:0;font:14px var(--sans);color:var(--link);text-decoration:underline;cursor:pointer}.answers-panel .road-body .copy{font:700 13px var(--mono);color:var(--ink);background:var(--survey-bg);border:2px solid var(--ink);border-radius:0;box-shadow:3px 3px 0 var(--ink);padding:7px 13px;margin-top:8px;cursor:pointer}.answers-panel .road-body .pr-link{width:100%;margin-top:8px;font:13px var(--mono);color:var(--ink);background:#fff;border:1.5px solid var(--ink);border-radius:0;padding:7px 9px}.prompt-note{position:fixed;z-index:1010;left:50%;bottom:20px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;font:600 13px var(--sans);color:#fff;background:var(--ink);border-radius:6px;padding:8px 10px 8px 14px;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.18);animation:prompt-note 5s ease forwards}.prompt-note button{font:600 13px var(--sans);color:var(--ink);background:#fff;border:0;border-radius:4px;padding:3px 12px;cursor:pointer}.prompt-note:hover{animation-play-state:paused}@keyframes prompt-note{0%{opacity:0;bottom:12px}6%{opacity:1;bottom:20px}88%{opacity:1}100%{opacity:0;visibility:hidden}}.answers-panel pre.prompt.flash{animation:prompt-flash 1s ease}@keyframes prompt-flash{0%{background:#fff3c4}100%{background:#fff}}.answers-panel .how>p.by-hand{margin:8px 0 0;font-size:13px;color:var(--muted)}.answers-panel .how>p.by-hand .link{border:0;background:0 0;padding:0;font:inherit;color:var(--link);text-decoration:underline;cursor:pointer}.answers-panel .how>p.results-line{margin:18px 0 24px}.answers-panel .how>p.results-line b{font-weight:600}.answers-panel .prompt-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}.answers-panel .prompt-head .copy{font:600 13px var(--sans);color:#fff;background:var(--ink);border:1px solid var(--ink);border-radius:4px;padding:3px 12px;cursor:pointer}.answers-panel pre.prompt{margin:0;max-height:210px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.45 ui-monospace,Menlo,monospace;color:var(--ink);background:#fff;border:1px solid var(--faint);border-radius:6px;padding:10px 12px}.team-block{margin:48px 0 0;font:14px/1.5 var(--sans);color:var(--ink)}.team-block h3{font:600 18px/1.25 var(--sans);margin:0 0 6px}.team-block .copy-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:14px 0 6px}.team-block .copy-head button{font:600 13px var(--sans);color:#fff;background:var(--ink);border:1px solid var(--ink);border-radius:4px;padding:3px 12px;cursor:pointer}.team-block pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.45 ui-monospace,Menlo,monospace;background:#fff;border:1px solid var(--faint);border-radius:6px;padding:10px 12px}.team-copy-note{font:13px var(--sans);color:var(--muted)}.fly-ball{position:fixed;left:0;top:0;border-radius:50%;pointer-events:none;z-index:30}.answers-modal{position:fixed;inset:0;z-index:1000;display:flex;justify-content:center;align-items:flex-start;overflow:auto;background:rgba(20,18,24,.35);padding:24px 12px}.answers-modal .sheet{position:relative;width:min(820px,100%)}.answers-modal .close{position:absolute;top:10px;right:14px;z-index:2;border:0;background:0 0;font:24px var(--sans);color:var(--muted);cursor:pointer}:root{--survey-bg:#fbfbf5;--survey-line:#e4e2d6}.popover{z-index:40}.answers-panel .note{color:var(--muted);font-size:13px;margin:6px 0 0}@media (max-width:600px){.answers-panel{padding:14px 12px;border-radius:10px}}.mfig-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:rgba(20,18,24,.35);padding:16px}.mfig-modal .mfig-sheet{width:min(760px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#fff;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.18)}.mfig-modal .mfig{width:100%;margin:0;padding:20px 22px 12px;border:0;border-radius:8px 8px 0 0;box-shadow:none;cursor:default}.mfig-modal .motion-text{padding:4px 22px 18px;border-top:1px solid var(--faint)}.mfig-modal .motion-text h3{margin:12px 0 4px;font:700 18px/1.3 var(--sans)}.mfig-modal .motion-text p{margin:0;font:16px/1.5 var(--serif)}.mfig-modal .motion-actions{margin-top:12px!important}.share-btn{font:700 14px var(--mono);color:var(--ink);background:#fff;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:5px 14px;cursor:pointer}.entry .share-card{border:0;background:0 0;padding:0 2px;margin-left:2px;font-size:13px;line-height:1;color:var(--faint);cursor:pointer;vertical-align:baseline}.entry.active .share-card,.entry:hover .share-card{color:var(--muted)}.entry .share-card:hover{color:var(--ink)}.share-note{position:fixed;left:50%;bottom:calc(var(--bottom-bar,0px) + 18px);transform:translateX(-50%);z-index:1400;background:var(--ink);color:#fff;font:600 14px var(--sans);padding:8px 14px;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.2)}.mfig-modal .mfig .progress{opacity:1}.mfig-modal .mfig .badge{display:none}.mfig.playing .badge{opacity:0;pointer-events:none}.mfig.still .box,.mfig.still .draw,.mfig.still .move,.mfig.still .part{transition:none!important}:root{--survey-bg:#d7ecec;--survey-line:var(--ink);--survey-rule:#8fa9a9;--mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace}.answers-panel{border:2px solid var(--ink);border-radius:0;box-shadow:8px 8px 0 var(--ink);margin-right:8px}#surveyBar button{font:700 14px var(--mono);border-radius:0;background:var(--survey-bg);box-shadow:4px 4px 0 var(--ink);transition:transform .08s,box-shadow .08s}#surveyBar button:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}#surveyBar{background:#fff;border-top:2px solid var(--ink)}:root{--band:#fff}header.title{box-shadow:none;clip-path:none}header.title .edition .feedback-card{background:var(--survey-bg);border:2px solid var(--ink);border-radius:0;box-shadow:8px 8px 0 var(--ink);margin-right:8px}header.title .edition .feedback-card .feedback-text{font:700 14px/1.5 var(--mono)}header.title .edition .feedback-card .feedback-text a{font-weight:400}header.title .edition .feedback-card .star{font:700 13px var(--mono);border:2px solid var(--ink);border-radius:0;background:#fff;box-shadow:3px 3px 0 var(--ink);transition:transform .08s,box-shadow .08s}header.title .edition .feedback-card .star:hover{background:#fff;color:var(--ink)}header.title .edition .feedback-card .star:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}header.title .edition .feedback-card .updated{font-family:var(--mono);color:#4f5b5b}@media (max-width:600px){header.title .edition .feedback-card{box-shadow:5px 5px 0 var(--ink);margin-right:5px}}#tlHome{margin:6px 0 26px}#timeline{background:#fff}#timeline .tl-caption{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;font:12px/1.4 var(--mono);color:#4f5b5b;margin:0 0 22px}#timeline .tl-caption .reset{font:inherit;border:0;background:0 0;padding:0;color:var(--link);cursor:pointer;text-decoration:underline}#tlTrack{position:relative;height:44px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:pointer}#tlTrack .zone{position:absolute;top:0;height:26px;pointer-events:none}#tlTrack .zone.history{background:#f1f0f3}#tlTrack .zone.llm{background:#e6f1f1}#tlTrack .zone.recent{background:var(--survey-bg)}#tlTrack .tick{position:absolute;top:5px;width:1.5px;height:16px;margin-left:-.75px;pointer-events:none}#tlTrack .tick.root{background:#8a8490}#tlTrack .tick.card{background:var(--ink);opacity:.55}#tlTrack .tick.on{background:#b07d00;opacity:1}#tlTrack .mark{position:absolute;top:-4px;height:34px;border-left:2px solid var(--ink);pointer-events:none}#tlTrack .mark span{position:absolute;top:-17px;left:0;transform:translateX(-50%);font:700 11px/13px var(--mono);color:var(--ink);white-space:nowrap}#tlTrack .axis{position:absolute;top:29px;transform:translateX(-50%);font:10px var(--mono);color:#6d6775;pointer-events:none;white-space:nowrap}#tlTrack .shade{position:absolute;top:0;height:26px;background:rgba(255,255,255,.72);pointer-events:none}#tlTrack .sel{position:absolute;top:0;height:26px;box-sizing:border-box;border-top:2px solid #d9a400;border-bottom:2px solid #d9a400;cursor:grab}#tlTrack .sel.full{border-color:transparent}#tlTrack .handle{position:absolute;top:-4px;width:9px;height:30px;background:#f0ba1e;border:2px solid var(--ink);box-sizing:border-box;cursor:ew-resize}#tlTrack .handle.start{left:-9px}#tlTrack .handle.end{right:-9px}.entry.in-period{box-shadow:0 0 0 2px var(--period)}#timeline.stuck{position:fixed;top:0;left:0;right:0;z-index:30;padding:5px 24px 3px;border-bottom:2px solid var(--ink);display:flex;align-items:center;gap:14px}#timeline.stuck{display:flex;flex-direction:column;align-items:flex-start;gap:0;padding:5px 0 3px}body.tl-stuck.tl-picked{--toc-top:46px}body.tl-stuck.tl-picked :is(section.block,.entry){scroll-margin-top:70px}#timeline.stuck .tl-caption{order:2;margin:2px 0 0 var(--tl-left,24px);font-size:11px}#timeline.stuck .tl-caption:empty{display:none}#timeline.stuck #tlTrack{margin-left:var(--tl-left,24px);width:var(--tl-width,calc(100% - 48px))}#timeline.stuck #tlTrack{height:14px}#timeline.stuck #tlTrack :is(.zone,.shade,.sel){height:12px}#timeline.stuck #tlTrack .tick{top:1px;height:10px}#timeline.stuck #tlTrack .handle{top:-3px;height:18px;width:7px}#timeline.stuck #tlTrack .handle.start{left:-7px}#timeline.stuck #tlTrack .handle.end{right:-7px}#timeline.stuck #tlTrack .mark{top:-2px;height:16px}#timeline.stuck #tlTrack :is(.axis,.mark span){display:none}body.tl-stuck{--toc-top:30px}body.tl-stuck :is(section.block,.entry){scroll-margin-top:54px}@media (max-width:600px){#timeline .tl-caption{margin-bottom:20px}}.popover .pop-item+.pop-item{margin-top:10px;padding-top:10px;border-top:1px solid var(--faint)}#tocButton{display:none}#tocSheet[hidden]{display:none}@media (max-width:999px){#tocButton{display:block;position:fixed;left:12px;bottom:9px;z-index:40;width:40px;height:38px;padding:0;font:700 20px/1 var(--mono);color:var(--ink);background:var(--survey-bg);border:2px solid var(--ink);border-radius:0;box-shadow:3px 3px 0 var(--ink);cursor:pointer}#tocButton.open,#tocButton:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}#tocSheet{position:fixed;inset:0;z-index:35;background:rgba(20,18,24,.35);display:flex;align-items:flex-end}#tocSheet .toc{box-sizing:border-box;width:100%;max-height:75vh;overflow:auto;background:#fff;border-top:2px solid var(--ink);padding:16px 16px 64px;display:block}#tocSheet .toc a{display:block;padding:5px 0}}.answers-panel{border-width:1.5px;box-shadow:5px 5px 0 var(--ink);padding:14px 18px 12px}.answers-panel .confirm-title{font:700 16px/1.3 var(--mono);color:var(--ink);margin:0 0 8px;padding-right:28px}.answers-panel .submit-row{margin:18px 0 4px;text-align:center}.answers-panel .submit-answers{font:700 14px var(--mono);color:var(--ink);background:var(--survey-bg);border:2px solid var(--ink);border-radius:0;padding:7px 18px;box-shadow:4px 4px 0 var(--ink);cursor:pointer}.answers-panel .submit-answers:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}.answers-panel .how{margin-top:22px;padding-top:16px;border-top:1px dashed var(--survey-rule)}.answers-panel .how[hidden]{display:none}#tlTrack .end-year{display:none;position:absolute;top:-2px;font:11px/16px var(--mono);color:#6d6775;white-space:nowrap;pointer-events:none}#timeline.stuck #tlTrack .end-year{display:block}#tlTrack .end-year.start{right:calc(100% + 10px)}#tlTrack .end-year.end{left:calc(100% + 10px)}#timeline.stuck.tight #tlTrack .end-year{display:none}@media (max-width:600px){#timeline.stuck #tlTrack .end-year{display:none}}#timeline:not(.stuck){display:flex;flex-direction:column;padding-top:22px}#timeline:not(.stuck) .tl-caption{order:2;margin:8px 0 0}#timeline:not(.stuck) .tl-caption:empty{display:none}@media (max-width:600px){#timeline:not(.stuck) .tl-caption{margin:8px 0 0}}#tlTrack .zone.hover{z-index:1;background:rgba(46,42,51,.07);box-shadow:inset 0 0 0 1px rgba(46,42,51,.4)}.answers-modal .answers-panel{border:1.5px solid var(--ink);border-radius:0;box-shadow:6px 6px 0 var(--ink)}.answers-modal .close{font-family:var(--mono)}.answers-panel .answered-section{font:12px var(--mono)}.answers-panel .answered-row{border-top:1px dashed var(--survey-rule)}.answers-panel .answered-row button{font:12px var(--mono);border-radius:0;padding:3px 8px}.answers-panel .answered-row button.on{background:var(--c);box-shadow:2px 2px 0 var(--ink)}@media (max-width:600px){.answers-panel .answered-row .words{margin-left:0;flex-wrap:wrap}}</style>
+</head>
+<body>
+
+<div class="page" id="top">
+  <header class="title">
+    <nav class="langs" id="langs" style="display:none" aria-label="Language"></nav>
+    <div class="kicker" id="kicker"></div>
+    <h1 id="title"></h1>
+    <div id="tlHome"><div id="timeline"><div class="tl-caption" id="tlCaption"></div><div id="tlTrack"></div></div></div>
+    <p class="lead" id="lead" hidden></p>
+    <div class="intro" id="intro"></div>
+    <div class="edition"><span id="subtitle"></span>
+      <label hidden><input type="radio" name="lang" value="ru"> ru</label>
+      <label hidden><input type="radio" name="lang" value="en" checked="checked"> en</label>
+    </div>
+  </header>
+
+  <nav id="tocInline" class="toc"></nav>
+  
+  <div class="sections">
+    <nav id="toc" class="toc"></nav>
+    <main id="content"></main>
+  </div>
+  <footer class="site" id="footer"></footer>
+</div>
+
+<div id="question"></div>
+<div id="barSheet" hidden></div><div id="surveyBar" hidden></div>
+<button id="tocButton" type="button" aria-expanded="false">☰</button>
+<div id="tocSheet" hidden><nav class="toc" id="tocSheetNav"></nav></div>
+
+
+<script>const UI = {
+    ru: {
+        github: "GitHub",
+        contents: "Оглавление",
+        tlCount: (n, from, to) => `${n} практик с ${from} по ${to}`,
+        tlReset: "сбросить",
+        tlToday: "сегодня",
+        teamCopy: url => `Копия команды: <a href="${url}">Практики агентной разработки</a>.`,
+        kicker: "",
+        title: "Практики агентной разработки, 2026",
+        lead: "",
+        parts: {
+            approaches: "Подходы",
+            stages: "Практики по стадиям SDLC",
+            general: "Сквозное",
+            team: "Команды и проекты"
+        },
+        shelf: {
+            sources: n => `${n} ${n % 10 === 1 && n % 100 !== 11 ? "источник" : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? "источника" : "источников"}`,
+            seeAll: n => `Все ${n} →`,
+            toGo: n => `ещё ${n} до готового`,
+            ready: s => `Ваш тир-лист «${s}» готов →`,
+            makeList: "Составьте свой тир-лист ·",
+            yourList: "Ваш тир-лист ·",
+            openList: "открыть ▴",
+            closeList: "закрыть ▾",
+            goTo: "Перейти к секции",
+            savedCopied: "Картинка сохранена · ссылка скопирована",
+            practicesN: n => `${n} практик`
+        },
+        share: "Поделиться",
+        linkCopied: "Ссылка скопирована",
+        permalink: "ссылка на статью",
+        suggestEdit: "Предложить правку",
+        suggestPractice: "+ Предложить практику",
+        suggestions: (url, updated, stars) => `<span class="feedback-card"><span class="feedback-text">Не хватает практики или нашли ошибку? <a href="${url}/issues/new">Откройте issue</a></span><span class="repo-row"><a class="star" href="${url}">★ GitHub${stars === null || stars === undefined ? "" : ` ${stars}`}</a>${updated ? `<span class="updated">обновлено ${updated}</span>` : ""}</span></span>`,
+        goToEntry: "К практике →",
+        illustrative: "Иллюстративный пример.",
+        suggestQuestion: "Что вы хотите предложить?",
+        suggestSource: "Добавить источник",
+        suggestSourceHint: "статья об этой практике и цитата из неё",
+        suggestDefinition: "Изменить определение",
+        suggestDefinitionHint: "точнее сказать, что это за практика",
+        survey: {
+            emptyBoard: "Поставьте практике A, B, C или D — она появится здесь.",
+            tierLabels: [ "не могу без", "хорошо", "так себе", "переоценено" ],
+            saveImage: "Сохранить картинку",
+            imageTitle: "$ мой тир-лист агентной разработки",
+            makeYours: "составь свой →",
+            renameHint: "Фишки можно перетаскивать между тирами, подпись тира — переименовать кликом.",
+            confirmTitle: n => `Проверьте ${n} ${n % 10 === 1 && n % 100 !== 11 ? "ответ" : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? "ответа" : "ответов"} перед отправкой`,
+            submit: "Отправить",
+            submitN: n => `Отправить ответы: ${n}`,
+            clear: "Очистить мои ответы",
+            clearConfirm: "Очистить все ваши ответы в этом браузере?",
+            close: "Закрыть",
+            endLead: "Вот и всё. Теперь можно отдать это своему агенту и вернуться к работе.",
+            endLeadEmpty: "Вот и всё. Теперь можно вернуться наверх и ответить на пару вопросов.",
+            nothingYet: "Ответьте на любую практику выше; ответы соберутся здесь.",
+            teamTitle: "Запустить этот опрос внутри своей команды",
+            teamLead: "Склонируйте этот сайт и дайте его своим: отвечает только ваша команда, ответы остаются в вашем репозитории, можно спросить про свои практики, которых в этом списке нет, и сравнить свои ответы с ответами всех здесь. Сайт — это обычные файлы, его можно опубликовать во внутренней сети или на любом веб-сервере.",
+            teamLabel: "Отдайте это своему агенту или сделайте сами:",
+            whyPr: "Ваши ответы попадают прямо в публичный GitHub-репозиторий сайта, где их может пересчитать любой.",
+            resultsLine: "Ответы всех появятся <b>1 декабря</b>.",
+            submitTitle: n => `Отправить через pull request (ответов: ${n})`,
+            byHand: url => `Или вручную: <button class="link" data-act="copy-file">скопируйте файл</button>, <a href="${url}" target="_blank" rel="noopener">откройте GitHub</a> с уже заполненным именем, вставьте его и нажмите «Commit changes…» → «Propose changes» → «Create pull request».`,
+            copiedFile: "файл скопирован",
+            promptLead: "Чтобы проголосовать, скопируйте этот промпт в своего агента:",
+            promptUpdated: "Промпт обновлён",
+            switchToAgent: "или поручите это агенту",
+            switchToSelf: "или сделайте вручную сами",
+            doneAnswers: n => `Ответов: ${n}`,
+            changeWord: "изменить",
+            otherWay: "другой способ",
+            sendLead: "Ответы уходят как pull request. Это один небольшой файл с вашими отметками.",
+            roadSelf: "Сделаю pull request сам",
+            roadAgent: "Поручу агенту",
+            answersCopied: "Ответы скопированы.",
+            stepOpen: url => `<a href="${url}" target="_blank" rel="noopener">Откройте новый файл на GitHub</a> — имя уже подставлено.`,
+            stepPaste: "Вставьте ответы и нажмите «Commit changes».",
+            stepPr: "GitHub сам предложит pull request — согласитесь.",
+            agentLead: "Отдайте этот промпт своему агенту — он откроет pull request за вас.",
+            copyThePrompt: "Скопировать промпт",
+            promptCopiedLine: "Промпт скопирован. Агент вернёт ссылку — вставьте её сюда, если хотите держать перед глазами.",
+            prLinkPlaceholder: "https://github.com/…/pull/…",
+            copyPrompt: "Скопировать",
+            copied: "Скопировано",
+            answersLabel: "Вот что промпт выше отправит как ваши ответы:"
+        },
+        loadError: url => `Данные не загрузились. Они лежат в <a href="${url}">data/entries.json</a>; обновите страницу.`,
+        newBlock: "Новое",
+        aliases: "также",
+        seeAlso: "См. также",
+        roots: "Корни",
+        example: "Пример",
+        descendants: "Потомки",
+        opposites: "Противоположность",
+        issues: "Предложить правку или новую практику",
+        months: [ "янв", "фев", "мар", "апр", "мая", "июн", "июл", "авг", "сен", "окт", "ноя", "дек" ],
+        monthsNominative: [ "янв", "фев", "мар", "апр", "май", "июн", "июл", "авг", "сен", "окт", "ноя", "дек" ],
+        empty: "В выбранном периоде пусто.",
+        yes: "Да",
+        no: "Нет",
+        loop: "петля",
+        keys: "Клавиатура",
+        keysText: "<kbd>J</kbd> <kbd>K</kbd> карточки · <kbd>Y</kbd> <kbd>N</kbd> ответ · <kbd>Esc</kbd>",
+        commentPlaceholder: "Комментарий (необязательно)",
+        never: "не пробовал",
+        result: (y, n) => `Пользуются: ${y} из ${y + n} (демо)`,
+        resultFew: "Пока мало ответов. Ваш ответ приблизит итог.",
+        railTitle: (y, n) => `Сейчас пользуются: ${y} из ${y + n} (демо)`,
+        mine: v => v === null ? "· не пробовали" : v ? "✓ пользуетесь" : "✗ не пользуетесь",
+        noQuote: "Цитата ещё не подобрана",
+        openSource2: "Открыть источник →",
+        why: "Зачем?",
+        basketEmpty: "Ответов пока нет",
+        basket: n => `Ваши ответы: ${n}`,
+        send: n => `Отправить ответы · ${n}`,
+        sent: "Промпт скопирован, отдайте его агенту",
+        quietNote: "Ответы пока в этом браузере. «Отправить» скопирует промпт: агент откроет PR, и ответы попадут в итог.",
+        hint: "Ответ сохранён. Чтобы он учитывался на сайте, его нужно закоммитить в репозиторий.",
+        hintLink: "Как отправить",
+        note: "Ответы учитываются на сайте после коммита в репозиторий. Скопируйте промпт и отдайте своему агенту (Claude Code, Codex), он откроет pull request. Анонимности нет: PR подписан вашим аккаунтом GitHub.",
+        copyPrompt: "Скопировать промпт для агента",
+        copied: "Скопировано",
+        shareX: "Поделиться в X",
+        clear: "Очистить",
+        remove: "убрать",
+        tweet: (n, y) => `Прошёлся по справочнику агентной разработки: из ${n} практик сейчас пользуюсь ${y}.`
+    },
+    en: {
+        github: "GitHub",
+        contents: "Contents",
+        tlCount: (n, from, to) => `${n} practices from ${from} to ${to}`,
+        tlReset: "reset",
+        tlToday: "today",
+        kicker: "",
+        title: "A year of agentic coding",
+        lead: "",
+        suggestions: (url, updated, stars) => `<span class="feedback-card"><span class="feedback-text">Spotted a missing practice or a mistake? <a href="${url}/issues/new">Open an issue</a></span><span class="repo-row"><a class="star" href="${url}">★ GitHub${stars === null || stars === undefined ? "" : ` ${stars}`}</a>${updated ? `<span class="updated">last updated ${updated}</span>` : ""}</span></span>`,
+        teamCopy: url => `A team’s copy of <a href="${url}">Practices in agentic software development</a>.`,
+        parts: {
+            approaches: "Approaches",
+            stages: "Practices by SDLC stage",
+            general: "Cross-stage",
+            team: "Teams and projects"
+        },
+        shelf: {
+            sources: n => `${n} source${n === 1 ? "" : "s"}`,
+            seeAll: n => `See all ${n} →`,
+            toGo: n => `${n} more to finish`,
+            ready: s => `Your ${s} tier list is ready →`,
+            makeList: "Make your tier list ·",
+            yourList: "Your tier list ·",
+            openList: "open ▴",
+            closeList: "close ▾",
+            goTo: "Go to a section",
+            savedCopied: "Image saved · link copied",
+            practicesN: n => `${n} practices`
+        },
+        share: "Share",
+        linkCopied: "Link copied",
+        permalink: "link to this entry",
+        suggestEdit: "Suggest an edit",
+        suggestPractice: "+ Suggest a practice",
+        suggestQuestion: "What would you like to suggest?",
+        suggestSource: "Add a source",
+        suggestSourceHint: "an article about this practice, with a quote from it",
+        suggestDefinition: "Change the definition",
+        suggestDefinitionHint: "what the practice is, said more precisely",
+        survey: {
+            emptyBoard: "Pick A, B, C or D for any practice and it lands here.",
+            tierLabels: [ "can't work without", "good", "meh", "overrated" ],
+            saveImage: "Save image",
+            imageTitle: "$ my agentic coding tier list",
+            makeYours: "make yours →",
+            renameHint: "Drag a tile to another tier; click a tier label to rename it.",
+            confirmTitle: n => `Confirm your ${n} answer${n === 1 ? "" : "s"} before submitting`,
+            submit: "Submit",
+            submitN: n => `Submit ${n} answer${n === 1 ? "" : "s"}`,
+            clear: "Clear my answers",
+            clearConfirm: "Clear all your answers in this browser?",
+            close: "Close",
+            endLead: "That’s it. Now you can hand this to your agent and get back to work.",
+            endLeadEmpty: "That’s it. Now you can scroll back up and answer a few.",
+            nothingYet: "Answer any practice above; your answers gather here.",
+            teamTitle: "Run this survey inside your team",
+            teamLead: "Clone this site and give it to your people: only your team answers there, the answers stay in your repository, you can ask about practices of your own that this list does not have, and you can set your answers next to everyone’s answers here. The site is plain files, so it can live on your intranet or any web server.",
+            teamLabel: "Prompt your agent or do it yourself:",
+            teamPrompt: [ "Set up the survey from https://github.com/inmve/agentic-coding-practices for my team.", "1. Clone it: git clone https://github.com/inmve/agentic-coding-practices.git team-survey", "2. Create a GitHub repository for the team’s answers (it can be private; ask me for the owner and the name) and push main to it: git push <its URL> main", "3. In the docs/ folder, create team.json:", '   {"answersRepo": "<owner>/<name>", "siteUrl": "<the address the site will have>", "issuesUrl": "https://github.com/<owner>/<name>/issues", "practices": []}', '   To ask about a practice of your own, add it to "practices", e.g. {"id": "pairing-with-the-agent-on-call", "stages": ["coding"], "title": {"en": "…"}, "definition": {"en": "…"}}; the stage and group ids are in docs/entries.json under "meta". Commit and push.', "4. Publish the docs/ folder as a static site: on the intranet, on any web server, or with GitHub Pages from main /docs.", "5. In the answers repository, turn on GitHub Actions: they check each answer and merge it. Give the site’s address to the team; to count the answers, run python3 .github/count_answers.py in a clone.", "6. To take later versions of the list: git pull https://github.com/inmve/agentic-coding-practices.git main, then push and publish docs/ again." ].join("\n"),
+            whyPr: "Your answers go straight into the site’s public GitHub repository, where anyone can recount them.",
+            resultsLine: "Everyone’s answers go up on <b>1 December</b>.",
+            submitTitle: n => `Submit ${n} answer${n === 1 ? "" : "s"} via pull request`,
+            promptLead: "To vote, copy this prompt into your coding agent:",
+            byHand: url => `Or by hand: <button class="link" data-act="copy-file">copy the file</button>, <a href="${url}" target="_blank" rel="noopener">open GitHub</a> with its name filled in, paste it, then «Commit changes…» → «Propose changes» → «Create pull request».`,
+            copiedFile: "file copied",
+            promptUpdated: "Prompt updated",
+            switchToAgent: "or let your agent handle this",
+            switchToSelf: "or do it manually yourself",
+            doneAnswers: n => `${n} answer${n === 1 ? "" : "s"}`,
+            changeWord: "change",
+            otherWay: "other way",
+            sendLead: `Your answers go in as a pull request. It's one small file with your picks.`,
+            roadSelf: "I’ll create the pull request myself",
+            roadAgent: "I’ll let my agent do it",
+            answersCopied: "Your answers are copied.",
+            stepOpen: url => `<a href="${url}" target="_blank" rel="noopener">Open the new file on GitHub</a> — its name is already filled in.`,
+            stepPaste: "Paste the answers and press «Commit changes».",
+            stepPr: "GitHub offers the pull request itself; agree to it.",
+            agentLead: "Hand this prompt to your agent — it opens the pull request for you.",
+            copyThePrompt: "Copy the prompt",
+            promptCopiedLine: "Prompt copied. Your agent will reply with a link — paste it here if you want to keep it in sight.",
+            prLinkPlaceholder: "https://github.com/…/pull/…",
+            copyPrompt: "Copy",
+            copied: "Copied",
+            answersLabel: "Here’s what the prompt above will submit as your answers:"
+        },
+        loadError: url => `The data did not load. It is in <a href="${url}">data/entries.json</a>; reload the page.`,
+        newBlock: "New",
+        aliases: "also",
+        seeAlso: "See also",
+        roots: "Roots",
+        example: "Example",
+        descendants: "Descendants",
+        opposites: "Opposite",
+        issues: "Suggest a fix or a new practice",
+        months: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ],
+        monthsNominative: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ],
+        empty: "Nothing in the selected period.",
+        yes: "Yes",
+        no: "No",
+        loop: "loop",
+        keys: "Keyboard",
+        keysText: "<kbd>J</kbd> <kbd>K</kbd> entries · <kbd>Y</kbd> <kbd>N</kbd> answer · <kbd>Esc</kbd>",
+        commentPlaceholder: "Comment (optional)",
+        never: "never tried",
+        result: (y, n) => `Use it: ${y} of ${y + n} (demo)`,
+        resultFew: "Few answers so far. Yours brings the result closer.",
+        railTitle: (y, n) => `Use it nowadays: ${y} of ${y + n} (demo)`,
+        mine: v => v === null ? "· never tried" : v ? "✓ you use it" : "✗ you don't use it",
+        noQuote: "No quote picked yet",
+        openSource2: "Open the source →",
+        goToEntry: "Go to the entry →",
+        illustrative: "Illustrative example.",
+        why: "Why?",
+        basketEmpty: "No answers yet",
+        basket: n => `Your answers: ${n}`,
+        send: n => `Send answers · ${n}`,
+        sent: "Prompt copied, give it to your agent",
+        quietNote: "Answers stay in this browser for now. «Send» copies a prompt: your agent opens a PR and they count.",
+        hint: "Saved. To count on the site, answers need to be committed to the repository.",
+        hintLink: "How to send",
+        note: "Answers count on the site once committed to the repository. Copy the prompt and give it to your agent (Claude Code, Codex): it will open a pull request. Not anonymous: the PR is signed by your GitHub account.",
+        copyPrompt: "Copy prompt for your agent",
+        copied: "Copied",
+        shareX: "Share on X",
+        clear: "Clear",
+        remove: "remove",
+        tweet: (n, y) => `Went through the agentic software development reference: of ${n} practices I use ${y} nowadays.`
+    },
+    zh: {
+        github: "GitHub",
+        contents: "目录",
+        tlCount: (n, from, to) => `${from} 至 ${to} 的 ${n} 个实践`,
+        tlReset: "重置",
+        tlToday: "今天",
+        kicker: "",
+        title: "Agent 软件开发实践，2026",
+        lead: "",
+        suggestions: (url, updated, stars) => `<span class="feedback-card"><span class="feedback-text">发现缺了某个实践或有错误？<a href="${url}/issues/new">提交 issue</a></span><span class="repo-row"><a class="star" href="${url}">★ GitHub${stars === null || stars === undefined ? "" : ` ${stars}`}</a>${updated ? `<span class="updated">最后更新 ${updated}</span>` : ""}</span></span>`,
+        teamCopy: url => `团队专用的 <a href="${url}">agent 软件开发实践</a> 副本。`,
+        parts: {
+            approaches: "方法",
+            stages: "按 SDLC 阶段划分的实践",
+            general: "跨阶段",
+            team: "团队与项目"
+        },
+        shelf: {
+            sources: n => `${n} 个来源`,
+            seeAll: n => `查看全部 ${n} →`,
+            toGo: n => `再评 ${n} 个就完成`,
+            ready: s => `你的「${s}」分级榜已就绪 →`,
+            makeList: "做你自己的分级榜 ·",
+            yourList: "你的分级榜 ·",
+            openList: "展开 ▴",
+            closeList: "收起 ▾",
+            goTo: "跳到某一节",
+            savedCopied: "图片已保存 · 链接已复制",
+            practicesN: n => `${n} 个做法`
+        },
+        share: "分享",
+        linkCopied: "链接已复制",
+        permalink: "本条目的链接",
+        suggestEdit: "建议修改",
+        suggestPractice: "+ 建议新增实践",
+        suggestQuestion: "你想建议什么？",
+        suggestSource: "补充来源",
+        suggestSourceHint: "一篇讲这个实践的文章，附上其中的一段引文",
+        suggestDefinition: "修改定义",
+        suggestDefinitionHint: "把这个实践说得更准确",
+        survey: {
+            emptyBoard: "给任意做法选 A、B、C 或 D，它就会出现在这里。",
+            tierLabels: [ "离不开", "不错", "一般", "被高估" ],
+            saveImage: "保存图片",
+            imageTitle: "$ 我的 agentic coding 分级榜",
+            makeYours: "做你自己的 →",
+            renameHint: "拖动卡片可换到别的分级；点击分级名称即可改名。",
+            confirmTitle: n => `提交前请确认你的 ${n} 条回答`,
+            submit: "提交",
+            submitN: n => `提交 ${n} 条回答`,
+            clear: "清除我的回答",
+            clearConfirm: "清除你在此浏览器中的所有回答？",
+            close: "关闭",
+            endLead: "就这些。现在可以把它交给你的 agent，回去干活了。",
+            endLeadEmpty: "就这些。现在可以滚回上面，答几道题。",
+            nothingYet: "回答上面的任意实践，你的回答会汇总在这里。",
+            teamTitle: "在团队内部做这份调查",
+            teamLead: "克隆这个站点交给你的同事：只有你的团队在上面作答，回答保存在你自己的仓库里，你可以问这份清单里没有的、你们自己的实践，还可以把你们的回答和这里所有人的回答放在一起对比。这个站点就是一堆普通文件，可以放在内网或任何 Web 服务器上。",
+            teamLabel: "把下面的提示词交给你的 agent，或者自己动手：",
+            teamPrompt: [ "请为我的团队搭建这份调查：https://github.com/inmve/agentic-coding-practices", "1. 克隆：git clone https://github.com/inmve/agentic-coding-practices.git team-survey", "2. 为团队的回答创建一个 GitHub 仓库（可以是私有的；向我询问所有者和名称），并把 main 推送过去：git push <its URL> main", "3. 在 docs/ 目录下创建 team.json：", '   {"answersRepo": "<owner>/<name>", "siteUrl": "<the address the site will have>", "issuesUrl": "https://github.com/<owner>/<name>/issues", "practices": []}', '   想问你们自己的实践，就把它加到 "practices" 里，例如 {"id": "pairing-with-the-agent-on-call", "stages": ["coding"], "title": {"en": "…"}, "definition": {"en": "…"}}；阶段和分组的 id 在 docs/entries.json 的 "meta" 下。然后 commit 并 push。', "4. 把 docs/ 目录发布为静态站点：放在内网、任意 Web 服务器上，或者用 GitHub Pages 从 main /docs 发布。", "5. 在回答仓库里启用 GitHub Actions：它们会检查每条回答并合并。把站点地址告诉团队；要统计回答，在克隆下来的仓库里运行 python3 .github/count_answers.py。", "6. 要获取清单的后续版本：git pull https://github.com/inmve/agentic-coding-practices.git main，然后再次 push 并发布 docs/。" ].join("\n"),
+            whyPr: "你的回答会直接进入本站公开的 GitHub 仓库，任何人都可以重新统计。",
+            resultsLine: "所有人的回答会在 <b>12 月 1 日</b>公布。",
+            submitTitle: n => `通过 pull request 提交 ${n} 条回答`,
+            promptLead: "要投票，请把这段提示词复制到你的编码 agent 里：",
+            byHand: url => `或者手动操作：<button class="link" data-act="copy-file">复制文件</button>，<a href="${url}" target="_blank" rel="noopener">打开 GitHub</a>（文件名已填好），粘贴进去，然后依次点「Commit changes…」→「Propose changes」→「Create pull request」。`,
+            copiedFile: "文件已复制",
+            promptUpdated: "提示词已更新",
+            switchToAgent: "或者交给你的 agent 处理",
+            switchToSelf: "或者自己手动完成",
+            doneAnswers: n => `${n} 条回答`,
+            changeWord: "修改",
+            otherWay: "换一种方式",
+            sendLead: "你的回答会作为一个 pull request 提交。这是一个很小的文件，只有你的选择。",
+            roadSelf: "我自己来开 pull request",
+            roadAgent: "交给我的 agent",
+            answersCopied: "回答已复制。",
+            stepOpen: url => `<a href="${url}" target="_blank" rel="noopener">在 GitHub 上打开新文件</a>，文件名已经填好。`,
+            stepPaste: "粘贴回答，然后点「Commit changes」。",
+            stepPr: "GitHub 会自己提出 pull request，同意即可。",
+            agentLead: "把这段提示词交给你的 agent，它会替你开 pull request。",
+            copyThePrompt: "复制提示词",
+            promptCopiedLine: "提示词已复制。agent 会回复一个链接 — 想留着就粘到这里。",
+            prLinkPlaceholder: "https://github.com/…/pull/…",
+            copyPrompt: "复制",
+            copied: "已复制",
+            answersLabel: "上面的提示词会把下面这些作为你的回答提交："
+        },
+        loadError: url => `数据没有加载出来。数据在 <a href="${url}">data/entries.json</a>，请刷新页面。`,
+        newBlock: "新增",
+        aliases: "又称",
+        seeAlso: "另见",
+        roots: "渊源",
+        example: "示例",
+        descendants: "衍生",
+        opposites: "相反",
+        issues: "建议修正或新增实践",
+        months: [ "1 月", "2 月", "3 月", "4 月", "5 月", "6 月", "7 月", "8 月", "9 月", "10 月", "11 月", "12 月" ],
+        monthsNominative: [ "1 月", "2 月", "3 月", "4 月", "5 月", "6 月", "7 月", "8 月", "9 月", "10 月", "11 月", "12 月" ],
+        empty: "所选时间段内没有内容。",
+        yes: "是",
+        no: "否",
+        loop: "循环",
+        keys: "快捷键",
+        keysText: "<kbd>J</kbd> <kbd>K</kbd> 切换条目 · <kbd>Y</kbd> <kbd>N</kbd> 回答 · <kbd>Esc</kbd>",
+        commentPlaceholder: "评论（可选）",
+        never: "没试过",
+        result: (y, n) => `在用：${y} / ${y + n}（演示）`,
+        resultFew: "目前回答还很少。你的回答会让结果更接近真实。",
+        railTitle: (y, n) => `现在在用：${y} / ${y + n}（演示）`,
+        mine: v => v === null ? "· 没试过" : v ? "✓ 你在用" : "✗ 你没在用",
+        noQuote: "还没选引文",
+        openSource2: "打开来源 →",
+        goToEntry: "前往条目 →",
+        illustrative: "示意性示例。",
+        why: "为什么？",
+        basketEmpty: "还没有回答",
+        basket: n => `你的回答：${n}`,
+        send: n => `发送回答 · ${n}`,
+        sent: "提示词已复制，交给你的 agent 吧",
+        quietNote: "回答目前只保存在此浏览器中。点「发送」会复制一段提示词：你的 agent 会提交 PR，回答随之计入统计。",
+        hint: "已保存。要计入站点统计，回答需要提交到仓库。",
+        hintLink: "如何发送",
+        note: "回答提交到仓库后才会计入站点统计。复制提示词交给你的 agent（Claude Code、Codex），它会提交一个 pull request。不是匿名的：PR 会署上你的 GitHub 账号。",
+        copyPrompt: "复制给 agent 的提示词",
+        copied: "已复制",
+        shareX: "分享到 X",
+        clear: "清除",
+        remove: "移除",
+        tweet: (n, y) => `看完了agent 软件开发的实践参考：${n} 个实践里，我现在在用 ${y} 个。`
+    },
+    es: {
+        github: "GitHub",
+        contents: "Índice",
+        tlCount: (n, from, to) => `${n} prácticas de ${from} a ${to}`,
+        tlReset: "restablecer",
+        tlToday: "hoy",
+        kicker: "",
+        title: "Prácticas del desarrollo de software con agentes, 2026",
+        lead: "",
+        suggestions: (url, updated, stars) => `<span class="feedback-card"><span class="feedback-text">¿Falta una práctica o hay un error? <a href="${url}/issues/new">Abre un issue</a></span><span class="repo-row"><a class="star" href="${url}">★ GitHub${stars === null || stars === undefined ? "" : ` ${stars}`}</a>${updated ? `<span class="updated">última actualización ${updated}</span>` : ""}</span></span>`,
+        teamCopy: url => `La copia de un equipo de <a href="${url}">Prácticas del desarrollo de software con agentes</a>.`,
+        parts: {
+            approaches: "Enfoques",
+            stages: "Prácticas por etapa del SDLC",
+            general: "Transversales",
+            team: "Equipos y proyectos"
+        },
+        shelf: {
+            sources: n => `${n} ${n === 1 ? "fuente" : "fuentes"}`,
+            seeAll: n => `Ver las ${n} →`,
+            toGo: n => `faltan ${n}`,
+            ready: s => `Tu tier list de ${s} está lista →`,
+            makeList: "Haz tu tier list ·",
+            yourList: "Tu tier list ·",
+            openList: "abrir ▴",
+            closeList: "cerrar ▾",
+            goTo: "Ir a una sección",
+            savedCopied: "Imagen guardada · enlace copiado",
+            practicesN: n => `${n} prácticas`
+        },
+        share: "Compartir",
+        linkCopied: "Enlace copiado",
+        permalink: "enlace a esta entrada",
+        suggestEdit: "Sugerir un cambio",
+        suggestPractice: "+ Sugerir una práctica",
+        suggestQuestion: "¿Qué te gustaría sugerir?",
+        suggestSource: "Añadir una fuente",
+        suggestSourceHint: "un artículo sobre esta práctica, con una cita de él",
+        suggestDefinition: "Cambiar la definición",
+        suggestDefinitionHint: "qué es la práctica, dicho con más precisión",
+        survey: {
+            emptyBoard: "Elige A, B, C o D para cualquier práctica y aparecerá aquí.",
+            tierLabels: [ "no puedo sin ella", "buena", "regular", "sobrevalorada" ],
+            saveImage: "Guardar imagen",
+            imageTitle: "$ mi tier list de agentic coding",
+            makeYours: "haz la tuya →",
+            renameHint: "Arrastra una ficha a otro nivel; haz clic en el nombre de un nivel para cambiarlo.",
+            confirmTitle: n => `Revisa tus ${n} respuesta${n === 1 ? "" : "s"} antes de enviar`,
+            submit: "Enviar",
+            submitN: n => `Enviar ${n} ${n === 1 ? "respuesta" : "respuestas"}`,
+            clear: "Borrar mis respuestas",
+            clearConfirm: "¿Borrar todas tus respuestas en este navegador?",
+            close: "Cerrar",
+            endLead: "Eso es todo. Ahora puedes pasárselo a tu agente y volver al trabajo.",
+            endLeadEmpty: "Eso es todo. Ahora puedes volver arriba y responder a alguna.",
+            nothingYet: "Responde a cualquier práctica de arriba; tus respuestas se reúnen aquí.",
+            teamTitle: "Haz esta encuesta dentro de tu equipo",
+            teamLead: "Clona este sitio y dáselo a tu gente: solo responde tu equipo, las respuestas se quedan en tu repositorio, puedes preguntar por prácticas propias que no están en esta lista y puedes poner tus respuestas junto a las de todos los demás de aquí. El sitio son archivos simples, así que puede vivir en tu intranet o en cualquier servidor web.",
+            teamLabel: "Dale este prompt a tu agente o hazlo tú mismo:",
+            teamPrompt: [ "Set up the survey from https://github.com/inmve/agentic-coding-practices for my team.", "1. Clone it: git clone https://github.com/inmve/agentic-coding-practices.git team-survey", "2. Create a GitHub repository for the team’s answers (it can be private; ask me for the owner and the name) and push main to it: git push <its URL> main", "3. In the docs/ folder, create team.json:", '   {"answersRepo": "<owner>/<name>", "siteUrl": "<the address the site will have>", "issuesUrl": "https://github.com/<owner>/<name>/issues", "practices": []}', '   To ask about a practice of your own, add it to "practices", e.g. {"id": "pairing-with-the-agent-on-call", "stages": ["coding"], "title": {"en": "…"}, "definition": {"en": "…"}}; the stage and group ids are in docs/entries.json under "meta". Commit and push.', "4. Publish the docs/ folder as a static site: on the intranet, on any web server, or with GitHub Pages from main /docs.", "5. In the answers repository, turn on GitHub Actions: they check each answer and merge it. Give the site’s address to the team; to count the answers, run python3 .github/count_answers.py in a clone.", "6. To take later versions of the list: git pull https://github.com/inmve/agentic-coding-practices.git main, then push and publish docs/ again." ].join("\n"),
+            whyPr: "Tus respuestas van directamente al repositorio público de GitHub del sitio, donde cualquiera puede volver a contarlas.",
+            resultsLine: "Las respuestas de todos se publicarán el <b>1 de diciembre</b>.",
+            submitTitle: n => `Enviar ${n} ${n === 1 ? "respuesta" : "respuestas"} mediante pull request`,
+            promptLead: "Para votar, copia este prompt en tu agente de programación:",
+            byHand: url => `O a mano: <button class="link" data-act="copy-file">copia el archivo</button>, <a href="${url}" target="_blank" rel="noopener">abre GitHub</a> con su nombre ya puesto, pégalo y luego «Commit changes…» → «Propose changes» → «Create pull request».`,
+            copiedFile: "archivo copiado",
+            promptUpdated: "Prompt actualizado",
+            switchToAgent: "o deja que lo haga tu agente",
+            switchToSelf: "o hazlo tú a mano",
+            doneAnswers: n => `${n} ${n === 1 ? "respuesta" : "respuestas"}`,
+            changeWord: "cambiar",
+            otherWay: "otra forma",
+            sendLead: "Tus respuestas se envían como un pull request. Es un archivo pequeño con tus elecciones.",
+            roadSelf: "Haré el pull request yo mismo",
+            roadAgent: "Que lo haga mi agente",
+            answersCopied: "Tus respuestas están copiadas.",
+            stepOpen: url => `<a href="${url}" target="_blank" rel="noopener">Abre el archivo nuevo en GitHub</a>: su nombre ya está puesto.`,
+            stepPaste: "Pega las respuestas y pulsa «Commit changes».",
+            stepPr: "GitHub propone el pull request por su cuenta; acéptalo.",
+            agentLead: "Dale este prompt a tu agente: abrirá el pull request por ti.",
+            copyThePrompt: "Copiar el prompt",
+            promptCopiedLine: "Prompt copiado. Tu agente responderá con un enlace: pégalo aquí si quieres tenerlo a la vista.",
+            prLinkPlaceholder: "https://github.com/…/pull/…",
+            copyPrompt: "Copiar",
+            copied: "Copiado",
+            answersLabel: "Esto es lo que enviará el prompt de arriba como tus respuestas:"
+        },
+        loadError: url => `Los datos no se cargaron. Están en <a href="${url}">data/entries.json</a>; recarga la página.`,
+        newBlock: "Nuevo",
+        aliases: "también",
+        seeAlso: "Véase también",
+        roots: "Raíces",
+        example: "Ejemplo",
+        descendants: "Descendientes",
+        opposites: "Opuesto",
+        issues: "Sugerir una corrección o una práctica nueva",
+        months: [ "ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic" ],
+        monthsNominative: [ "ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic" ],
+        empty: "No hay nada en el periodo seleccionado.",
+        yes: "Sí",
+        no: "No",
+        loop: "bucle",
+        keys: "Teclado",
+        keysText: "<kbd>J</kbd> <kbd>K</kbd> entradas · <kbd>Y</kbd> <kbd>N</kbd> responder · <kbd>Esc</kbd>",
+        commentPlaceholder: "Comentario (opcional)",
+        never: "nunca la he probado",
+        result: (y, n) => `La usan: ${y} de ${y + n} (demo)`,
+        resultFew: "Hay pocas respuestas por ahora. La tuya acerca el resultado.",
+        railTitle: (y, n) => `La usan hoy: ${y} de ${y + n} (demo)`,
+        mine: v => v === null ? "· nunca la has probado" : v ? "✓ la usas" : "✗ no la usas",
+        noQuote: "Aún no se ha elegido ninguna cita",
+        openSource2: "Abrir la fuente →",
+        goToEntry: "Ir a la entrada →",
+        illustrative: "Ejemplo ilustrativo.",
+        why: "¿Por qué?",
+        basketEmpty: "Aún no hay respuestas",
+        basket: n => `Tus respuestas: ${n}`,
+        send: n => `Enviar respuestas · ${n}`,
+        sent: "Prompt copiado, dáselo a tu agente",
+        quietNote: "Por ahora las respuestas se quedan en este navegador. «Enviar» copia un prompt: tu agente abre un PR y se cuentan.",
+        hint: "Guardado. Para que cuenten en el sitio, las respuestas deben confirmarse (commit) en el repositorio.",
+        hintLink: "Cómo enviar",
+        note: "Las respuestas cuentan en el sitio cuando se confirman en el repositorio. Copia el prompt y dáselo a tu agente (Claude Code, Codex): abrirá un pull request. No es anónimo: el PR lo firma tu cuenta de GitHub.",
+        copyPrompt: "Copiar prompt para tu agente",
+        copied: "Copiado",
+        shareX: "Compartir en X",
+        clear: "Borrar",
+        remove: "quitar",
+        tweet: (n, y) => `Repasé la referencia del desarrollo de software con agentes: de ${n} prácticas, hoy uso ${y}.`
+    },
+    pt: {
+        github: "GitHub",
+        contents: "Sumário",
+        tlCount: (n, from, to) => `${n} práticas de ${from} a ${to}`,
+        tlReset: "redefinir",
+        tlToday: "hoje",
+        kicker: "",
+        title: "Práticas de desenvolvimento de software com agentes, 2026",
+        lead: "",
+        suggestions: (url, updated, stars) => `<span class="feedback-card"><span class="feedback-text">Falta uma prática ou achou um erro? <a href="${url}/issues/new">Abra uma issue</a></span><span class="repo-row"><a class="star" href="${url}">★ GitHub${stars === null || stars === undefined ? "" : ` ${stars}`}</a>${updated ? `<span class="updated">última atualização ${updated}</span>` : ""}</span></span>`,
+        teamCopy: url => `Cópia de uma equipe de <a href="${url}">Práticas de desenvolvimento de software com agentes</a>.`,
+        parts: {
+            approaches: "Abordagens",
+            stages: "Práticas por etapa do SDLC",
+            general: "Transversais",
+            team: "Equipes e projetos"
+        },
+        shelf: {
+            sources: n => `${n} ${n === 1 ? "fonte" : "fontes"}`,
+            seeAll: n => `Ver todas as ${n} →`,
+            toGo: n => `faltam ${n}`,
+            ready: s => `Sua tier list de ${s} está pronta →`,
+            makeList: "Monte sua tier list ·",
+            yourList: "Sua tier list ·",
+            openList: "abrir ▴",
+            closeList: "fechar ▾",
+            goTo: "Ir para uma seção",
+            savedCopied: "Imagem salva · link copiado",
+            practicesN: n => `${n} práticas`
+        },
+        share: "Compartilhar",
+        linkCopied: "Link copiado",
+        permalink: "link para este item",
+        suggestEdit: "Sugerir uma edição",
+        suggestPractice: "+ Sugerir uma prática",
+        suggestQuestion: "O que você gostaria de sugerir?",
+        suggestSource: "Adicionar uma fonte",
+        suggestSourceHint: "um artigo sobre esta prática, com uma citação dele",
+        suggestDefinition: "Alterar a definição",
+        suggestDefinitionHint: "o que é a prática, dito com mais precisão",
+        survey: {
+            emptyBoard: "Escolha A, B, C ou D para qualquer prática e ela aparece aqui.",
+            tierLabels: [ "não vivo sem", "boa", "mais ou menos", "superestimada" ],
+            saveImage: "Salvar imagem",
+            imageTitle: "$ minha tier list de agentic coding",
+            makeYours: "faça a sua →",
+            renameHint: "Arraste uma ficha para outro nível; clique no nome de um nível para renomeá-lo.",
+            confirmTitle: n => `Confira suas ${n} resposta${n === 1 ? "" : "s"} antes de enviar`,
+            submit: "Enviar",
+            submitN: n => `Enviar ${n} ${n === 1 ? "resposta" : "respostas"}`,
+            clear: "Limpar minhas respostas",
+            clearConfirm: "Limpar todas as suas respostas neste navegador?",
+            close: "Fechar",
+            endLead: "É isso. Agora você pode passar isto ao seu agente e voltar ao trabalho.",
+            endLeadEmpty: "É isso. Agora você pode voltar ao início da página e responder a algumas.",
+            nothingYet: "Responda a qualquer prática acima; suas respostas se reúnem aqui.",
+            teamTitle: "Faça esta pesquisa dentro da sua equipe",
+            teamLead: "Clone este site e entregue-o às suas pessoas: só a sua equipe responde ali, as respostas ficam no seu repositório, você pode perguntar sobre práticas próprias que esta lista não tem e pode comparar as suas respostas com as de todos aqui. O site é feito de arquivos simples, então pode ficar na sua intranet ou em qualquer servidor web.",
+            teamLabel: "Peça ao seu agente ou faça você mesmo:",
+            teamPrompt: [ "Set up the survey from https://github.com/inmve/agentic-coding-practices for my team.", "1. Clone it: git clone https://github.com/inmve/agentic-coding-practices.git team-survey", "2. Create a GitHub repository for the team’s answers (it can be private; ask me for the owner and the name) and push main to it: git push <its URL> main", "3. In the docs/ folder, create team.json:", '   {"answersRepo": "<owner>/<name>", "siteUrl": "<the address the site will have>", "issuesUrl": "https://github.com/<owner>/<name>/issues", "practices": []}', '   To ask about a practice of your own, add it to "practices", e.g. {"id": "pairing-with-the-agent-on-call", "stages": ["coding"], "title": {"en": "…"}, "definition": {"en": "…"}}; the stage and group ids are in docs/entries.json under "meta". Commit and push.', "4. Publish the docs/ folder as a static site: on the intranet, on any web server, or with GitHub Pages from main /docs.", "5. In the answers repository, turn on GitHub Actions: they check each answer and merge it. Give the site’s address to the team; to count the answers, run python3 .github/count_answers.py in a clone.", "6. To take later versions of the list: git pull https://github.com/inmve/agentic-coding-practices.git main, then push and publish docs/ again." ].join("\n"),
+            whyPr: "Suas respostas vão direto para o repositório público do site no GitHub, onde qualquer pessoa pode recontá-las.",
+            resultsLine: "As respostas de todos serão publicadas em <b>1º de dezembro</b>.",
+            submitTitle: n => `Enviar ${n} ${n === 1 ? "resposta" : "respostas"} por pull request`,
+            promptLead: "Para votar, copie este prompt para o seu agente de código:",
+            byHand: url => `Ou à mão: <button class="link" data-act="copy-file">copie o arquivo</button>, <a href="${url}" target="_blank" rel="noopener">abra o GitHub</a> com o nome já preenchido, cole, depois «Commit changes…» → «Propose changes» → «Create pull request».`,
+            copiedFile: "arquivo copiado",
+            promptUpdated: "Prompt atualizado",
+            switchToAgent: "ou deixe o seu agente cuidar disso",
+            switchToSelf: "ou faça você mesmo à mão",
+            doneAnswers: n => `${n} ${n === 1 ? "resposta" : "respostas"}`,
+            changeWord: "alterar",
+            otherWay: "outra forma",
+            sendLead: "Suas respostas vão como um pull request. É um arquivo pequeno com suas escolhas.",
+            roadSelf: "Vou abrir o pull request eu mesmo",
+            roadAgent: "Deixo com o meu agente",
+            answersCopied: "Suas respostas estão copiadas.",
+            stepOpen: url => `<a href="${url}" target="_blank" rel="noopener">Abra o arquivo novo no GitHub</a> — o nome já está preenchido.`,
+            stepPaste: "Cole as respostas e aperte «Commit changes».",
+            stepPr: "O GitHub propõe o pull request sozinho; é só aceitar.",
+            agentLead: "Entregue este prompt ao seu agente — ele abre o pull request para você.",
+            copyThePrompt: "Copiar o prompt",
+            promptCopiedLine: "Prompt copiado. Seu agente responde com um link — cole aqui se quiser deixá-lo à vista.",
+            prLinkPlaceholder: "https://github.com/…/pull/…",
+            copyPrompt: "Copiar",
+            copied: "Copiado",
+            answersLabel: "Isto é o que o prompt acima vai enviar como suas respostas:"
+        },
+        loadError: url => `Os dados não carregaram. Eles estão em <a href="${url}">data/entries.json</a>; recarregue a página.`,
+        newBlock: "Novo",
+        aliases: "também",
+        seeAlso: "Veja também",
+        roots: "Raízes",
+        example: "Exemplo",
+        descendants: "Descendentes",
+        opposites: "Oposto",
+        issues: "Sugerir uma correção ou uma nova prática",
+        months: [ "jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez" ],
+        monthsNominative: [ "jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez" ],
+        empty: "Nada no período selecionado.",
+        yes: "Sim",
+        no: "Não",
+        loop: "loop",
+        keys: "Teclado",
+        keysText: "<kbd>J</kbd> <kbd>K</kbd> itens · <kbd>Y</kbd> <kbd>N</kbd> responder · <kbd>Esc</kbd>",
+        commentPlaceholder: "Comentário (opcional)",
+        never: "nunca tentei",
+        result: (y, n) => `Usam: ${y} de ${y + n} (demo)`,
+        resultFew: "Ainda há poucas respostas. A sua aproxima o resultado.",
+        railTitle: (y, n) => `Usam hoje: ${y} de ${y + n} (demo)`,
+        mine: v => v === null ? "· nunca tentei" : v ? "✓ você usa" : "✗ você não usa",
+        noQuote: "Nenhuma citação escolhida ainda",
+        openSource2: "Abrir a fonte →",
+        goToEntry: "Ir para o item →",
+        illustrative: "Exemplo ilustrativo.",
+        why: "Por quê?",
+        basketEmpty: "Ainda sem respostas",
+        basket: n => `Suas respostas: ${n}`,
+        send: n => `Enviar respostas · ${n}`,
+        sent: "Prompt copiado, entregue-o ao seu agente",
+        quietNote: "Por enquanto as respostas ficam neste navegador. «Enviar» copia um prompt: seu agente abre um PR e elas são contadas.",
+        hint: "Salvo. Para contar no site, as respostas precisam ser commitadas no repositório.",
+        hintLink: "Como enviar",
+        note: "As respostas contam no site depois de commitadas no repositório. Copie o prompt e entregue-o ao seu agente (Claude Code, Codex): ele abrirá um pull request. Não é anônimo: o PR é assinado pela sua conta do GitHub.",
+        copyPrompt: "Copiar prompt para o seu agente",
+        copied: "Copiado",
+        shareX: "Compartilhar no X",
+        clear: "Limpar",
+        remove: "remover",
+        tweet: (n, y) => `Passei pela referência de desenvolvimento de software com agentes: de ${n} práticas, uso ${y} hoje.`
+    },
+    ja: {
+        github: "GitHub",
+        contents: "目次",
+        tlCount: (n, from, to) => `${from}〜${to} の実践 ${n} 件`,
+        tlReset: "リセット",
+        tlToday: "今日",
+        kicker: "",
+        title: "エージェント型ソフトウェア開発の実践、2026",
+        lead: "",
+        suggestions: (url, updated, stars) => `<span class="feedback-card"><span class="feedback-text">足りない実践や間違いに気づきましたか? <a href="${url}/issues/new">issue を作成してください</a></span><span class="repo-row"><a class="star" href="${url}">★ GitHub${stars === null || stars === undefined ? "" : ` ${stars}`}</a>${updated ? `<span class="updated">最終更新 ${updated}</span>` : ""}</span></span>`,
+        teamCopy: url => `チーム用のコピー:<a href="${url}">エージェント型ソフトウェア開発の実践</a>`,
+        parts: {
+            approaches: "アプローチ",
+            stages: "SDLC の工程別の実践",
+            general: "工程横断",
+            team: "チームとプロジェクト"
+        },
+        shelf: {
+            sources: n => `出典 ${n} 件`,
+            seeAll: n => `${n} 件すべて →`,
+            toGo: n => `あと ${n} 件`,
+            ready: s => `「${s}」のティアリストができました →`,
+            makeList: "自分のティアリストを作る ·",
+            yourList: "あなたのティアリスト ·",
+            openList: "開く ▴",
+            closeList: "閉じる ▾",
+            goTo: "セクションへ移動",
+            savedCopied: "画像を保存しました · リンクをコピーしました",
+            practicesN: n => `${n} 件の実践`
+        },
+        share: "共有",
+        linkCopied: "リンクをコピーしました",
+        permalink: "この項目へのリンク",
+        suggestEdit: "修正を提案",
+        suggestPractice: "+ 実践を提案",
+        suggestQuestion: "何を提案しますか?",
+        suggestSource: "出典を追加",
+        suggestSourceHint: "この実践についての記事と、その引用",
+        suggestDefinition: "定義を変更",
+        suggestDefinitionHint: "実践の内容を、より正確に",
+        survey: {
+            emptyBoard: "どれかの実践に A・B・C・D を付けると、ここに並びます。",
+            tierLabels: [ "手放せない", "良い", "いまいち", "過大評価" ],
+            saveImage: "画像を保存",
+            imageTitle: "$ 自分の agentic coding ティアリスト",
+            makeYours: "自分のを作る →",
+            renameHint: "カードはドラッグで別のティアへ。ティア名はクリックで変更できます。",
+            confirmTitle: n => `送信前に${n}件の回答を確認してください`,
+            submit: "送信",
+            submitN: n => `${n}件の回答を送信`,
+            clear: "回答を消去",
+            clearConfirm: "このブラウザに保存されたすべての回答を消去しますか?",
+            close: "閉じる",
+            endLead: "以上です。あとはエージェントに任せて、仕事に戻れます。",
+            endLeadEmpty: "以上です。上に戻って、いくつか答えてみてください。",
+            nothingYet: "上の実践のどれかに答えると、回答がここに集まります。",
+            teamTitle: "このアンケートをチーム内で実施する",
+            teamLead: "このサイトをクローンしてメンバーに渡せば、回答するのはチームだけになり、回答はあなたのリポジトリに残ります。この一覧にない独自の実践について質問することも、自分たちの回答をここにある全員の回答と並べて見ることもできます。サイトは単なるファイルなので、イントラネットでも任意の Web サーバーでも動かせます。",
+            teamLabel: "エージェントに依頼するか、自分で行ってください:",
+            teamPrompt: [ "Set up the survey from https://github.com/inmve/agentic-coding-practices for my team.", "1. Clone it: git clone https://github.com/inmve/agentic-coding-practices.git team-survey", "2. Create a GitHub repository for the team’s answers (it can be private; ask me for the owner and the name) and push main to it: git push <its URL> main", "3. In the docs/ folder, create team.json:", '   {"answersRepo": "<owner>/<name>", "siteUrl": "<the address the site will have>", "issuesUrl": "https://github.com/<owner>/<name>/issues", "practices": []}', '   To ask about a practice of your own, add it to "practices", e.g. {"id": "pairing-with-the-agent-on-call", "stages": ["coding"], "title": {"en": "…"}, "definition": {"en": "…"}}; the stage and group ids are in docs/entries.json under "meta". Commit and push.', "4. Publish the docs/ folder as a static site: on the intranet, on any web server, or with GitHub Pages from main /docs.", "5. In the answers repository, turn on GitHub Actions: they check each answer and merge it. Give the site’s address to the team; to count the answers, run python3 .github/count_answers.py in a clone.", "6. To take later versions of the list: git pull https://github.com/inmve/agentic-coding-practices.git main, then push and publish docs/ again." ].join("\n"),
+            whyPr: "回答はサイトの公開 GitHub リポジトリに直接入り、誰でも数え直せます。",
+            resultsLine: "全員の回答は <b>12月1日</b> に公開されます。",
+            submitTitle: n => `プルリクエストで${n}件の回答を送信`,
+            promptLead: "投票するには、このプロンプトをコーディングエージェントにコピーしてください:",
+            byHand: url => `手作業の場合:<button class="link" data-act="copy-file">ファイルをコピー</button>し、ファイル名が入力された状態で <a href="${url}" target="_blank" rel="noopener">GitHub を開き</a>、貼り付けて、«Commit changes…» → «Propose changes» → «Create pull request» と進みます。`,
+            copiedFile: "ファイルをコピーしました",
+            promptUpdated: "プロンプトを更新しました",
+            switchToAgent: "あるいはエージェントに任せる",
+            switchToSelf: "あるいは自分で手作業で行う",
+            doneAnswers: n => `${n}件の回答`,
+            changeWord: "変更",
+            otherWay: "別の方法",
+            sendLead: "回答は pull request として送られます。あなたの選択だけが入った小さなファイルです。",
+            roadSelf: "自分で pull request を作る",
+            roadAgent: "エージェントに任せる",
+            answersCopied: "回答をコピーしました。",
+            stepOpen: url => `<a href="${url}" target="_blank" rel="noopener">GitHub で新しいファイルを開きます</a>。ファイル名は入力済みです。`,
+            stepPaste: "回答を貼り付けて「Commit changes」を押します。",
+            stepPr: "GitHub が pull request を提案するので、そのまま進めます。",
+            agentLead: "このプロンプトをエージェントに渡すと、代わりに pull request を開いてくれます。",
+            copyThePrompt: "プロンプトをコピー",
+            promptCopiedLine: "プロンプトをコピーしました。エージェントがリンクを返すので、手元に残したければここに貼ってください。",
+            prLinkPlaceholder: "https://github.com/…/pull/…",
+            copyPrompt: "コピー",
+            copied: "コピーしました",
+            answersLabel: "上のプロンプトは、次の内容をあなたの回答として送信します:"
+        },
+        loadError: url => `データを読み込めませんでした。データは <a href="${url}">data/entries.json</a> にあります。ページを再読み込みしてください。`,
+        newBlock: "新着",
+        aliases: "別名",
+        seeAlso: "関連項目",
+        roots: "ルーツ",
+        example: "例",
+        descendants: "派生",
+        opposites: "対極",
+        issues: "修正や新しい実践を提案",
+        months: [ "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月" ],
+        monthsNominative: [ "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月" ],
+        empty: "選択した期間には何もありません。",
+        yes: "はい",
+        no: "いいえ",
+        loop: "ループ",
+        keys: "キーボード",
+        keysText: "<kbd>J</kbd> <kbd>K</kbd> 項目 · <kbd>Y</kbd> <kbd>N</kbd> 回答 · <kbd>Esc</kbd>",
+        commentPlaceholder: "コメント(任意)",
+        never: "試したことがない",
+        result: (y, n) => `使っている:${y + n}件中${y}件(デモ)`,
+        resultFew: "回答はまだ少数です。あなたの回答で結果に近づきます。",
+        railTitle: (y, n) => `最近使っている:${y + n}件中${y}件(デモ)`,
+        mine: v => v === null ? "· 試したことがない" : v ? "✓ 使っている" : "✗ 使っていない",
+        noQuote: "引用はまだ選ばれていません",
+        openSource2: "出典を開く →",
+        goToEntry: "項目へ移動 →",
+        illustrative: "例示のための例です。",
+        why: "なぜ?",
+        basketEmpty: "回答はまだありません",
+        basket: n => `あなたの回答:${n}件`,
+        send: n => `回答を送る · ${n}`,
+        sent: "プロンプトをコピーしました。エージェントに渡してください",
+        quietNote: "回答は今のところこのブラウザにのみ保存されます。«送る» を押すとプロンプトがコピーされ、エージェントが PR を開くと集計されます。",
+        hint: "保存しました。サイトで集計するには、回答をリポジトリにコミットする必要があります。",
+        hintLink: "送り方",
+        note: "回答は、リポジトリにコミットされるとサイトで集計されます。プロンプトをコピーしてエージェント(Claude Code、Codex)に渡すと、プルリクエストが開かれます。匿名ではありません。PR にはあなたの GitHub アカウントの署名が付きます。",
+        copyPrompt: "エージェント用プロンプトをコピー",
+        copied: "コピーしました",
+        shareX: "X で共有",
+        clear: "消去",
+        remove: "削除",
+        tweet: (n, y) => `エージェント型ソフトウェア開発の実践リストを一通り見ました。${n}件の実践のうち、最近使っているのは${y}件です。`
+    }
+};
+
+for (const code of [ "zh", "es", "pt", "ja" ]) UI[code] ||= {};
+
+for (const code of Object.keys(UI)) if (code !== "en") {
+    const merged = {
+        ...UI.en,
+        ...UI[code]
+    };
+    for (const [key, value] of Object.entries(UI.en)) {
+        if (value && typeof value === "object" && !Array.isArray(value)) merged[key] = {
+            ...value,
+            ...UI[code][key] || {}
+        };
+    }
+    UI[code] = merged;
+}
+
+const params = new URLSearchParams(location.search);
+
+const today = params.get("today") ? new Date(params.get("today")) : new Date;
+
+const surveyOn = (() => {
+    const flag = params.get("survey");
+    try {
+        if (flag === "0") localStorage.setItem("survey", "0");
+        if (flag === "1") localStorage.removeItem("survey");
+        return localStorage.getItem("survey") !== "0";
+    } catch (e) {
+        return flag !== "0";
+    }
+})();
+
+let motion = {};
+
+let figures = {};
+
+const LANGS = [ {
+    code: "en",
+    label: "English",
+    dir: ""
+}, {
+    code: "zh",
+    label: "简体中文",
+    dir: "zh/",
+    html: "zh-CN"
+}, {
+    code: "es",
+    label: "Español",
+    dir: "es/"
+}, {
+    code: "pt",
+    label: "Português",
+    dir: "pt/",
+    html: "pt-BR"
+}, {
+    code: "ja",
+    label: "日本語",
+    dir: "ja/"
+}, {
+    code: "ru",
+    label: "Русский",
+    dir: "ru/"
+} ];
+
+const SITE_ROOT = window.SITE_ROOT || "";
+
+let data, demoAnswers = [], lang = window.SITE_LANG || "en", descendantsById = {};
+
+const STORAGE_KEY = "reference-answers-v1";
+
+let myAnswers = {}, hintDismissed = false, promptCopied = false;
+
+try {
+    myAnswers = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+} catch (e) {
+    myAnswers = {};
+}
+
+function saveAnswers() {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(myAnswers));
+    } catch (e) {}
+}
+
+function text(field) {
+    if (field?.[lang]) return {
+        value: field[lang],
+        fallback: false
+    };
+    return {
+        value: field?.[lang === "en" ? "ru" : "en"] || "",
+        fallback: true
+    };
+}
+
+function escapeHtml(raw) {
+    return String(raw).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+}
+
+function entryDate(entry) {
+    if (entry.firstAppeared?.date) return new Date(entry.firstAppeared.date);
+    if (entry.seededFrom === "pre-llm") return null;
+    const dates = (entry.sources || []).filter(s => s.published && s.role !== "relevance").map(s => s.published).sort();
+    return dates.length ? new Date(dates[0]) : null;
+}
+
+function dateKey(entry) {
+    const date = entryDate(entry);
+    return date ? date.toISOString().slice(0, 10) : "";
+}
+
+function isAskable() {
+    return false;
+}
+
+function formatDate(firstAppeared) {
+    if (!firstAppeared?.date || !firstAppeared.verified) return "";
+    const [year, month, day] = firstAppeared.date.split("-").map(Number);
+    const monthName = UI[lang].months[month - 1];
+    if (firstAppeared.precision === "day") return `${day} ${monthName} ${year}`;
+    if (firstAppeared.precision === "month") return `${monthName} ${year}`;
+    return (firstAppeared.note || "").toLowerCase().includes("approx") ? `~${year}` : String(year);
+}
+
+function isPreLlm(entry) {
+    const date = entryDate(entry);
+    return date && date < new Date(data.meta.llmEraStart);
+}
+
+function answerCounts(entryId) {
+    let yes = 0, no = 0;
+    for (const answer of demoAnswers) {
+        if (answer.entry !== entryId) continue;
+        answer.useful ? yes++ : no++;
+    }
+    const mine = myAnswers[entryId];
+    if (mine && mine.useful !== null) mine.useful ? yes++ : no++;
+    return {
+        yes: yes,
+        no: no
+    };
+}
+
+function railHtml(counts, className) {
+    const enough = counts.yes + counts.no >= data.meta.minAnswersForBar;
+    return `<div class="${className}" ${enough && className === "rail" ? `title="${UI[lang].railTitle(counts.yes, counts.no)}"` : ""}>` + (enough ? `<div class="yes" style="flex:${counts.yes}"></div><div class="no" style="flex:${counts.no}"></div>` : "") + `</div>`;
+}
+
+function footnote(entry, n, label) {
+    return `<sup><button data-entry="${entry.id}" data-n="${n}">[${label}]</button></sup>`;
+}
+
+function whyLinks(entry) {
+    const numbers = entry.sources.filter(s => s.role === "why" && s.quote).map(s => s.n);
+    return numbers.length ? ` <sup><button class="why" data-entry="${entry.id}" data-n="${numbers.join(",")}">${UI[lang].why}</button></sup>` : "";
+}
+
+function renderDefinition(entry) {
+    const {value: value, fallback: fallback} = text(entry.definition);
+    const cited = [ ...value.matchAll(/\[(\d+)\]/g) ].map(m => entry.sources.find(s => String(s.n) === m[1])).filter(source => source?.quote).sort((a, b) => (b.published || "").localeCompare(a.published || ""));
+    const notes = cited.map((source, i) => footnote(entry, String(source.n), i + 1)).join("");
+    const html = escapeHtml(value.replace(/(\s*\[\d+\])+/g, "")).replace(/`([^`]+)`/g, "<code>$1</code>").replace(/\*([^*]+)\*/g, "<i>$1</i>") + (notes ? " " + notes : "");
+    return fallback ? `<span class="fallback">${html}</span>` : html;
+}
+
+function entryLinks(ids, asRoots) {
+    return (ids || []).map(id => data.entries.find(e => e.id === id)).filter(Boolean).map(e => `<a class="ref" href="${asRoots ? "#" : "#" + e.id}"${asRoots ? ` data-root="${e.id}"` : ""}>${escapeHtml(text(e.title).value)}</a>`).join(", ");
+}
+
+function initPlayer(pop, inModal = false) {
+    const spec = motion[pop.dataset.motion];
+    pop.innerHTML = spec.svg;
+    pop.dataset.durations = spec.durations;
+    pop.dataset.poster = spec.poster;
+    const durations = pop.dataset.durations.split(" ").map(Number), poster = Number(pop.dataset.poster || durations.length - 1);
+    const total = durations.reduce((a, b) => a + b, 0);
+    const svg = pop.querySelector("svg");
+    const parts = [ ...svg.querySelectorAll("[data-on]") ], movers = [ ...svg.querySelectorAll("[data-t]") ];
+    const toned = [ ...svg.querySelectorAll("[data-hot],[data-good]") ];
+    svg.querySelectorAll(".draw").forEach(p => p.style.setProperty("--len", Math.ceil(p.getTotalLength())));
+    const moves = movers.map(el => el.dataset.t.split(";").map(s => {
+        const k = s.indexOf(":");
+        return [ Number(s.slice(0, k)), s.slice(k + 1) ];
+    }));
+    const badge = document.createElement("span");
+    badge.className = "badge";
+    badge.textContent = "0:" + String(Math.round(total / 1e3)).padStart(2, "0");
+    pop.appendChild(badge);
+    const bar = document.createElement("span");
+    bar.className = "progress";
+    pop.appendChild(bar);
+    let elapsed = 0, last = null, held = false, step = -1, playing = false;
+    const fills = durations.map((_, k) => {
+        const s = document.createElement("span"), b = document.createElement("b"), i = document.createElement("i");
+        b.appendChild(i);
+        s.appendChild(b);
+        bar.appendChild(s);
+        s.addEventListener("click", e => {
+            e.stopPropagation();
+            elapsed = durations.slice(0, k).reduce((a, x) => a + x, 0);
+            step = -1;
+        });
+        return i;
+    });
+    const has = (el, name, i) => (el.dataset[name] || "").split(" ").includes(String(i));
+    function show(i) {
+        step = i;
+        parts.forEach(p => p.classList.toggle("on", has(p, "on", i)));
+        toned.forEach(el => {
+            el.classList.toggle("hot", has(el, "hot", i));
+            el.classList.toggle("good", has(el, "good", i));
+        });
+        movers.forEach((el, n) => {
+            let value = moves[n][0][1];
+            for (const [from, v] of moves[n]) if (from <= i) value = v;
+            el.style.transform = value;
+        });
+    }
+    function stepAt(ms) {
+        let t = 0;
+        for (let i = 0; i < durations.length; i++) {
+            t += durations[i];
+            if (ms < t) return i;
+        }
+        return durations.length - 1;
+    }
+    function frame(now) {
+        if (!playing) return;
+        if (last !== null && !held) elapsed = (elapsed + now - last) % total;
+        last = now;
+        const i = stepAt(elapsed);
+        if (i !== step) show(i);
+        let start = 0;
+        fills.forEach((f, k) => {
+            f.style.transform = `scaleX(${Math.min(1, Math.max(0, (elapsed - start) / durations[k]))})`;
+            start += durations[k];
+        });
+        requestAnimationFrame(frame);
+    }
+    function still() {
+        playing = false;
+        pop.classList.remove("playing");
+        pop.classList.add("still");
+        show(poster);
+        requestAnimationFrame(() => pop.classList.remove("still"));
+    }
+    function play() {
+        if (playing) return;
+        playing = true;
+        elapsed = 0;
+        last = null;
+        step = -1;
+        pop.classList.add("playing");
+        requestAnimationFrame(frame);
+    }
+    pop.addEventListener("click", e => e.stopPropagation());
+    still();
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduced) {
+        pop.addEventListener("motion:play", play);
+        pop.addEventListener("motion:still", still);
+    }
+    if (inModal) {
+        if (!reduced) play();
+    } else {
+        let pressedAt = 0;
+        pop.addEventListener("pointerdown", () => {
+            pressedAt = performance.now();
+        });
+        pop.addEventListener("click", () => {
+            if (performance.now() - pressedAt < 300) openMotionModal(pop.dataset.motion);
+        });
+        if (!reduced && matchMedia("(hover: hover)").matches) {
+            pop.addEventListener("mouseenter", play);
+            pop.addEventListener("mouseleave", still);
+        }
+    }
+    if (reduced) return;
+    svg.addEventListener("pointerdown", () => {
+        held = true;
+    });
+    for (const name of [ "pointerup", "pointerleave", "pointercancel" ]) svg.addEventListener(name, () => {
+        held = false;
+    });
+    svg.addEventListener("contextmenu", e => e.preventDefault());
+}
+
+const plainDefinition = entry => text(entry.definition).value.replace(/\s*(\[\d+\])+/g, "");
+
+async function sharePractice(id) {
+    const entry = data.entries.find(e => e.id === id);
+    if (!entry) return;
+    const url = location.origin + location.pathname + "#" + id, title = text(entry.title).value;
+    if (navigator.share && matchMedia("(hover: none)").matches) {
+        try {
+            await navigator.share({
+                title: title,
+                text: plainDefinition(entry),
+                url: url
+            });
+            return;
+        } catch (err) {
+            if (err.name === "AbortError") return;
+        }
+    }
+    await copyText(url);
+    document.querySelectorAll(".share-note").forEach(n => n.remove());
+    const note = document.createElement("div");
+    note.className = "share-note";
+    note.textContent = UI[lang].linkCopied;
+    document.body.appendChild(note);
+    setTimeout(() => note.remove(), 1800);
+}
+
+document.addEventListener("click", e => {
+    const button = e.target.closest?.("[data-share]");
+    if (!button) return;
+    e.preventDefault();
+    e.stopPropagation();
+    sharePractice(button.dataset.share);
+}, true);
+
+function openMotionModal(id, onClose) {
+    const modal = document.createElement("div");
+    modal.className = "mfig-modal";
+    const sheet = document.createElement("div");
+    sheet.className = "mfig-sheet";
+    const pop = document.createElement("span");
+    pop.className = "mfig";
+    pop.dataset.motion = id;
+    sheet.appendChild(pop);
+    const entry = data.entries.find(e => e.id === id);
+    if (entry) sheet.insertAdjacentHTML("beforeend", `<div class="motion-text"><h3>${escapeHtml(text(entry.title).value)}</h3>` + `<p>${escapeHtml(plainDefinition(entry))}</p><p class="motion-actions"><button class="share-btn" data-share="${id}">${UI[lang].share}</button></p></div>`);
+    modal.appendChild(sheet);
+    document.body.appendChild(modal);
+    initPlayer(pop, true);
+    const close = () => {
+        modal.remove();
+        removeEventListener("keydown", onKey);
+        onClose?.();
+    };
+    const onKey = e => {
+        if (e.key === "Escape") close();
+    };
+    modal.addEventListener("click", e => {
+        if (e.target === modal) close();
+    });
+    addEventListener("keydown", onKey);
+}
+
+const SURVEY_ID = "agentic-practices-tiers-2026";
+
+const ANSWER_IDS = [ "A", "B", "C", "D" ];
+
+const ANSWER_COLORS = [ "#ff7f7f", "#ffbf7f", "#ffdf7f", "#7fbfff" ];
+
+const TIER_LETTERS = [ "A", "B", "C", "D" ];
+
+const TIER_LABELS_STORE = "tier-labels-v1";
+
+let tierLabelsCustom = {};
+
+try {
+    tierLabelsCustom = JSON.parse(localStorage.getItem(TIER_LABELS_STORE)) || {};
+} catch (e) {
+    tierLabelsCustom = {};
+}
+
+function tierLabel(i) {
+    return tierLabelsCustom[i] || UI[lang].survey.tierLabels[i];
+}
+
+function saveTierLabel(i, value) {
+    if (value.trim()) tierLabelsCustom[i] = value.trim(); else delete tierLabelsCustom[i];
+    try {
+        localStorage.setItem(TIER_LABELS_STORE, JSON.stringify(tierLabelsCustom));
+    } catch (e) {}
+}
+
+function surveyCategory(block) {
+    if (!/^(stage|group)-/.test(block.id) || block.repeat) return null;
+    return {
+        id: block.id,
+        title: block.title,
+        entries: data.entries.filter(e => block.match(e) && e.seededFrom !== "pre-llm")
+    };
+}
+
+const SURVEY_STORE = "survey-tiers-v1";
+
+let surveyState = {};
+
+try {
+    surveyState = JSON.parse(localStorage.getItem(SURVEY_STORE)) || {};
+} catch (e) {
+    surveyState = {};
+}
+
+for (const value of Object.values(surveyState)) for (const [entry, i] of Object.entries(value?.picks || {})) if (i >= 4) delete value.picks[entry];
+
+function saveSurvey() {
+    try {
+        localStorage.setItem(SURVEY_STORE, JSON.stringify(surveyState));
+    } catch (e) {}
+}
+
+let entryCategoryCache = null;
+
+function entryCategory(entryId) {
+    if (!entryCategoryCache) {
+        entryCategoryCache = {};
+        for (const category of surveySections()) for (const entry of category.entries) entryCategoryCache[entry.id] ||= category.id;
+    }
+    return entryCategoryCache[entryId];
+}
+
+delete surveyState.sent;
+
+delete surveyState.respondent;
+
+saveSurvey();
+
+let answersFileName = null;
+
+const newAnswersFileName = () => crypto.randomUUID().replace(/-/g, "").slice(0, 8);
+
+const surveySections = () => blocks().map(surveyCategory).filter(Boolean);
+
+const picksOf = id => (surveyState[id] ||= {
+    picks: {}
+}).picks;
+
+const answeredSections = () => surveySections().map(c => ({
+    ...c,
+    entries: c.entries.filter(e => picksOf(c.id)[e.id] !== undefined)
+})).filter(c => c.entries.length);
+
+const allAnswers = () => answeredSections().flatMap(c => c.entries.map(e => ({
+    category: c.id,
+    entry: e.id,
+    answer: picksOf(c.id)[e.id]
+})));
+
+let answersInView = false;
+
+let barAnswerCount = 0;
+
+function moveBoardTo(categoryId) {
+    barCategory = categoryId;
+}
+
+const READY_AT = 5, barAnnounced = new Set;
+
+let barCategory = null;
+
+let shelfObserver = null;
+
+function watchShelves() {
+    shelfObserver?.disconnect();
+    if (!("IntersectionObserver" in window)) return;
+    shelfObserver = new IntersectionObserver(items => {
+        const visible = items.filter(i => i.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (!visible) return;
+        const id = visible.target.id;
+        if (id !== barCategory && surveySections().some(c => c.id === id)) {
+            barCategory = id;
+            drawSurveyBar();
+        }
+    }, {
+        rootMargin: "-25% 0px -60% 0px"
+    });
+    document.querySelectorAll("section.block.shelf").forEach(s => shelfObserver.observe(s));
+}
+
+function updateBarVisibility() {
+    const bar = document.getElementById("surveyBar");
+    const hidden = !surveyOn || answersInView || !!document.querySelector(".answers-modal");
+    if (bar.hidden === hidden) return;
+    bar.hidden = hidden;
+    document.documentElement.style.setProperty("--bottom-bar", hidden ? "0px" : "56px");
+}
+
+function drawSurveyBar() {
+    const bar = document.getElementById("surveyBar"), count = allAnswers().length;
+    barAnswerCount = count;
+    updateBarVisibility();
+    if (!surveyOn) return;
+    const sections = surveySections(), section = sections.find(c => c.id === barCategory) || sections[0];
+    if (!section) return;
+    barCategory = section.id;
+    const ui = UI[lang], answers = allAnswers().filter(a => a.category === section.id);
+    const counts = ANSWER_IDS.map(() => 0);
+    answers.forEach(a => counts[a.answer]++);
+    const need = Math.min(READY_AT, section.entries.length), ready = answers.length >= need, open = !document.getElementById("barSheet").hidden;
+    const chips = `<span class="tier-counts">${ANSWER_IDS.map((id, i) => `<span class="tier-chip" data-answer="${i}" style="--c:${ANSWER_COLORS[i]}"` + ` title="${escapeHtml(tierLabel(i))}"><b>${TIER_LETTERS[i]}</b> ${counts[i]}</span>`).join("")}</span>`;
+    bar.classList.toggle("ready", ready);
+    bar.innerHTML = (ready ? `<span class="lead">${ui.shelf.ready(escapeHtml(section.title))}</span><button class="act" data-act="bar-save">${ui.survey.saveImage}</button><button class="act main" data-act="bar-share">${ui.share}</button>` : `<span class="lead">${answers.length ? ui.shelf.yourList : ui.shelf.makeList} <b>${escapeHtml(section.title)}</b></span>` + (answers.length ? `<span class="togo">${ui.shelf.toGo(need - answers.length)}</span>` : "")) + chips + `<button class="toggle" data-act="bar-open">${open ? ui.shelf.closeList : ui.shelf.openList}</button>`;
+    if (ready && !barAnnounced.has(section.id)) {
+        barAnnounced.add(section.id);
+        bar.animate([ {
+            backgroundColor: "#fff3b0"
+        }, {
+            backgroundColor: "#fffbea"
+        } ], {
+            duration: 1400,
+            easing: "ease-out"
+        });
+    }
+    const sheet = document.getElementById("barSheet");
+    if (!sheet.hidden) sheet.innerHTML = tierBoardHtml(answers) + `<p class="board-actions"><button data-act="bar-save">${ui.survey.saveImage}</button><span class="note">${ui.survey.renameHint}</span></p>`;
+}
+
+function drawAnswersPanel(el) {
+    const ui = UI[lang].survey, sections = answeredSections(), answers = allAnswers();
+    if (!sections.length) {
+        el.innerHTML = `<p class="note">${ui.nothingYet}</p>`;
+        return;
+    }
+    const body = tierBoardHtml(answers) + `<p class="board-actions"><button data-act="save-image">${ui.saveImage}</button>` + `<span class="note">${ui.renameHint}</span></p>`;
+    answersFileName ||= newAnswersFileName();
+    const file = `${data.meta.answersDir}/${answersFileName}.json`;
+    const json = JSON.stringify({
+        survey: SURVEY_ID,
+        answeredAt: today.toISOString().slice(0, 10),
+        answers: Object.fromEntries(answers.map(a => [ a.entry, ANSWER_IDS[a.answer] ]))
+    }, null, 2) + "\n";
+    const repo = data.meta.answersRepo, title = `Survey answers: ${answers.length} practices`;
+    const prompt = `Open a pull request to https://github.com/${repo} that adds one new file, ${file}, with exactly this content:\n\n${json}\n` + `Use the GitHub CLI (gh). Fork the repository first if you cannot push to it. Create a branch, add only this file, commit, push, ` + `and open the pull request titled "${title}". Change nothing else, and reply with the link to the pull request.`;
+    const newFileUrl = `https://github.com/${repo}/new/main?filename=${encodeURIComponent(file)}`;
+    const howOpen = el.dataset.how === "open", folded = el.dataset.answersFolded === "1";
+    const road = el.dataset.road || "", promptCopied = el.dataset.promptCopied === "1";
+    el.innerHTML = `<p class="done-line"${folded ? "" : " hidden"} data-act="unfold-answers">✓ ${ui.doneAnswers(answers.length)}<span class="hint"> · ${ui.changeWord}</span></p>\n    <div class="confirm-step"${folded ? " hidden" : ""}><h3 class="confirm-title">${ui.confirmTitle(answers.length)}</h3><div class="answered">${body}</div></div>\n    <p class="submit-row"${howOpen ? " hidden" : ""}><button class="submit-answers" data-act="show-how">${ui.submitN(answers.length)}</button></p>\n    <div class="how"${howOpen ? "" : " hidden"}><p class="send-lead"${road ? " hidden" : ""}>${ui.sendLead}</p>\n      <p class="roads"${road ? " hidden" : ""}><button data-act="road-self">${ui.roadSelf}</button><button data-act="road-agent">${ui.roadAgent}</button></p>\n      <p class="done-line"${road ? "" : " hidden"} data-act="unfold-road">✓ ${road === "self" ? ui.roadSelf : ui.roadAgent}<span class="hint"> · ${ui.otherWay}</span></p>\n      <div class="road-body self"${road === "self" ? "" : " hidden"}><p class="copied-mark">${ui.answersCopied}</p>\n        <ol><li>${ui.stepOpen(newFileUrl)}</li><li>${ui.stepPaste}</li><li>${ui.stepPr}</li></ol>\n        <p class="switch-road"><button class="link" data-act="road-agent">${ui.switchToAgent}</button></p></div>\n      <div class="road-body agent"${road === "agent" ? "" : " hidden"}><p>${ui.agentLead}</p>\n        <pre class="prompt">${escapeHtml(prompt)}</pre>\n        <button class="copy" data-act="copy">${promptCopied ? ui.copied : ui.copyThePrompt}</button>\n        <div class="after"${promptCopied ? "" : " hidden"}><p class="copied-mark">${ui.promptCopiedLine}</p>\n          <input class="pr-link" type="url" placeholder="${ui.prLinkPlaceholder}"></div>\n        <p class="switch-road"><button class="link" data-act="road-self">${ui.switchToSelf}</button></p></div>\n      <pre class="answer-file" hidden>${escapeHtml(json)}</pre></div>\n    ${el.closest(".answers-modal") ? `<p class="foot-line"><button class="close-bottom">${ui.close}</button></p>` : ""}`;
+}
+
+function tierBoardHtml(answers) {
+    const byEntry = Object.fromEntries(data.entries.map(e => [ e.id, e ]));
+    const empty = answers.length ? "" : `<p class="board-empty">${UI[lang].survey.emptyBoard}</p>`;
+    return `<div class="tier-board">${empty}${ANSWER_IDS.map((id, i) => {
+        const tiles = answers.filter(a => a.answer === i && byEntry[a.entry]).map(a => ({
+            e: byEntry[a.entry],
+            category: a.category
+        })).map(({e: e, category: category}) => `<span class="tile" data-entry="${e.id}" data-category="${category}" title="${escapeHtml(text(e.definition).value.replace(/\s*(\[\d+\])+/g, ""))}">${escapeHtml(text(e.title).value)}</span>`).join("");
+        return `<div class="tier-row" data-answer="${i}" style="--c:${ANSWER_COLORS[i]}"><div class="tier-label">` + `<b>${TIER_LETTERS[i]}</b><span contenteditable="plaintext-only" spellcheck="false" data-tier-label="${i}">${escapeHtml(tierLabel(i))}</span></div>` + `<div class="tier-tiles">${tiles}</div></div>`;
+    }).join("")}</div>`;
+}
+
+let tileDrag = null;
+
+document.addEventListener("pointerdown", e => {
+    const tile = e.target.closest?.(".tier-board .tile[data-category]");
+    if (!tile || e.button > 0) return;
+    tileDrag = {
+        tile: tile,
+        startX: e.clientX,
+        startY: e.clientY,
+        pointerId: e.pointerId,
+        copy: null,
+        row: null
+    };
+});
+
+document.addEventListener("pointermove", e => {
+    if (!tileDrag || e.pointerId !== tileDrag.pointerId) return;
+    const d = tileDrag;
+    if (!d.copy) {
+        if (Math.hypot(e.clientX - d.startX, e.clientY - d.startY) < 6) return;
+        const rect = d.tile.getBoundingClientRect();
+        d.copy = d.tile.cloneNode(true);
+        d.copy.classList.add("tile-dragging");
+        Object.assign(d.copy.style, {
+            width: rect.width + "px",
+            height: rect.height + "px"
+        });
+        d.offsetX = d.startX - rect.left;
+        d.offsetY = d.startY - rect.top;
+        document.body.appendChild(d.copy);
+        d.tile.classList.add("tile-source");
+        document.documentElement.classList.add("dragging-tile");
+    }
+    d.copy.style.transform = `translate(${e.clientX - d.offsetX}px, ${e.clientY - d.offsetY}px) rotate(-2deg)`;
+    const row = document.elementFromPoint(e.clientX, e.clientY)?.closest(".tier-row");
+    const target = row && row.closest(".tier-board") === d.tile.closest(".tier-board") ? row : null;
+    if (target !== d.row) {
+        d.row?.classList.remove("drop-target");
+        target?.classList.add("drop-target");
+        d.row = target;
+    }
+    e.preventDefault();
+});
+
+function endTileDrag(e, drop) {
+    if (!tileDrag || e && e.pointerId !== tileDrag.pointerId) return;
+    const d = tileDrag;
+    tileDrag = null;
+    if (!d.copy) return;
+    d.copy.remove();
+    d.tile.classList.remove("tile-source");
+    d.row?.classList.remove("drop-target");
+    setTimeout(() => document.documentElement.classList.remove("dragging-tile"));
+    if (!drop || !d.row) return;
+    const answer = Number(d.row.dataset.answer), picks = picksOf(d.tile.dataset.category);
+    if (picks[d.tile.dataset.entry] === answer) return;
+    picks[d.tile.dataset.entry] = answer;
+    saveSurvey();
+    redrawSurvey();
+    const panel = d.tile.closest(".answers-panel");
+    if (panel) showPromptUpdated(panel);
+}
+
+document.addEventListener("pointerup", e => endTileDrag(e, true));
+
+document.addEventListener("pointercancel", e => endTileDrag(e, false));
+
+document.addEventListener("click", e => {
+    if (document.documentElement.classList.contains("dragging-tile")) e.stopPropagation();
+}, true);
+
+function wrapCanvasText(context, value, maxWidth) {
+    const lines = [];
+    let line = "";
+    for (const word of value.split(" ")) {
+        const candidate = line ? line + " " + word : word;
+        if (context.measureText(candidate).width > maxWidth && line) {
+            lines.push(line);
+            line = word;
+        } else line = candidate;
+    }
+    if (line) lines.push(line);
+    return lines;
+}
+
+function drawTierImage(categoryId) {
+    const ui = UI[lang].survey, byEntry = Object.fromEntries(data.entries.map(e => [ e.id, e ]));
+    const answers = allAnswers().filter(a => !categoryId || a.category === categoryId);
+    const sectionTitle = categoryId ? surveySections().find(c => c.id === categoryId)?.title : "";
+    const width = 1200, padding = 32, labelWidth = 190, tileWidth = 158, tileHeight = 70, gap = 8, scale = 2;
+    const perRow = Math.floor((width - padding * 2 - labelWidth - gap) / (tileWidth + gap));
+    const rows = ANSWER_IDS.map((id, i) => ({
+        i: i,
+        titles: answers.filter(a => a.answer === i).map(a => byEntry[a.entry]).filter(Boolean).map(e => text(e.title).value)
+    }));
+    const heights = rows.map(r => Math.max(1, Math.ceil(r.titles.length / perRow)) * (tileHeight + gap) + gap);
+    const headerHeight = 96, footerHeight = 64;
+    const height = headerHeight + heights.reduce((a, b) => a + b, 0) + (rows.length - 1) * 4 + footerHeight;
+    const canvas = document.createElement("canvas");
+    canvas.width = width * scale;
+    canvas.height = height * scale;
+    const context = canvas.getContext("2d");
+    context.scale(scale, scale);
+    context.fillStyle = "#151515";
+    context.fillRect(0, 0, width, height);
+    context.fillStyle = "#f4f1ea";
+    context.font = "700 30px ui-monospace, Menlo, monospace";
+    context.fillText(ui.imageTitle, padding, 52);
+    if (sectionTitle) {
+        context.fillStyle = "#9a9a9a";
+        context.font = "500 20px ui-monospace, Menlo, monospace";
+        context.fillText("# " + sectionTitle.toLowerCase(), padding, 82);
+    }
+    let y = headerHeight;
+    rows.forEach((row, index) => {
+        const rowHeight = heights[index];
+        context.fillStyle = ANSWER_COLORS[row.i];
+        context.fillRect(padding, y, labelWidth, rowHeight);
+        context.fillStyle = "#111";
+        context.font = "800 34px ui-monospace, Menlo, monospace";
+        context.fillText(TIER_LETTERS[row.i], padding + 14, y + 42);
+        context.font = "600 16px system-ui, sans-serif";
+        wrapCanvasText(context, tierLabel(row.i), labelWidth - 28).forEach((line, k) => context.fillText(line, padding + 14, y + 66 + k * 19));
+        context.fillStyle = "#262626";
+        context.fillRect(padding + labelWidth, y, width - padding * 2 - labelWidth, rowHeight);
+        row.titles.forEach((title, k) => {
+            const x = padding + labelWidth + gap + k % perRow * (tileWidth + gap), tileY = y + gap + Math.floor(k / perRow) * (tileHeight + gap);
+            context.fillStyle = "#f4f1ea";
+            context.beginPath();
+            context.roundRect(x, tileY, tileWidth, tileHeight, 4);
+            context.fill();
+            context.fillStyle = "#111";
+            context.font = "600 15px system-ui, sans-serif";
+            wrapCanvasText(context, title, tileWidth - 16).slice(0, 3).forEach((line, n) => context.fillText(line, x + 8, tileY + 22 + n * 18));
+        });
+        y += rowHeight + 4;
+    });
+    context.fillStyle = "#9a9a9a";
+    context.font = "500 18px ui-monospace, Menlo, monospace";
+    context.fillText(`${ui.makeYours} ${data.meta.siteUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")}`, padding, height - 26);
+    return canvas;
+}
+
+function tierImageBlob(categoryId) {
+    return new Promise(resolve => drawTierImage(categoryId).toBlob(resolve, "image/png"));
+}
+
+function saveTierImage(categoryId) {
+    tierImageBlob(categoryId).then(blob => {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `my-agentic-coding-tier-list${categoryId ? "-" + categoryId : ""}.png`;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(link.href), 4e3);
+    });
+}
+
+async function shareTierImage(categoryId, button) {
+    const ui = UI[lang], blob = await tierImageBlob(categoryId), section = surveySections().find(c => c.id === categoryId);
+    const url = location.origin + location.pathname, message = `${ui.survey.imageTitle.replace(/^\$\s*/, "")}${section ? " · " + section.title : ""}. ${ui.survey.makeYours} ${url}`;
+    const file = new File([ blob ], `my-agentic-coding-tier-list-${categoryId || "all"}.png`, {
+        type: "image/png"
+    });
+    if (navigator.canShare && navigator.canShare({
+        files: [ file ]
+    })) {
+        try {
+            await navigator.share({
+                files: [ file ],
+                text: message
+            });
+            return;
+        } catch (err) {
+            if (err.name === "AbortError") return;
+        }
+    }
+    saveTierImage(categoryId);
+    await copyText(message);
+    if (button) button.textContent = ui.shelf.savedCopied;
+}
+
+function showPromptUpdated(panel) {
+    document.querySelectorAll(".prompt-note").forEach(n => n.remove());
+    const ui = UI[lang].survey, note = document.createElement("div");
+    note.className = "prompt-note";
+    note.innerHTML = `<span>${ui.promptUpdated}</span><button data-act="copy">${ui.copyPrompt}</button>`;
+    panel.appendChild(note);
+    note.addEventListener("animationend", e => {
+        if (e.animationName === "prompt-note") note.remove();
+    });
+    panel.querySelector("pre.prompt")?.classList.add("flash");
+}
+
+async function copyText(text) {
+    try {
+        await navigator.clipboard.writeText(text);
+    } catch (err) {
+        const area = document.createElement("textarea");
+        area.value = text;
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand("copy");
+        area.remove();
+    }
+}
+
+function selectAll(el) {
+    if (!el) return;
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const selection = getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+}
+
+document.addEventListener("click", e => {
+    const pre = e.target.closest?.(".answers-panel pre.prompt, .copy-block pre");
+    if (pre) selectAll(pre);
+});
+
+document.addEventListener("input", e => {
+    const label = e.target.closest?.("[data-tier-label]");
+    if (label) saveTierLabel(Number(label.dataset.tierLabel), label.textContent);
+});
+
+document.addEventListener("focusout", e => {
+    if (e.target.closest?.("[data-tier-label]")) {
+        drawSurveyBar();
+    }
+});
+
+document.addEventListener("keydown", e => {
+    if (e.key === "Enter" && e.target.closest?.("[data-tier-label]")) {
+        e.preventDefault();
+        e.target.blur();
+    }
+});
+
+function redrawSurvey() {
+    const lead = document.getElementById("answersLead");
+    if (lead) lead.textContent = allAnswers().length ? UI[lang].survey.endLead : UI[lang].survey.endLeadEmpty;
+    document.querySelectorAll(".answers-panel").forEach(drawAnswersPanel);
+    document.querySelectorAll(".tier-pick button[data-answer]").forEach(b => b.classList.toggle("on", picksOf(b.dataset.category)[b.dataset.entry] === Number(b.dataset.answer)));
+    drawSurveyBar();
+}
+
+function openAnswersModal() {
+    answersFileName = null;
+    const modal = document.createElement("div");
+    modal.className = "answers-modal";
+    modal.innerHTML = `<div class="sheet"><button class="close" title="${UI[lang].survey.close}">×</button><div class="answers-panel"></div></div>`;
+    document.body.appendChild(modal);
+    drawAnswersPanel(modal.querySelector(".answers-panel"));
+    drawSurveyBar();
+    const close = () => {
+        modal.remove();
+        removeEventListener("keydown", onKey);
+        redrawSurvey();
+    };
+    const onKey = e => {
+        if (e.key === "Escape") close();
+    };
+    addEventListener("keydown", onKey);
+    modal.addEventListener("click", e => {
+        if (e.target === modal || e.target.closest(".close, .close-bottom")) close();
+    });
+}
+
+document.addEventListener("click", async e => {
+    const zone = e.target.closest?.(".answers-panel, #surveyBar, #barSheet, .tier-pick");
+    if (!zone) return;
+    const ui = UI[lang].survey, act = e.target.closest?.("[data-act]")?.dataset.act;
+    const pick = e.target.closest("button[data-answer]") || e.target.closest("td.pick")?.querySelector("button[data-answer]");
+    if (pick) {
+        const picks = picksOf(pick.dataset.category), answer = Number(pick.dataset.answer);
+        const added = picks[pick.dataset.entry] === undefined, from = pick.getBoundingClientRect();
+        if (picks[pick.dataset.entry] === answer) delete picks[pick.dataset.entry]; else picks[pick.dataset.entry] = answer;
+        const kept = picks[pick.dataset.entry] !== undefined;
+        if (!zone.matches(".answers-panel")) moveBoardTo(pick.dataset.category);
+        saveSurvey();
+        redrawSurvey();
+        if (zone.matches(".answers-panel")) showPromptUpdated(zone); else if (kept) flyToBasket(from, ANSWER_COLORS[answer], answer);
+        return;
+    }
+    if (act === "open") {
+        openAnswersModal();
+        return;
+    }
+    if (act === "bar-open") {
+        const sheet = document.getElementById("barSheet");
+        sheet.hidden = !sheet.hidden;
+        drawSurveyBar();
+        return;
+    }
+    if (act === "bar-save") {
+        saveTierImage(barCategory);
+        return;
+    }
+    if (act === "bar-share") {
+        shareTierImage(barCategory, e.target.closest("button"));
+        return;
+    }
+    if (act === "save-image") {
+        saveTierImage();
+        return;
+    }
+    if (e.target.closest("[data-tier-label]")) return;
+    if (act === "show-how") {
+        zone.dataset.how = "open";
+        zone.dataset.answersFolded = "1";
+        drawAnswersPanel(zone);
+        zone.querySelector(".how")?.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+        return;
+    }
+    if (act === "unfold-answers") {
+        delete zone.dataset.answersFolded;
+        delete zone.dataset.how;
+        delete zone.dataset.road;
+        delete zone.dataset.promptCopied;
+        drawAnswersPanel(zone);
+        return;
+    }
+    if (act === "unfold-road") {
+        delete zone.dataset.road;
+        delete zone.dataset.promptCopied;
+        drawAnswersPanel(zone);
+        return;
+    }
+    if (act === "copy-file") {
+        const file = zone.querySelector("pre.answer-file").textContent;
+        try {
+            await navigator.clipboard.writeText(file);
+        } catch (err) {
+            const area = document.createElement("textarea");
+            area.value = file;
+            document.body.appendChild(area);
+            area.select();
+            document.execCommand("copy");
+            area.remove();
+        }
+        e.target.textContent = ui.copiedFile;
+        return;
+    }
+    if (act === "road-self" || act === "road-agent") {
+        const road = act === "road-self" ? "self" : "agent";
+        zone.dataset.road = road;
+        if (road === "self") await copyText(zone.querySelector("pre.answer-file").textContent);
+        drawAnswersPanel(zone);
+        return;
+    }
+    if (act === "copy") {
+        await copyText(zone.querySelector("pre.prompt").textContent);
+        zone.dataset.promptCopied = "1";
+        drawAnswersPanel(zone);
+        return;
+    }
+});
+
+const flyBall = (color, size) => {
+    const b = document.createElement("div");
+    b.className = "fly-ball";
+    Object.assign(b.style, {
+        background: color,
+        width: `${size}px`,
+        height: `${size}px`
+    });
+    return document.body.appendChild(b);
+};
+
+const flyAt = (x, y, size, extra = "") => `translate(${x - size / 2}px, ${y - size / 2}px) ${extra}`;
+
+const FLIGHTS = {
+    async arc(f, t, color, basket) {
+        const b = flyBall(color, 22), peak = Math.min(f.y, t.y) - 60;
+        const frames = Array.from({
+            length: 21
+        }, (_, k) => {
+            const q = k / 20, y = (1 - q) ** 2 * f.y + 2 * (1 - q) * q * peak + q * q * t.y;
+            return {
+                transform: flyAt(f.x + (t.x - f.x) * q, y, 22, `scale(${1 - .55 * q})`)
+            };
+        });
+        await b.animate(frames, {
+            duration: 620,
+            easing: "cubic-bezier(.45,.05,.55,.95)"
+        }).finished;
+        b.remove();
+        basket.animate([ {
+            transform: "scale(1)"
+        }, {
+            transform: "scale(.9)"
+        }, {
+            transform: "scale(1.06)"
+        }, {
+            transform: "scale(1)"
+        } ], {
+            duration: 380,
+            easing: "ease-out"
+        });
+    },
+    async drop(f, t, color, basket) {
+        const b = flyBall(color, 22);
+        await b.animate([ {
+            transform: flyAt(f.x, f.y, 22)
+        }, {
+            transform: flyAt(f.x, f.y - 26, 22)
+        } ], {
+            duration: 170,
+            easing: "cubic-bezier(.2,.7,.4,1)"
+        }).finished;
+        await b.animate([ {
+            transform: flyAt(f.x, f.y - 26, 22)
+        }, {
+            transform: flyAt(t.x, t.y, 22, "scale(.5)")
+        } ], {
+            duration: 480,
+            easing: "cubic-bezier(.55,0,1,.45)"
+        }).finished;
+        b.remove();
+        basket.animate([ {
+            transform: "translateY(0) scaleY(1)"
+        }, {
+            transform: "translateY(3px) scaleY(.88)"
+        }, {
+            transform: "translateY(-2px) scaleY(1.04)"
+        }, {
+            transform: "none"
+        } ], {
+            duration: 420,
+            easing: "ease-out"
+        });
+    },
+    async comet(f, t, color, basket) {
+        const duration = 380, easing = "cubic-bezier(.6,0,.3,1)";
+        for (let i = 1; i <= 5; i++) {
+            const size = 16 - i * 2, d = flyBall(color, size);
+            d.style.opacity = .5 - i * .08;
+            d.animate([ {
+                transform: flyAt(f.x, f.y, size)
+            }, {
+                transform: flyAt(t.x, t.y, size)
+            } ], {
+                duration: duration,
+                delay: i * 28,
+                easing: easing,
+                fill: "backwards"
+            }).finished.then(() => d.remove());
+        }
+        const b = flyBall(color, 16);
+        await b.animate([ {
+            transform: flyAt(f.x, f.y, 16)
+        }, {
+            transform: flyAt(t.x, t.y, 16)
+        } ], {
+            duration: duration,
+            easing: easing
+        }).finished;
+        b.remove();
+        basket.animate([ {
+            boxShadow: `0 0 0 0 ${color}`
+        }, {
+            boxShadow: "0 0 0 9px transparent"
+        } ], {
+            duration: 500,
+            easing: "ease-out"
+        });
+    },
+    async drip(f, t, color, basket) {
+        const b = flyBall(color, 22), angle = Math.atan2(t.y - f.y, t.x - f.x) * 180 / Math.PI;
+        await b.animate([ {
+            transform: flyAt(f.x, f.y, 22, `rotate(${angle}deg)`)
+        }, {
+            transform: flyAt((f.x + t.x) / 2, (f.y + t.y) / 2, 22, `rotate(${angle}deg) scale(1.6, .7)`),
+            offset: .5
+        }, {
+            transform: flyAt(t.x, t.y, 22, `rotate(${angle}deg) scale(.6)`)
+        } ], {
+            duration: 560,
+            easing: "cubic-bezier(.5,0,.5,1)"
+        }).finished;
+        b.remove();
+        basket.animate([ {
+            backgroundColor: color
+        }, {
+            backgroundColor: getComputedStyle(basket).backgroundColor
+        } ], {
+            duration: 600,
+            easing: "ease-out"
+        });
+    }
+};
+
+function flyToBasket(from, color, answer) {
+    const bar = document.getElementById("surveyBar"), basket = bar.querySelector(`.tier-chip[data-answer="${answer}"]`) || bar.querySelector("button");
+    if (bar.hidden || !basket || matchMedia("(prefers-reduced-motion: reduce)").matches || !Element.prototype.animate) return;
+    const to = basket.getBoundingClientRect(), names = Object.keys(FLIGHTS);
+    FLIGHTS[names[Math.floor(Math.random() * names.length)]]({
+        x: from.left + from.width / 2,
+        y: from.top + from.height / 2
+    }, {
+        x: to.left + to.width / 2,
+        y: to.top + to.height / 2
+    }, color, basket);
+}
+
+let motionObserver = null, playingScheme = null;
+
+function watchSchemes() {
+    motionObserver?.disconnect();
+    if (!matchMedia("(hover: none)").matches || !("IntersectionObserver" in window)) return;
+    const ratios = new Map;
+    motionObserver = new IntersectionObserver(items => {
+        items.forEach(item => ratios.set(item.target, item.intersectionRatio));
+        const middle = innerHeight / 2, distance = pop => {
+            const r = pop.getBoundingClientRect();
+            return Math.abs((r.top + r.bottom) / 2 - middle);
+        };
+        let best = null, bestRatio = .6;
+        ratios.forEach((ratio, pop) => {
+            if (ratio > bestRatio || ratio === bestRatio && ratio >= .6 && (!best || distance(pop) < distance(best))) {
+                best = pop;
+                bestRatio = ratio;
+            }
+        });
+        if (best === playingScheme) return;
+        playingScheme?.dispatchEvent(new Event("motion:still"));
+        best?.dispatchEvent(new Event("motion:play"));
+        playingScheme = best;
+    }, {
+        threshold: [ 0, .25, .5, .6, .75, .9, 1 ]
+    });
+    document.querySelectorAll("#content .mfig[data-motion]").forEach(pop => motionObserver.observe(pop));
+}
+
+let answersObserver = null;
+
+function watchAnswersBlock() {
+    answersObserver?.disconnect();
+    const el = document.getElementById("your-answers");
+    if (!el || !("IntersectionObserver" in window)) return;
+    answersObserver = new IntersectionObserver(([item]) => {
+        answersInView = item.isIntersecting;
+        drawSurveyBar();
+    });
+    answersObserver.observe(el);
+}
+
+function suggestEditUrl(entry, kind = "source") {
+    const issuesUrl = entry.team ? data.meta.issuesUrl : ORIGINAL_ISSUES, siteUrl = entry.team ? data.meta.siteUrl : ORIGINAL_SITE;
+    const title = text(entry.title).value, practice = `Practice: ${title} (${siteUrl}#${entry.id})`;
+    const issue = kind === "definition" ? {
+        title: `Definition: ${title}`,
+        body: `${practice}\n\nCurrent definition:\n> ${entry.definition.en.replace(/\s*\[\d+\]/g, "")}\n\nSuggested definition:\n\n\nWhy (a link to a source that supports it):\n`
+    } : {
+        title: `Source for: ${title}`,
+        body: `${practice}\n\nArticle (link):\n\n\nThe sentence from the article that describes the practice, copied word for word:\n\n\nAuthor and date, if the page shows them:\n`
+    };
+    return `${issuesUrl}/new?title=${encodeURIComponent(issue.title)}&body=${encodeURIComponent(issue.body)}`;
+}
+
+function newPracticeUrl() {
+    const body = "Practice name:\n\n\nWhat people do (one or two sentences):\n\n\nArticle (link):\n\n\n" + "The sentence from the article that describes the practice, copied word for word:\n\n\nAuthor and date, if the page shows them:\n";
+    return `${data.meta.issuesUrl || ORIGINAL_ISSUES}/new?title=${encodeURIComponent("New practice: ")}&body=${encodeURIComponent(body)}`;
+}
+
+function openSuggestPopover(link, pinned = true) {
+    closePopover();
+    const ui = UI[lang], entry = data.entries.find(e => e.id === link.closest(".entry").dataset.entry);
+    popover = document.createElement("div");
+    popover.className = "popover suggest";
+    popover.dataset.for = "suggest:" + entry.id;
+    popover.innerHTML = `<b>${ui.suggestQuestion}</b>` + `<a href="${suggestEditUrl(entry, "source")}">${ui.suggestSource}<small>${ui.suggestSourceHint}</small></a>` + `<a href="${suggestEditUrl(entry, "definition")}">${ui.suggestDefinition}<small>${ui.suggestDefinitionHint}</small></a>`;
+    document.body.appendChild(popover);
+    const rect = link.getBoundingClientRect();
+    popover.style.left = Math.max(8, Math.min(rect.right + scrollX - popover.offsetWidth, scrollX + innerWidth - popover.offsetWidth - 8)) + "px";
+    popover.style.top = rect.bottom + scrollY + 6 + "px";
+    popoverPinned = pinned;
+}
+
+function grewFrom(block, inBlock) {
+    if (block.repeat) return "";
+    const year = e => e.firstAppeared?.verified ? e.firstAppeared.date.slice(0, 4) : "";
+    const roots = [ ...new Set(inBlock.flatMap(e => e.rootsIn || [])) ].map(id => data.entries.find(e => e.id === id)).filter(Boolean).sort((a, b) => (year(a) || "9999").localeCompare(year(b) || "9999") || text(a.title).value.localeCompare(text(b.title).value, lang));
+    if (!roots.length) return "";
+    const links = roots.map(e => `<a class="ref" href="#" data-root="${e.id}">${escapeHtml(text(e.title).value)}</a>${year(e) ? ` (${year(e)})` : ""}`);
+    return `<p class="grew-from"><span class="label">${UI[lang].roots}:</span> ${links.join(", ")}.</p>`;
+}
+
+const SHELF_VISIBLE = 7;
+
+const shelvesOpen = new Set;
+
+const quotes = entry => entry.sources.filter(s => s.quote);
+
+const quotedAuthors = entry => [ ...new Set(quotes(entry).map(s => s.author).filter(Boolean)) ];
+
+function tierPickHtml(entry, ui) {
+    const category = surveyOn ? entryCategory(entry.id) : null;
+    return category ? `<span class="tier-pick">${ANSWER_IDS.map((id, i) => `<button data-category="${category}" data-entry="${entry.id}" data-answer="${i}"` + ` class="${picksOf(category)[entry.id] === i ? "on" : ""}" style="--c:${ANSWER_COLORS[i]}" title="${escapeHtml(tierLabel(i))}">${TIER_LETTERS[i]}</button>`).join("")}</span>` : "";
+}
+
+function shelfCard(entry, anchorId) {
+    const ui = UI[lang], title = text(entry.title).value, first = quotes(entry)[0];
+    const cover = motion[entry.id] ? `<span class="mfig" data-motion="${entry.id}"></span>` : figures[entry.id] ? `<img src="${SITE_ROOT}figures/${entry.id}.svg" alt="" loading="lazy">` : `<span class="soft" style="--bg:${[ "#f6e1d2", "#e2ecd6", "#d9e7f2", "#efdff0", "#f4ecc8" ][[ ...entry.id ].reduce((h, c) => h * 31 + c.charCodeAt(0) >>> 0, 7) % 5]}"><span class="mark">“</span><span class="nm">${escapeHtml(title)}</span></span>`;
+    const sources = quotes(entry);
+    const sourceList = sources.map(s => `<span>${escapeHtml(s.author || "")}${s.work ? ` · <i>${escapeHtml(s.work)}</i>` : ""}${s.published ? ` (${String(s.published).slice(0, 4)})` : ""}</span>`).join("");
+    return `<div class="entry card ${isPreLlm(entry) ? "pre-llm" : ""}" id="${anchorId}" data-entry="${entry.id}">\n    <dt class="${text(entry.title).fallback ? "fallback" : ""}" data-act="open-entry">${escapeHtml(title)}</dt>\n    <div class="cover" data-act="open-entry">${cover}</div>\n    ${first ? `<div class="qt" data-act="open-entry"><blockquote>“${escapeHtml(first.quote)}”</blockquote><cite>${escapeHtml(first.author || "")}</cite></div>` : `<p class="qt" data-act="open-entry">${escapeHtml(text(entry.definition).value.replace(/\s*(\[\d+\])+/g, ""))}</p>`}\n    <div class="foot">${sources.length ? `<span class="src" tabindex="0">${ui.shelf.sources(sources.length)}<span class="pop">${sourceList}</span></span>` : "<span></span>"}${tierPickHtml(entry, ui)}</div>\n  </div>`;
+}
+
+function openEntryModal(entryId) {
+    const entry = data.entries.find(e => e.id === entryId);
+    if (!entry) return;
+    const modal = document.createElement("div");
+    modal.className = "entry-modal";
+    modal.innerHTML = `<div class="sheet"><button class="close" aria-label="${UI[lang].survey.close}">×</button><dl>${renderEntry(entry, `${entryId}--modal`)}</dl></div>`;
+    document.body.appendChild(modal);
+    modal.querySelectorAll(".mfig[data-motion]").forEach(pop => {
+        initPlayer(pop);
+        pop.dispatchEvent(new Event("motion:play"));
+    });
+    const close = () => {
+        modal.remove();
+        removeEventListener("keydown", onKey);
+    };
+    const onKey = e => {
+        if (e.key === "Escape") close();
+    };
+    addEventListener("keydown", onKey);
+    modal.addEventListener("click", e => {
+        if (e.target === modal || e.target.closest(".close")) close();
+    });
+}
+
+document.addEventListener("click", e => {
+    const opener = e.target.closest?.('[data-act="open-entry"]');
+    if (opener && !e.target.closest(".tier-pick, .src")) {
+        openEntryModal(opener.closest(".card").dataset.entry);
+        return;
+    }
+    const act = e.target.closest?.('[data-act="see-all"], [data-act="shelf-scroll"], [data-act="sec-menu"]');
+    if (!act) {
+        if (!e.target.closest?.(".sec-list")) document.querySelectorAll(".sec-list").forEach(m => m.remove());
+        return;
+    }
+    if (act.dataset.act === "see-all") {
+        shelvesOpen.add(act.dataset.block);
+        render();
+        document.getElementById(act.dataset.block)?.scrollIntoView({
+            block: "start"
+        });
+        return;
+    }
+    if (act.dataset.act === "shelf-scroll") {
+        const grid = act.closest(".shelf").querySelector(".shelf-grid");
+        grid.scrollBy({
+            left: Number(act.dataset.d) * grid.clientWidth * .8,
+            behavior: "smooth"
+        });
+        return;
+    }
+    document.querySelectorAll(".sec-list").forEach(m => m.remove());
+    const list = document.createElement("div");
+    list.className = "sec-list";
+    let part = null;
+    list.innerHTML = blocks().map(b => (b.part !== part ? `<b>${part = b.part, b.partTitle || UI[lang].parts[b.part]}</b>` : "") + `<a href="#${b.id}">${b.title}</a>`).join("");
+    act.closest(".shelf-head").appendChild(list);
+    list.addEventListener("click", ev => {
+        if (ev.target.closest("a")) setTimeout(() => list.remove());
+    });
+});
+
+function renderEntry(entry, anchorId) {
+    const ui = UI[lang], title = text(entry.title);
+    const aliases = [ ...new Set(entry.aliases[lang] || []) ];
+    const date = formatDate(entry.firstAppeared);
+    const citedInDefinition = [ ...text(entry.definition).value.matchAll(/\[(\d+)\]/g) ].map(m => m[1]).filter(n => entry.sources.find(s => String(s.n) === n)?.quote);
+    const coinedMarks = entry.sources.filter(s => s.role === "coined" && !citedInDefinition.includes(String(s.n))).map((s, i) => footnote(entry, s.n, citedInDefinition.length + i + 1)).join("");
+    const origin = entry.origin ? `<span class="origin">${escapeHtml(text(entry.origin).value)}${date ? `, ${date}` : ""}${coinedMarks}</span>` : date ? `<span class="meta">${date}</span>${coinedMarks}` : coinedMarks;
+    const relations = [ [ ui.roots, entryLinks(entry.rootsIn, true) ], [ ui.example, figures[entry.id] && !motion[entry.id] ? `<a class="ref" href="#" data-figure="${entry.id}">${escapeHtml(figures[entry.id])}</a>` : "" ], [ ui.seeAlso, entryLinks((entry.seeAlso || []).filter(id => !(entry.rootsIn || []).includes(id))) ] ].filter(([, links]) => links).map(([label, links]) => `<span class="label">${label}:</span> ${links}.`).join(" ");
+    const rail = "";
+    const mine = myAnswers[entry.id];
+    const tierPick = anchorId.endsWith("--card") ? "" : tierPickHtml(entry, ui);
+    return `<div class="entry ${isPreLlm(entry) ? "pre-llm" : ""} ${isAskable(entry) ? "askable" : ""}" id="${anchorId}" data-entry="${entry.id}">${rail}\n    <dt class="${title.fallback ? "fallback" : ""}">${escapeHtml(title.value)}</dt><a class="suggest-edit" href="${suggestEditUrl(entry)}" title="${UI[lang].suggestEdit}" aria-label="${UI[lang].suggestEdit}">✎</a><a class="permalink" href="#${entry.id}" title="${UI[lang].permalink}">#</a><button class="share-card" data-share="${entry.id}" title="${UI[lang].share}" aria-label="${UI[lang].share}">⤴</button>\n    <dd>${aliases.length ? `<span class="aliases">(${ui.aliases}: ${aliases.map(escapeHtml).join(", ")})</span> ` : ""}${renderDefinition(entry)}${whyLinks(entry)}\n    ${mine ? `<span class="mine ${mine.useful === null ? "" : mine.useful ? "yes" : "no"}">${ui.mine(mine.useful)}</span>` : ""}\n    ${origin}\n    ${motion[entry.id] ? `<span class="mfig" data-motion="${entry.id}"></span>` : ""}\n    ${relations ? `<span class="relations">${relations}</span>` : ""}${tierPick}</dd>\n  </div>`;
+}
+
+function blocks() {
+    const meta = data.meta, teamGroup = meta.groups.find(g => g.id === "team");
+    return [ ...meta.stages.filter(s => s.id !== "general").map(s => ({
+        part: "stages",
+        id: `stage-${s.id}`,
+        title: s.title[lang],
+        match: e => e.kind === "practice" && e.stages.includes(s.id)
+    })), ...meta.groups.filter(g => g.section === "general" && g.id !== "team").map(g => ({
+        part: "general",
+        id: `group-${g.id}`,
+        title: g.title[lang],
+        description: g.description?.[lang],
+        match: e => e.kind !== "approach" && e.group === g.id
+    })), ...(meta.themes || []).map(th => ({
+        part: "general",
+        id: `theme-${th.id}`,
+        title: th.title[lang] || th.title.en,
+        description: th.description?.[lang] || th.description?.en,
+        repeat: true,
+        match: e => th.entries.includes(e.id)
+    })), {
+        part: "team",
+        id: "approaches",
+        title: UI[lang].parts.approaches,
+        partDescription: teamGroup?.description?.[lang],
+        match: e => e.kind === "approach"
+    }, ...meta.groups.some(g => g.section === "team") ? meta.groups.filter(g => g.section === "team").map(g => ({
+        part: "team",
+        id: `group-${g.id}`,
+        title: g.title[lang],
+        partDescription: teamGroup?.description?.[lang],
+        match: e => e.kind !== "approach" && e.group === g.id
+    })) : teamGroup ? [ {
+        part: "team",
+        id: "group-team",
+        title: teamGroup.title[lang],
+        description: teamGroup.description?.[lang],
+        solo: true,
+        match: e => e.kind !== "approach" && e.group === "team"
+    } ] : [] ].filter(block => data.entries.some(block.match));
+}
+
+function renderToc() {
+    const ui = UI[lang];
+    let html = "", currentPart = null;
+    for (const block of blocks()) {
+        if (block.part !== currentPart) {
+            if (currentPart) html += `</div>`;
+            currentPart = block.part;
+            const partTarget = block.part === "approaches" ? "approaches" : `part-${block.part}`;
+            const solo = block.part === "approaches" || !!block.solo || !!block.partTitle;
+            html += `<div class="toc-part"><a class="part${solo ? " solo" : ""}" href="#${partTarget}">${block.partTitle || ui.parts[block.part]}</a>`;
+            if (solo) continue;
+        }
+        html += `<a class="item" href="#${block.id}">${block.title}</a>`;
+    }
+    html += `</div><a class="site suggest-practice" href="${newPracticeUrl()}">${ui.suggestPractice}</a><a class="site site-bottom" href="${REPO_URL}">${ui.github}${starCount === null ? "" : ` <span class="stars">★ ${starCount}</span>`}</a>`;
+    document.getElementById("toc").innerHTML = html;
+    document.getElementById("tocInline").innerHTML = html;
+    document.getElementById("tocSheetNav").innerHTML = html;
+    document.getElementById("tocButton").setAttribute("aria-label", ui.contents);
+    markTocSection();
+}
+
+const REPO_URL = "https://github.com/inmve/agentic-coding-practices";
+
+const ORIGINAL_SITE = "https://inmve.github.io/agentic-coding-practices/";
+
+const ORIGINAL_ISSUES = "https://github.com/inmve/agentic-coding-practices/issues";
+
+let team = null;
+
+function applyTeam(settings) {
+    for (const key of [ "answersRepo", "siteUrl", "issuesUrl" ]) if (typeof settings[key] === "string" && settings[key]) data.meta[key] = settings[key];
+    const known = new Set(data.entries.map(e => e.id));
+    for (const practice of Array.isArray(settings.practices) ? settings.practices : []) {
+        if (!practice || typeof practice.id !== "string" || known.has(practice.id) || !practice.title || !practice.definition) continue;
+        data.entries.push({
+            kind: "practice",
+            stages: [],
+            aliases: {},
+            seeAlso: [],
+            sources: [],
+            opposites: [],
+            rootsIn: [],
+            group: null,
+            firstAppeared: null,
+            coinedHere: false,
+            origin: null,
+            ...practice,
+            team: true
+        });
+    }
+    const robots = document.createElement("meta");
+    robots.name = "robots";
+    robots.content = "noindex";
+    document.head.appendChild(robots);
+}
+
+let starCount = null;
+
+fetch("https://api.github.com/repos/inmve/agentic-coding-practices").then(r => r.ok ? r.json() : null).then(repo => {
+    if (repo && Number.isInteger(repo.stargazers_count)) {
+        starCount = repo.stargazers_count;
+        if (data) {
+            renderToc();
+            renderSubtitle();
+        }
+    }
+}).catch(() => {});
+
+const INTRO_SOURCES = [ {
+    quote: "I rapidly went from about 80% manual+autocomplete coding and 20% agents in November to 80% agent coding and 20% edits+touchups in December",
+    author: "Andrej Karpathy",
+    work: "Andrej Karpathy (@karpathy) on X",
+    url: "https://x.com/karpathy/status/2015883857489522876",
+    published: "2026-01-26"
+}, {
+    quote: "We removed over 80% of Claude Code’s system prompt for models like Claude Opus 5 and Claude Fable 5 with no measurable loss on our coding evaluations.",
+    author: "Thariq Shihipar",
+    work: "The new rules of context engineering for Claude 5 generation models",
+    url: "https://claude.dev/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models/",
+    published: "2026-07-24"
+}, {
+    quote: "We’ve always appreciated TDD in our interviews to break down the problem; with AI, this becomes even more important.",
+    author: "Alex Anthony",
+    work: "Why we let candidates use AI in our programming interviews",
+    url: "https://www.omnea.co/blog/ai-in-our-programming-interviews",
+    published: "2026-05-26"
+} ];
+
+const introNote = n => `<sup><button data-intro="${n - 1}">[${n}]</button></sup>`;
+
+const INTRO = {};
+
+INTRO.en = `\n  <p>Opus 4.5 came out on 24 November 2025. Back then I kept a list of tips for coding with LLMs, and most of it was about writing prompts and preparing context. A year of agent work later I rarely do either, and I wouldn’t follow a lot of that list myself: the models read a vague prompt well enough now, and shouting ALWAYS and NEVER at an agent buys far less than it did.</p>\n  <p>What went the other way, to my surprise, is everything that predates LLMs. <a href="#stage-test-qa">Tests</a>, <a href="#group-team-review">code review</a> and <a href="#agent-readable-test-output">CI</a> all count for more now that an agent writes code faster than anyone can read it, and several of the practices on this page grew straight out of them. Even the rubber duck survived; now it just happens to talk back.</p>`;
+
+INTRO.ru = `\n  <p>В 2025 году я вёл список советов по программированию с LLM. Через год многим из них я бы и сам не следовал: большая часть была про то, как писать промпты и готовить контекст, а с современными моделями вроде Opus 5.5 я почти не делаю ни того, ни другого. Поэтому я собрал список заново, из практического опыта: что пишут о своей работе люди, которые делают софт с агентами.</p>\n  <p>Промпты стали менее важны. С практиками, которые существовали задолго до LLM, вышло наоборот: я не нашёл никого, кто отказался бы от <a href="#stage-test-qa">тестов</a>, <a href="#group-team-review">код-ревью</a> или <a href="#agent-readable-test-output">CI</a>. Несколько практик здесь выросли из них. <a href="#test-driven-development-ai">Тесты до кода агента</a>, например, это разработка через тестирование (2002), только код пишет агент. Даже резиновая уточка осталась, просто теперь она отвечает.</p>`;
+
+INTRO.zh = `\n<p>2025 年我整理过一份用 LLM 写代码的小技巧清单。一年之后，其中很多我自己都不会再照做了：大部分讲的是怎么写提示词、怎么准备上下文，而用 Opus 5.5 这样的新模型，这两件事我几乎不做了。所以我根据实际经验重做了这份清单：来自用 agent 构建软件的人，写的是他们自己的工作。</p>\n  <p>提示词的重要性下降了。而早在 LLM 出现之前就有的那些实践，走向了相反的方向：我没找到有谁收回对<a href="#stage-test-qa">测试</a>、<a href="#group-team-review">代码评审</a>或 <a href="#agent-readable-test-output">CI</a> 的看法。这里的好几个实践都是从它们长出来的。比如<a href="#test-driven-development-ai">先写测试再让 agent 写代码</a>，就是测试驱动开发（2002）加上由 agent 来写代码。连小黄鸭也还在；只不过现在它会回话了。</p>`;
+
+INTRO.es = `\n<p>En 2025 llevé una lista de consejos para programar con LLMs. Un año después yo mismo no seguiría gran parte de ella: casi todo trataba de escribir prompts y preparar el contexto, y con modelos actuales como Opus 5.5 rara vez hago ninguna de las dos cosas. Así que rehice la lista a partir de la experiencia práctica: de personas que construyen software con agentes y escriben sobre su propio trabajo.</p>\n  <p>Escribir prompts es lo que perdió importancia. Las prácticas que existían mucho antes de los LLMs fueron en sentido contrario: no encontré a nadie que renunciara a los <a href="#stage-test-qa">tests</a>, a la <a href="#group-team-review">revisión de código</a> o a la <a href="#agent-readable-test-output">CI</a>. Varias prácticas de aquí nacieron de ellas. <a href="#test-driven-development-ai">Los tests antes del código del agente</a>, por ejemplo, son el desarrollo guiado por tests (2002) con un agente escribiendo el código. Hasta el patito de goma sigue aquí; solo que ahora responde.</p>`;
+
+INTRO.pt = `\n<p>Em 2025 eu mantinha uma lista de dicas para programar com LLMs. Um ano depois, eu mesmo não seguiria boa parte dela: quase tudo era sobre escrever prompts e preparar contexto, e com modelos atuais como o Opus 5.5 eu raramente faço uma coisa ou outra. Então refiz a lista a partir da experiência prática: de pessoas que constroem software com agentes e escrevem sobre o próprio trabalho.</p>\n  <p>Escrever prompts foi a parte que perdeu importância. As práticas que existiam muito antes dos LLMs foram na direção oposta: não encontrei ninguém voltando atrás em relação a <a href="#stage-test-qa">testes</a>, <a href="#group-team-review">code review</a> ou <a href="#agent-readable-test-output">CI</a>. Várias práticas daqui nasceram delas. <a href="#test-driven-development-ai">Testes antes do código do agente</a>, por exemplo, é o desenvolvimento orientado a testes (2002) com um agente escrevendo o código. Até o patinho de borracha continua por aqui; só que agora ele responde.</p>`;
+
+INTRO.ja = `\n<p>2025年に、LLM でコーディングするためのコツの一覧を作っていました。1年たった今、その多くは自分でも守らないでしょう。大半はプロンプトの書き方とコンテキストの準備についてで、Opus 5.5 のような今のモデルでは、どちらもほとんどしないからです。そこで、一覧を実体験から作り直しました。エージェントでソフトウェアを作っている人たちが、自分の仕事について書いたものです。</p>\n  <p>重要度が下がったのは、プロンプトの部分です。LLM よりずっと前からあった実践は、逆の方向に進みました。<a href="#stage-test-qa">テスト</a>、<a href="#group-team-review">コードレビュー</a>、<a href="#agent-readable-test-output">CI</a> を撤回している人は、見つけられませんでした。ここにある実践のいくつかは、それらから育ったものです。たとえば<a href="#test-driven-development-ai">エージェントのコードより先にテスト</a>は、エージェントがコードを書くテスト駆動開発(2002年)です。ラバーダックも健在です。ただ今は、アヒルが返事をしてくれます。</p>`;
+
+function formatUpdated(day) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(day || "")) return "";
+    const [y, m, d] = day.split("-").map(Number);
+    const locale = (LANGS.find(l => l.code === lang) || {}).html || lang;
+    return new Intl.DateTimeFormat(lang === "en" ? "en-GB" : locale, {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+        timeZone: "UTC"
+    }).format(new Date(Date.UTC(y, m - 1, d)));
+}
+
+function renderSubtitle() {
+    const ui = UI[lang];
+    document.getElementById("subtitle").innerHTML = team ? ui.teamCopy(ORIGINAL_SITE) : ui.suggestions ? ui.suggestions(REPO_URL, formatUpdated(data.meta.updated), starCount) : "";
+}
+
+function renderIntro() {
+    const byId = Object.fromEntries(data.entries.map(e => [ e.id, e ]));
+    const agentEra = data.entries.filter(e => e.seededFrom !== "pre-llm");
+    const linked = agentEra.filter(e => (e.rootsIn || []).some(id => byId[id]));
+    document.getElementById("intro").innerHTML = INTRO[lang] || INTRO.en;
+}
+
+function render() {
+    const ui = UI[lang], collator = new Intl.Collator(lang);
+    document.documentElement.lang = (LANGS.find(l => l.code === lang) || {}).html || lang;
+    document.getElementById("langs").innerHTML = LANGS.map(l => l.code === lang ? `<b>${l.label}</b>` : `<a href="${SITE_ROOT}${l.dir}" data-dir="${SITE_ROOT}${l.dir}" hreflang="${l.html || l.code}" lang="${l.html || l.code}">${l.label}</a>`).join("");
+    document.getElementById("title").textContent = ui.title;
+    document.getElementById("kicker").textContent = ui.kicker || "";
+    document.getElementById("kicker").hidden = !ui.kicker;
+    document.getElementById("lead").textContent = ui.lead;
+    document.getElementById("lead").hidden = !ui.lead;
+    renderIntro();
+    renderSubtitle();
+    const sortByAppearance = list => list.sort((a, b) => {
+        const dateA = dateKey(a) || "0000", dateB = dateKey(b) || "0000";
+        return dateB.localeCompare(dateA) || collator.compare(text(a.title).value, text(b.title).value);
+    });
+    let html = "";
+    let currentPart = null;
+    entryCategoryCache = null;
+    for (const block of blocks()) {
+        if (block.part !== currentPart) {
+            if (currentPart) html += `</section>`;
+            currentPart = block.part;
+            html += `<section class="part" id="part-${block.part}"><h2 class="part-title">${block.partTitle || ui.parts[block.part]}</h2>` + (block.partDescription ? `<p class="block-description">${escapeHtml(block.partDescription)}</p>` : "");
+        }
+        const inBlock = sortByAppearance(data.entries.filter(block.match));
+        const seen = new Set;
+        const description = block.description ? `<p class="block-description">${escapeHtml(block.description)}</p>` : "";
+        const ordered = [ ...inBlock ].sort((a, b) => quotedAuthors(b).length - quotedAuthors(a).length || quotes(b).length - quotes(a).length);
+        const open = shelvesOpen.has(block.id), shown = open ? ordered : ordered.slice(0, SHELF_VISIBLE);
+        const head = `<div class="shelf-head"><h3>${block.title}</h3><button class="sec-menu" data-act="sec-menu" title="${ui.shelf.goTo}" aria-label="${ui.shelf.goTo}">▾</button>` + `<span class="n">${ui.shelf.practicesN(inBlock.length)}</span>` + (open ? "" : `<span class="arrows"><button data-act="shelf-scroll" data-d="-1" aria-label="‹">‹</button><button data-act="shelf-scroll" data-d="1" aria-label="›">›</button></span>`) + `</div>`;
+        html += `<section class="block shelf ${block.part === "stages" ? "flow" : ""}" id="${block.id}">${head}${description}` + (inBlock.length ? `<div class="shelf-grid ${open ? "all" : ""}">${shown.map(e => {
+            const primary = block.part !== "stages" || e.stages[0] === block.id.replace("stage-", "");
+            return shelfCard(e, primary && !block.repeat ? e.id : `${e.id}--${block.id}`);
+        }).join("")}${!open && ordered.length > shown.length ? `<button class="see-all" data-act="see-all" data-block="${block.id}">${ui.shelf.seeAll(ordered.length)}</button>` : ""}</div>` : `<p class="empty">${ui.empty}</p>`) + `</section>`;
+    }
+    html += `</section>`;
+    if (surveyOn) html += `<section class="part"><p class="answers-lead" id="answersLead"></p><div class="answers-panel" id="your-answers"></div></section>`;
+    const SHOW_TEAM_BLOCK = false;
+    if (SHOW_TEAM_BLOCK && surveyOn && !team) {
+        const t = UI[lang].survey;
+        html += `<section class="team-block copy-block"><h3>${t.teamTitle}</h3><p>${t.teamLead}</p>\n      <div class="copy-head"><span>${t.teamLabel}</span><button data-act="copy-text">${t.copyPrompt}</button></div>\n      <pre>${escapeHtml(UI.en.survey.teamPrompt)}</pre></section>`;
+    }
+    document.getElementById("content").innerHTML = html;
+    document.querySelectorAll(".mfig[data-motion]").forEach(pop => initPlayer(pop));
+    redrawSurvey();
+    watchSchemes();
+    watchAnswersBlock();
+    watchShelves();
+    document.getElementById("footer").innerHTML = `<a href="${data.meta.issuesUrl}">${ui.issues}</a>`;
+    renderToc();
+    if (activeEntryId) markActive(activeEntryId, false);
+    paintPeriod();
+}
+
+const question = document.getElementById("question");
+
+let questionEntryId = null, hideTimer = null, activeEntryId = null;
+
+const isTouch = matchMedia("(hover: none)").matches;
+
+function leftLimit() {
+    const toc = document.getElementById("toc");
+    return getComputedStyle(toc).position === "fixed" ? toc.getBoundingClientRect().right + 8 : 8;
+}
+
+function showQuestion(entryElement) {
+    clearTimeout(hideTimer);
+    questionEntryId = entryElement.dataset.entry;
+    const ui = UI[lang], mine = myAnswers[questionEntryId], q = data.meta.usefulQuestion;
+    const counts = answerCounts(questionEntryId), total = counts.yes + counts.no;
+    const enough = total >= data.meta.minAnswersForBar;
+    question.innerHTML = `<span class="ask">${q[lang]}</span>\n    <div class="buttons"><button class="yes ${mine?.useful === true ? "chosen" : ""}" data-answer="yes">${ui.yes}</button><button class="no ${mine?.useful === false ? "chosen" : ""}" data-answer="no">${ui.no}</button><button class="never ${mine && mine.useful === null ? "chosen" : ""}" data-answer="never">${ui.never}</button></div>\n    `;
+    question.style.display = "block";
+    question.className = "";
+    const rect = entryElement.getBoundingClientRect(), gap = 12;
+    const bottomLimit = innerHeight - 8;
+    let left, top = rect.top;
+    if (rect.left - question.offsetWidth - gap >= leftLimit()) {
+        question.classList.add("left");
+        left = rect.left - question.offsetWidth - gap;
+    } else if (rect.right + question.offsetWidth + gap <= innerWidth - 8) {
+        question.classList.add("right");
+        left = rect.right + gap;
+    } else {
+        question.classList.add("below");
+        left = Math.max(8, rect.left);
+        top = rect.bottom + gap;
+    }
+    top = Math.max(8, Math.min(top, bottomLimit - question.offsetHeight));
+    question.style.left = left + scrollX + "px";
+    question.style.top = top + scrollY + "px";
+}
+
+function hideQuestion() {
+    if (question.contains(document.activeElement)) return;
+    question.style.display = "none";
+    questionEntryId = null;
+}
+
+function markActive(entryId, scroll) {
+    document.querySelectorAll(".entry.active").forEach(e => e.classList.remove("active"));
+    activeEntryId = entryId;
+    const element = document.querySelector(`.entry[data-entry="${entryId}"]`);
+    if (!element) return null;
+    element.classList.add("active");
+    if (scroll) element.scrollIntoView({
+        block: "center"
+    });
+    return element;
+}
+
+function scheduleHide() {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hideQuestion, 250);
+}
+
+document.addEventListener("mouseover", e => {
+    if (isTouch) return;
+    if (e.target.matches("sup button")) {
+        clearTimeout(popoverTimer);
+        popoverTimer = null;
+        if (popover?.dataset.for !== footnoteKey(e.target)) openPopover(e.target);
+    } else if (e.target.matches("a.ref[data-root]")) {
+        clearTimeout(popoverTimer);
+        popoverTimer = null;
+        if (popover?.dataset.for !== "root:" + e.target.dataset.root) {
+            openRootPopover(e.target);
+            popover.dataset.for = "root:" + e.target.dataset.root;
+        }
+    } else if (popover && !popoverPinned) {
+        if (popover.contains(e.target)) {
+            clearTimeout(popoverTimer);
+            popoverTimer = null;
+        } else if (!popoverTimer) popoverTimer = setTimeout(closePopover, 200);
+    }
+    const entryElement = e.target.closest(".entry");
+    if (entryElement) {
+        if (entryElement.classList.contains("askable") && entryElement.dataset.entry !== questionEntryId) showQuestion(entryElement); else if (entryElement.classList.contains("askable")) clearTimeout(hideTimer); else if (questionEntryId) scheduleHide();
+    } else if (question.contains(e.target)) clearTimeout(hideTimer); else if (questionEntryId) scheduleHide();
+});
+
+function answer(useful) {
+    if (!questionEntryId) return;
+    myAnswers[questionEntryId] = {
+        useful: useful,
+        answeredAt: today.toISOString().slice(0, 10)
+    };
+    saveAnswers();
+    const entryId = questionEntryId;
+    render();
+    const entryElement = document.querySelector(`.entry[data-entry="${entryId}"]`);
+    if (entryElement) showQuestion(entryElement);
+}
+
+question.addEventListener("click", e => {
+    const button = e.target.closest("[data-answer]");
+    if (button) answer({
+        yes: true,
+        no: false,
+        never: null
+    }[button.dataset.answer]);
+});
+
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+        closePopover();
+        question.querySelector("textarea")?.blur();
+        hideQuestion();
+        return;
+    }
+    if (e.target.closest?.("textarea, input") || e.metaKey || e.ctrlKey || e.altKey) return;
+    const key = e.key.toLowerCase();
+    if (key === "j" || key === "k") {
+        const cards = [ ...document.querySelectorAll("#content .entry") ];
+        if (!cards.length) return;
+        const index = cards.findIndex(c => c.classList.contains("active"));
+        const next = cards[index === -1 ? 0 : Math.max(0, Math.min(cards.length - 1, index + (key === "j" ? 1 : -1)))];
+        document.querySelectorAll(".entry.active").forEach(c => c.classList.remove("active"));
+        next.classList.add("active");
+        activeEntryId = next.dataset.entry;
+        next.scrollIntoView({
+            block: "center"
+        });
+        if (next.classList.contains("askable")) requestAnimationFrame(() => showQuestion(next)); else {
+            question.style.display = "none";
+            questionEntryId = null;
+        }
+        e.preventDefault();
+    }
+    if ((key === "y" || key === "n") && questionEntryId) {
+        answer(key === "y");
+        e.preventDefault();
+    }
+});
+
+let popover = null, popoverPinned = false, popoverTimer = null;
+
+function closePopover() {
+    clearTimeout(popoverTimer);
+    popoverTimer = null;
+    popoverPinned = false;
+    popover?.remove();
+    popover = null;
+}
+
+function footnoteKey(button) {
+    return `${button.dataset.entry || "intro"}:${button.dataset.n ?? button.dataset.intro}`;
+}
+
+function sourceLine(source) {
+    const title = source.work ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener">«${escapeHtml(source.work)}»</a>` : `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener">${escapeHtml(new URL(source.url).hostname.replace(/^www\./, ""))}</a>`;
+    return [ source.author && escapeHtml(source.author), title, source.published && escapeHtml(source.published) ].filter(Boolean).join(", ");
+}
+
+function openRootPopover(link) {
+    closePopover();
+    const ui = UI[lang];
+    const root = data.entries.find(e => e.id === link.dataset.root);
+    if (!root) return;
+    const quoted = root.sources.filter(s => s.quote);
+    const source = quoted.find(s => s.role === "relevance") || quoted[0];
+    const date = root.firstAppeared?.verified ? entryDate(root) : null;
+    popover = document.createElement("div");
+    popover.className = "popover";
+    const heading = `<b>${escapeHtml(text(root.title).value)}</b>${date ? ` · ${date.getFullYear()}` : ""}<br>`;
+    const definition = `<span class="root-definition">${escapeHtml(text(root.definition).value.replace(/(\s*\[\d+\])+\s*$/, ""))}</span><br>`;
+    const body = source ? `<q>${escapeHtml(source.quote)}</q><span class="who">${sourceLine(source)}</span>` : "";
+    popover.innerHTML = heading + definition + body;
+    document.body.appendChild(popover);
+    const rect = link.getBoundingClientRect();
+    popover.style.left = Math.max(8, Math.min(rect.left + scrollX, scrollX + innerWidth - popover.offsetWidth - 8)) + "px";
+    popover.style.top = rect.bottom + scrollY + 4 + "px";
+}
+
+function openFigurePopover(link) {
+    closePopover();
+    popover = document.createElement("div");
+    popover.className = "popover figure-popover";
+    popover.innerHTML = `<img src="${SITE_ROOT}figures/${link.dataset.figure}.svg" alt="${escapeHtml(figures[link.dataset.figure] || "")}">`;
+    document.body.appendChild(popover);
+    const rect = link.getBoundingClientRect();
+    popover.style.left = Math.max(8, Math.min(rect.left + scrollX, scrollX + innerWidth - popover.offsetWidth - 8)) + "px";
+    popover.style.top = rect.bottom + scrollY + 4 + "px";
+}
+
+function openPopover(button) {
+    closePopover();
+    const ui = UI[lang];
+    const entry = data.entries.find(e => e.id === button.dataset.entry);
+    const numbers = (button.dataset.n || "").split(",");
+    const sources = button.dataset.intro !== undefined ? [ INTRO_SOURCES[button.dataset.intro] ] : (entry?.sources || []).filter(s => numbers.includes(String(s.n)));
+    if (!sources.length || !sources[0]) return;
+    popover = document.createElement("div");
+    popover.className = "popover";
+    popover.dataset.for = footnoteKey(button);
+    popover.innerHTML = sources.map(source => `<div class="pop-item">` + (source.quote ? `<q>${escapeHtml(source.quote)}</q>` : `<span class="no-quote">${ui.noQuote}</span>`) + `<span class="who">${sourceLine(source)}</span></div>`).join("");
+    document.body.appendChild(popover);
+    const rect = button.getBoundingClientRect();
+    popover.style.left = Math.max(8, Math.min(rect.left + scrollX, scrollX + innerWidth - popover.offsetWidth - 8)) + "px";
+    popover.style.top = rect.bottom + scrollY + 4 + "px";
+}
+
+document.addEventListener("click", e => {
+    if (e.target.matches("a.suggest-edit")) {
+        e.preventDefault();
+        if (popover?.dataset.for === "suggest:" + e.target.closest(".entry").dataset.entry) popoverPinned = true; else openSuggestPopover(e.target);
+        return;
+    }
+    if (e.target.matches("sup button")) {
+        if (popover?.dataset.for !== footnoteKey(e.target)) openPopover(e.target);
+        popoverPinned = true;
+        return;
+    }
+    if (e.target.matches("a.ref[data-root]")) {
+        e.preventDefault();
+        openRootPopover(e.target);
+        popoverPinned = true;
+        return;
+    }
+    if (e.target.matches("a.ref[data-figure]")) {
+        e.preventDefault();
+        openFigurePopover(e.target);
+        popoverPinned = true;
+        return;
+    }
+    if (!popover?.contains(e.target)) closePopover();
+    if (isTouch && !question.contains(e.target)) {
+        const entryElement = e.target.closest(".entry");
+        if (entryElement && !e.target.closest("a")) {
+            markActive(entryElement.dataset.entry, false);
+            if (entryElement.classList.contains("askable")) showQuestion(entryElement); else hideQuestion();
+        } else hideQuestion();
+    }
+});
+
+function markTocSection() {
+    let current = null;
+    const links = [ ...document.querySelectorAll("#toc a.item, #toc a.part.solo") ];
+    const atEnd = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+    for (const link of links) {
+        const target = document.getElementById(link.getAttribute("href").slice(1));
+        if (target && target.getBoundingClientRect().top <= (atEnd ? innerHeight - 80 : 140)) current = link;
+    }
+    for (const link of links) link.classList.toggle("active", link === current);
+    const toc = document.getElementById("toc");
+    if (current && toc.scrollHeight > toc.clientHeight) {
+        const top = current.offsetTop, bottom = top + current.offsetHeight;
+        if (top < toc.scrollTop + 24 || bottom > toc.scrollTop + toc.clientHeight - 24) toc.scrollTop = top - toc.clientHeight / 2;
+    }
+}
+
+function onScroll() {
+    markTocSection();
+    updateBarVisibility();
+}
+
+addEventListener("scroll", onScroll, {
+    passive: true
+});
+
+addEventListener("resize", onScroll);
+
+document.querySelectorAll("input[name=lang]").forEach(input => input.addEventListener("change", () => {
+    lang = input.value;
+    render();
+}));
+
+document.addEventListener("click", e => {
+    const link = e.target.closest?.("a[href]");
+    if (!link || link.target) return;
+    if (new URL(link.href, location.href).origin !== location.origin) {
+        link.target = "_blank";
+        link.rel = "noopener";
+    }
+});
+
+function openHash() {
+    const [id, action] = decodeURIComponent(location.hash.slice(1)).split("/");
+    const entry = data.entries.find(e => e.id === id);
+    if (!entry) return;
+    const element = markActive(id, true);
+    if (action === "play" && element?.querySelector(".mfig[data-motion]") && !document.querySelector(".mfig-modal")) {
+        openMotionModal(id, () => history.replaceState(null, "", "#" + id));
+        return;
+    }
+    const scheme = element?.querySelector(".mfig[data-motion]");
+    if (!scheme || scheme === playingScheme) return;
+    playingScheme?.dispatchEvent(new Event("motion:still"));
+    scheme.dispatchEvent(new Event("motion:play"));
+    playingScheme = scheme;
+    const away = new IntersectionObserver(([item]) => {
+        if (item.isIntersecting) return;
+        away.disconnect();
+        if (playingScheme === scheme) {
+            scheme.dispatchEvent(new Event("motion:still"));
+            playingScheme = null;
+        }
+    });
+    away.observe(scheme);
+}
+
+addEventListener("hashchange", openHash);
+
+document.addEventListener("click", async e => {
+    const button = e.target.closest?.('[data-act="copy-text"]');
+    if (!button) return;
+    const text = button.closest(".copy-block").querySelector("pre").textContent;
+    try {
+        await navigator.clipboard.writeText(text);
+    } catch (err) {
+        const area = document.createElement("textarea");
+        area.value = text;
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand("copy");
+        area.remove();
+    }
+    selectAll(button.closest(".copy-block").querySelector("pre"));
+    button.textContent = UI[lang].survey.copied;
+});
+
+const loadData = window.REFERENCE_DATA ? Promise.resolve([ window.REFERENCE_DATA, window.REFERENCE_DEMO_ANSWERS || {
+    answers: []
+} ]) : Promise.all([ fetch(SITE_ROOT + "entries.json", {
+    cache: "no-cache"
+}).then(r => r.json()), Promise.resolve({
+    answers: []
+}) ]);
+
+loadData.catch(() => {
+    document.getElementById("content").innerHTML = `<p style="color:#c0392b;font-size:15px">${UI[lang].loadError("https://github.com/inmve/agentic-coding-practices/blob/main/data/entries.json")}</p>`;
+});
+
+function applyTranslation(tr) {
+    const set = (field, value) => {
+        if (field) field[lang] = value || field.en;
+    };
+    for (const entry of data.entries) {
+        const item = tr.entries?.[entry.id] || {};
+        set(entry.title, item.title);
+        set(entry.definition, item.definition);
+        if (item.aliases) (entry.aliases ||= {})[lang] = item.aliases;
+        if (entry.origin) set(entry.origin, item.origin);
+    }
+    for (const stage of data.meta.stages) set(stage.title, tr.stages?.[stage.id]);
+    for (const group of [ ...data.meta.groups, ...data.meta.themes || [] ]) {
+        const item = (group.entries ? tr.themes : tr.groups)?.[group.id] || {};
+        set(group.title, item.title);
+        if (group.description) set(group.description, item.description);
+    }
+    if (data.meta.usefulQuestion?.hint) set(data.meta.usefulQuestion.hint, tr.usefulQuestion?.hint);
+}
+
+document.getElementById("langs").addEventListener("click", e => {
+    const link = e.target.closest("a[data-dir]");
+    if (link && location.hash) link.href = link.dataset.dir + location.hash;
+});
+
+const OPUS_45 = new Date("2025-11-24");
+
+let tl = null;
+
+function tlDate(entry) {
+    if (entry.seededFrom === "pre-llm") return entry.firstAppeared?.verified ? new Date(entry.firstAppeared.date) : null;
+    return entryDate(entry);
+}
+
+function buildTimeline() {
+    const start = new Date(String(data.meta.timelineStartYear || 1960) + "-01-01"), chatgpt = new Date(data.meta.llmEraStart);
+    const bounds = [ start.getTime(), chatgpt.getTime(), OPUS_45.getTime(), today.getTime() ];
+    const items = [];
+    for (const entry of data.entries) {
+        const date = tlDate(entry);
+        if (date && date <= today) items.push({
+            id: entry.id,
+            ms: date.getTime(),
+            root: entry.seededFrom === "pre-llm"
+        });
+    }
+    const segments = [ 0, 1, 2 ].map(k => {
+        const inside = [ ...new Set(items.map(i => i.ms).filter(ms => ms > bounds[k] && ms < bounds[k + 1])) ].sort((a, b) => a - b);
+        return {
+            from: bounds[k],
+            to: bounds[k + 1],
+            knots: [ bounds[k], ...inside, bounds[k + 1] ],
+            x0: k / 3
+        };
+    });
+    tl = {
+        segments: segments,
+        items: items,
+        range: [ bounds[0], bounds[3] ]
+    };
+    drawTimeline();
+}
+
+function tlToX(ms) {
+    const segment = tl.segments.find(s => ms <= s.to) || tl.segments[2];
+    const knots = segment.knots, step = 1 / 3 / (knots.length - 1);
+    if (ms <= knots[0]) return segment.x0;
+    for (let i = 1; i < knots.length; i++) if (ms <= knots[i]) return segment.x0 + step * (i - 1 + (ms - knots[i - 1]) / (knots[i] - knots[i - 1]));
+    return 1;
+}
+
+function tlFromX(x) {
+    x = Math.min(1, Math.max(0, x));
+    const segment = tl.segments[Math.min(2, Math.floor(x * 3))], knots = segment.knots, step = 1 / 3 / (knots.length - 1);
+    const position = (x - segment.x0) / step, i = Math.min(knots.length - 2, Math.floor(position));
+    return knots[i] + (knots[i + 1] - knots[i]) * (position - i);
+}
+
+function tlLabel(ms) {
+    const date = new Date(ms);
+    return ms < tl.segments[0].to ? String(date.getFullYear()) : `${UI[lang].months[date.getMonth()]} ${date.getFullYear()}`;
+}
+
+function tlFull() {
+    return tl.range[0] <= tl.segments[0].from && tl.range[1] >= tl.segments[2].to;
+}
+
+function drawTimeline() {
+    if (!tl) return;
+    const track = document.getElementById("tlTrack"), width = track.clientWidth || 700;
+    let html = tl.segments.map((s, k) => `<div class="zone ${[ "history", "llm", "recent" ][k]}" style="left:${s.x0 * 100}%;width:${100 / 3}%"></div>`).join("");
+    html += tl.items.map(i => `<div class="tick ${i.root ? "root" : "card"}" data-ms="${i.ms}" style="left:${tlToX(i.ms) * 100}%"></div>`).join("");
+    let lastX = -1;
+    for (const year of [ 1970, 1980, 1990, 2e3, 2010, 2023, 2024, 2025, 2026 ]) {
+        const x = tlToX(new Date(`${year}-01-01`).getTime());
+        if (x <= .005 || x >= .995 || (x - lastX) * width < 34) continue;
+        html += `<div class="axis" style="left:${x * 100}%">${year}</div>`;
+        lastX = x;
+    }
+    html += `<span class="end-year start">${new Date(tl.segments[0].from).getFullYear()}</span><span class="end-year end">${today.getFullYear()}</span>`;
+    html += `<div class="mark" style="left:${100 / 3}%"><span>ChatGPT</span></div><div class="mark" style="left:${200 / 3}%"><span>Opus 4.5</span></div>`;
+    html += `<div class="shade" id="tlShadeL"></div><div class="shade" id="tlShadeR"></div>` + `<div class="sel" id="tlSel" data-drag="move"><div class="handle start" data-drag="start"></div><div class="handle end" data-drag="end"></div></div>`;
+    track.innerHTML = html;
+    placePeriod();
+}
+
+function placePeriod() {
+    const left = tlToX(tl.range[0]) * 100, right = tlToX(tl.range[1]) * 100, full = tlFull();
+    const sel = document.getElementById("tlSel");
+    sel.style.left = left + "%";
+    sel.style.width = right - left + "%";
+    sel.classList.toggle("full", full);
+    document.getElementById("tlShadeL").style.cssText = `left:0;width:${full ? 0 : left}%`;
+    document.getElementById("tlShadeR").style.cssText = `left:${right}%;width:${full ? 0 : 100 - right}%`;
+    paintPeriod();
+}
+
+function paintPeriod() {
+    if (!tl) return;
+    const [from, to] = tl.range, full = tlFull(), ui = UI[lang];
+    const inRange = ms => ms !== null && ms >= from && ms <= to;
+    const byId = Object.fromEntries(tl.items.map(i => [ i.id, i.ms ]));
+    const lit = new Set;
+    if (!full) for (const entry of data.entries) {
+        if (inRange(byId[entry.id] ?? null) || (entry.rootsIn || []).some(r => inRange(byId[r] ?? null))) lit.add(entry.id);
+    }
+    document.querySelectorAll(".entry[data-entry], td.name[data-entry]").forEach(el => el.classList.toggle("in-period", lit.has(el.dataset.entry)));
+    document.querySelectorAll("#tlTrack .tick").forEach(t => t.classList.toggle("on", !full && inRange(Number(t.dataset.ms))));
+    document.body.classList.toggle("tl-picked", !full);
+    document.getElementById("tlCaption").innerHTML = full ? "" : `<span>${ui.tlCount(lit.size, tlLabel(from), to >= tl.segments[2].to - 864e5 ? ui.tlToday : tlLabel(to))}</span><button class="reset" data-act="tl-reset">${ui.tlReset}</button>`;
+}
+
+(() => {
+    const track = document.getElementById("tlTrack");
+    let drag = null, pressX = null;
+    const fraction = clientX => {
+        const r = track.getBoundingClientRect();
+        return Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+    };
+    track.addEventListener("pointerdown", e => {
+        if (!tl) return;
+        pressX = e.clientX;
+        const mode = e.target.dataset.drag;
+        if (!mode || mode === "move" && tlFull()) return;
+        drag = {
+            mode: mode,
+            x: fraction(e.clientX),
+            left: tlToX(tl.range[0]),
+            right: tlToX(tl.range[1])
+        };
+        try {
+            track.setPointerCapture(e.pointerId);
+        } catch (err) {}
+    });
+    track.addEventListener("pointermove", e => {
+        if (!drag && tl && e.pointerType !== "touch") {
+            const k = Math.min(2, Math.floor(fraction(e.clientX) * 3));
+            track.querySelectorAll(".zone").forEach((z, i) => z.classList.toggle("hover", i === k));
+        }
+        if (!drag) return;
+        const x = fraction(e.clientX), gap = .01;
+        let {left: left, right: right} = drag;
+        if (drag.mode === "start") left = Math.min(x, right - gap);
+        if (drag.mode === "end") right = Math.max(x, left + gap);
+        if (drag.mode === "move") {
+            const shift = Math.min(1 - drag.right, Math.max(-drag.left, x - drag.x));
+            left += shift;
+            right += shift;
+        }
+        tl.range = [ tlFromX(left), tlFromX(right) ];
+        placePeriod();
+    });
+    track.addEventListener("pointerleave", () => track.querySelectorAll(".zone.hover").forEach(z => z.classList.remove("hover")));
+    track.addEventListener("pointerup", e => {
+        const click = pressX !== null && Math.abs(e.clientX - pressX) < 3 && e.target.dataset.drag !== "start" && e.target.dataset.drag !== "end";
+        drag = null;
+        pressX = null;
+        if (!click || !tl) return;
+        const segment = tl.segments[Math.min(2, Math.floor(fraction(e.clientX) * 3))];
+        tl.range = tl.range[0] === segment.from && tl.range[1] === segment.to ? [ tl.segments[0].from, tl.segments[2].to ] : [ segment.from, segment.to ];
+        placePeriod();
+    });
+    document.addEventListener("click", e => {
+        if (!e.target.closest?.('[data-act="tl-reset"]') || !tl) return;
+        tl.range = [ tl.segments[0].from, tl.segments[2].to ];
+        placePeriod();
+    });
+    const home = document.getElementById("tlHome"), timeline = document.getElementById("timeline");
+    new IntersectionObserver(([item]) => {
+        const stuck = !item.isIntersecting && item.boundingClientRect.top < 0;
+        if (stuck === timeline.classList.contains("stuck")) return;
+        home.style.minHeight = stuck ? home.offsetHeight + "px" : "";
+        timeline.classList.toggle("stuck", stuck);
+        document.body.classList.toggle("tl-stuck", stuck);
+        alignStrip();
+        drawTimeline();
+    }).observe(home);
+    function alignStrip() {
+        const frame = document.getElementById("content");
+        if (!frame) return;
+        const rect = frame.getBoundingClientRect(), handle = 7;
+        timeline.style.setProperty("--tl-left", rect.left + handle + "px");
+        timeline.style.setProperty("--tl-width", rect.width - 2 * handle + "px");
+        timeline.classList.toggle("tight", rect.left + handle < 4 * 6.7 + 10 + 2);
+    }
+    addEventListener("resize", () => {
+        alignStrip();
+        drawTimeline();
+    });
+})();
+
+(() => {
+    const button = document.getElementById("tocButton"), sheet = document.getElementById("tocSheet");
+    const show = open => {
+        sheet.hidden = !open;
+        button.setAttribute("aria-expanded", String(open));
+        button.classList.toggle("open", open);
+    };
+    button.addEventListener("click", () => show(sheet.hidden));
+    sheet.addEventListener("click", e => {
+        if (e.target === sheet || e.target.closest("a")) show(false);
+    });
+    addEventListener("keydown", e => {
+        if (e.key === "Escape" && !sheet.hidden) show(false);
+    });
+})();
+
+loadData.then(async ([json, demo]) => {
+    data = json;
+    if (![ "en", "ru" ].includes(lang)) {
+        const translation = await fetch(SITE_ROOT + `i18n/${lang}.json`).then(r => r.ok ? r.json() : null).catch(() => null);
+        if (translation) applyTranslation(translation);
+    }
+    team = location.href.startsWith(ORIGINAL_SITE) ? null : await fetch("team.json", {
+        cache: "no-cache"
+    }).then(r => r.ok ? r.json() : null).catch(() => null);
+    if (team && typeof team === "object") applyTeam(team); else team = null;
+    motion = await fetch(SITE_ROOT + "figures/motion.json").then(r => r.json()).catch(() => ({}));
+    figures = await fetch(SITE_ROOT + "figures/index.json").then(r => r.json()).catch(() => ({}));
+    demoAnswers = demo.answers;
+    for (const entry of data.entries) for (const rootId of entry.rootsIn || []) (descendantsById[rootId] ||= []).push(entry.id);
+    render();
+    buildTimeline();
+    openHash();
+})</script>
+</body>
+</html>
