@@ -12,9 +12,12 @@ import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SURVEY = "agentic-software-development-2026"
-# «never-heard» was dropped on 2026-11-19: four answers
-ANSWERS = {"not-interested", "want-to-try", "tried-dropped", "do-it"}
+# survey id -> the answers it accepts. Since 2026-11-27 the site asks for a tier, A to D (decision 39);
+# the usage survey stays accepted for pages opened before that day. «never-heard» was dropped on 2026-11-19.
+SURVEYS = {
+    "agentic-practices-tiers-2026": {"A", "B", "C", "D"},
+    "agentic-software-development-2026": {"not-interested", "want-to-try", "tried-dropped", "do-it"},
+}
 PATH = re.compile(r"^answers/2026/[a-f0-9]{8}\.json$")
 MAX_BYTES = 20000
 
@@ -56,8 +59,9 @@ def problems(path, raw):
     # who answered is the author of the pull request, so the file carries no id of its own (2026-11-20)
     if not isinstance(answer, dict) or set(answer) != {"survey", "answeredAt", "answers"}:
         return ["the file must have exactly: survey, answeredAt, answers"]
-    if answer["survey"] != SURVEY:
-        found.append(f"survey must be {SURVEY}")
+    accepted = SURVEYS.get(answer["survey"])
+    if accepted is None:
+        found.append("survey must be one of " + ", ".join(SURVEYS))
     try:
         day = datetime.date.fromisoformat(answer["answeredAt"])
         if day > datetime.date.today() + datetime.timedelta(days=1):
@@ -72,9 +76,9 @@ def problems(path, raw):
         unknown = sorted(set(answers) - surveyed)
         if unknown:
             found.append("practices that are not in the survey: " + ", ".join(unknown))
-        wrong = sorted({str(v) for v in answers.values()} - ANSWERS)
+        wrong = sorted({str(v) for v in answers.values()} - accepted) if accepted else []
         if wrong:
-            found.append("answers must be one of " + ", ".join(sorted(ANSWERS)) + "; got " + ", ".join(wrong))
+            found.append("answers must be one of " + ", ".join(sorted(accepted)) + "; got " + ", ".join(wrong))
     return found
 
 
