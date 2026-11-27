@@ -1,4 +1,4 @@
-"""Count the survey answers: one vote per GitHub account, its latest merged pull request.
+"""Count the tier answers (A to D): one vote per GitHub account, its latest merged pull request.
 
 Who answered is the author of the pull request that added the answer file; the file itself carries no id.
 A later send by the same account replaces its earlier answers in the count, so nothing is counted twice.
@@ -8,6 +8,7 @@ Usage, in a clone of the repository:
   python3 .github/count_answers.py --prs prs.json        the same, from a saved `gh pr list` answer
   python3 .github/count_answers.py --out results.json    also write the counts to a file
 The answer files are read from this clone, so pull main first.
+An account whose latest answer is from the earlier usage survey is left out: that was a different question.
 """
 import collections
 import json
@@ -17,7 +18,8 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 ANSWERS_DIR = "answers/2026/"
-ANSWERS = ["not-interested", "want-to-try", "tried-dropped", "do-it"]
+SURVEY = "agentic-practices-tiers-2026"
+ANSWERS = ["A", "B", "C", "D"]
 
 
 def merged_pull_requests():
@@ -45,25 +47,29 @@ def latest_answer_per_account(pull_requests):
 
 def count(latest):
     per_practice = collections.defaultdict(collections.Counter)
-    missing = []
+    missing, other_survey = [], 0
     for login, (_, path) in sorted(latest.items()):
         file = ROOT / path
         if not file.exists():
             missing.append(path)
             continue
-        for practice, answer in json.loads(file.read_text(encoding="utf-8"))["answers"].items():
+        answer_file = json.loads(file.read_text(encoding="utf-8"))
+        if answer_file.get("survey") != SURVEY:
+            other_survey += 1
+            continue
+        for practice, answer in answer_file["answers"].items():
             per_practice[practice][answer] += 1
-    return per_practice, missing
+    return per_practice, missing, other_survey
 
 
 def main():
     latest = latest_answer_per_account(merged_pull_requests())
-    per_practice, missing = count(latest)
-    result = {"accounts": len(latest) - len(missing),
+    per_practice, missing, other_survey = count(latest)
+    result = {"accounts": len(latest) - len(missing) - other_survey,
               "practices": {p: {a: c[a] for a in ANSWERS} for p, c in sorted(per_practice.items())}}
     if missing:
         print("not in this clone (pull main first):", ", ".join(missing), file=sys.stderr)
-    print(f"{result['accounts']} accounts answered")
+    print(f"{result['accounts']} accounts answered" + (f" ({other_survey} left out: the earlier usage survey)" if other_survey else ""))
     for practice, counts in result["practices"].items():
         print(f"  {practice}: " + ", ".join(f"{a} {n}" for a, n in counts.items() if n))
     if "--out" in sys.argv:
